@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ReviewMapper">
+	<select id="reviewListWithPaging" parameterType="hashMap" resultType="review">
+		<![CDATA[
+		SELECT review_no, id, product_no, content, review_regdate, score, review_image
+          FROM (SELECT row_number() OVER (ORDER BY review_regdate DESC) rn, 
+          review_no, id, product_no, content, review_regdate, score, review_image
+                  FROM review
+                 WHERE product_no=#{product_no})
+         WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+           AND  rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}  
+        ]]>
+	</select>	
+	<select id="avgReviewScore" resultType="double">
+		select avg(score) from review where product_no=#{product_no}
+	</select>
+	<select id="avgScoreList" parameterType="review">
+	select product_no, round(avg(score),1) from review
+	group by product_no
+	</select>
+	
+	<select id="countReviewList" resultType="int">
+		select count(*) from review
+		where product_no=#{product_no}
+	</select>
+	
+	<insert id="saveReview" parameterType="review">
+		INSERT INTO review(review_no, id, product_no, content, score)
+		VALUES(review_seq.NEXTVAL, #{id}, #{product_no}, #{content}, #{score})
+	</insert>
+</mapper>

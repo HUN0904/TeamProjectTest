@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="NoticesMapper">
+	<!-- 전체 공지사항 리스트 -->
+	<select id="noticesList" resultType="notices">
+		SELECT * FROM notices ORDER BY notices_date DESC
+	</select>
+	
+	<!-- 공지사항 상세보기 -->
+	<select id="getNotices" resultType="notices">
+		SELECT * FROM notices WHERE notices_no=#{notices_no} 
+	</select>
+	
+	<!-- 공지사항 작성하기 -->
+	<insert id="insertNotices">
+  	INSERT INTO notices(notices_no, title, content, id)
+  	VALUES(notices_seq.NEXTVAL, #{title}, #{content}, #{id})
+  	</insert>
+	
+	<!-- 공지사항 수정하기 -->
+	<update id="updateNotices">
+	UPDATE notices SET title= #{title}, content=#{content}
+	 WHERE notices_no =#{notices_no}
+	</update>
+	
+	<!-- 공지사항 삭제하기 -->
+	<delete id="deleteNotices">
+	DELETE FROM notices WHERE notices_no =#{notices_no}
+	</delete>
+	
+	
+</mapper>

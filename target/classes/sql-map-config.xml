@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.team.biz.dto.ProductVO" alias="product"/>
+		<typeAlias type="com.team.biz.dto.MemberVO" alias="member"/>
+		<typeAlias type="com.team.biz.dto.CartVO" alias="cart"/>
+		<typeAlias type="com.team.biz.dto.ReviewVO" alias="review"/>
+		<typeAlias type="com.team.biz.dto.NoticesVO" alias="notices"/>
+	</typeAliases>
+	<!-- sql매핑 -->
+	<mappers>
+		<mapper resource="mappings/product-mapping.xml"/>
+		<mapper resource="mappings/member-mapping.xml"/>
+		<mapper resource="mappings/cart-mapping.xml"/>
+		<mapper resource="mappings/review-mapping.xml"/>
+		<mapper resource="mappings/notices-mapping.xml"/>
+	</mappers>
+</configuration>
+	

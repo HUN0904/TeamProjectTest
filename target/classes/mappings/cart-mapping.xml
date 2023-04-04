@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CartMapper">
+  <insert id="insertCart">
+  	INSERT INTO cart(cart_no,id,product_no,message,content,quantity,custom_image,total_price,pickup_date) 
+  	VALUES(cart_seq.NEXTVAL,#{id},#{product_no},#{message},#{content},#{quantity},#{custom_image},#{total_price},#{pickup_date})
+  </insert>
+  
+  <select id="getCart" resultType="cart">
+  	SELECT * FROM cart_view WHERE cart_no=#{cart_no}
+  </select>
+  
+  <select id="cartList" resultType="cart">
+  	SELECT * FROM cart_view WHERE id=#{id} ORDER BY cart_no DESC
+  </select>
+  
+  
+  <delete id="deleteCart">
+  	DELETE FROM cart WHERE cart_no=#{cart_no}
+  </delete>
+  
+  <!-- 주문 처리 완료 -->
+  <update id="updateCart">
+	UPDATE cart SET result='2'
+	 WHERE cart_no=#{cart_no}
+  </update>
+</mapper>

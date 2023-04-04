@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="OrderMapper">
+  
+  	<select id="selectMaxOrder_no" resultType="int">
+		<!-- MAX(oseq)의 값이 null이 아니면 첫번째 값, null이면 두번째 값을 채택함. -->
+		SELECT NVL2(MAX(order_no), MAX(order_no)+1, 1) FROM orders
+	</select>
+  
+	<insert id="orderInsert">
+		INSERT INTO orders(order_no,id) VALUES(#{order_no},#{id})
+	</insert>
+ 
+	<insert id="orderDetailInsert">
+		INSERT INTO order_detail(order_dno, order_no, product_no, quantity)
+		VALUES(order_detail_seq.NEXTVAL, #{order_no}, #{product_no}, #{quantity})	
+	</insert>
+  
+</mapper>
