@@ -20,7 +20,7 @@
       <a class="btn btn-outline-secondary" href="product_images/1.jpg">
       <font style="vertical-align: inherit;">
 	      <font style="vertical-align: inherit;">
-	      곧 출시
+	      곧 출시(깃허브 테스트중 이번엔 hun에서 올리고 test에서 받아와봄)
 	      </font>
       </font></a>
     </div>
