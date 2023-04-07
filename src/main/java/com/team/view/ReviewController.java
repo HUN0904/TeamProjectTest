@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team.biz.dto.MemberVO;
-import com.team.biz.dto.ProductVO;
 import com.team.biz.dto.ReviewVO;
 import com.team.biz.service.ReviewService;
 
@@ -32,11 +31,13 @@ public class ReviewController {
 	private ReviewService reviewService;
 	
 	@GetMapping(value="/list", produces="application/json; charset=UTF-8")
-	public Map<String, Object> reviewList(ReviewVO vo, Criteria criteria) {
+	public Map<String, Object> reviewList(ReviewVO vo, Criteria criteria, Model model) {
 		Map<String, Object> reviewInfo = new HashMap<>();
 		// 상품 댓글 목록 조회
 		List<ReviewVO> reviewList 
 				= reviewService.getReviewListWithPaging(criteria, vo.getProduct_no());
+		//상품별 별점
+		double avg=reviewService.getAvgReviewScore(vo.getProduct_no());
 		// 페이지 정보 작성
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
@@ -44,16 +45,10 @@ public class ReviewController {
 		reviewInfo.put("total", reviewList.size());
 		reviewInfo.put("reviewList", reviewList);
 		reviewInfo.put("pageInfo", pageMaker);
+		model.addAttribute("avg", avg);
 		return reviewInfo;
 	}
-	@RequestMapping("/product_detail")
-	public String avgReviewScore(ReviewVO vo, Model model , Criteria criteria, ProductVO prodVO) {
-		double avg=reviewService.getAvgReviewScore(prodVO.getProduct_no());
-		System.out.println("avg"+avg);
-		model.addAttribute("productReviewVO",reviewService.getReviewListWithPaging(criteria, vo.getProduct_no()) );
-		model.addAttribute("avg", avg);
-		return "product/productDetail";
-	}
+
 	
 	@PostMapping(value="/save")
 	public String saveReviewAction(ReviewVO reviewVO, HttpSession session,
@@ -88,17 +83,18 @@ public class ReviewController {
 	    }
 	}
 	
-	@RequestMapping(value="/delete")
-	public String deleteNotices(ReviewVO vo,HttpSession session) {
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+	@GetMapping(value="/delete", produces="application/json; charset=UTF-8")
+	public String deleteReview(ReviewVO vo,HttpSession session,
+	                @RequestParam(value="review_no") int review_no) {
+	    MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
-		if (loginUser == null) {
-			return "not_logedin";
-		} else {
-			vo.setId(loginUser.getId());
-			reviewService.deleteReview(vo.getReview_no());
-			return "success";
-		}
+	    if (loginUser == null) {
+	        return "not_logedin";
+	    } else {
+	        vo.setId(loginUser.getId());
+	        reviewService.deleteReview(vo.getReview_no());
+	        return "success";
+	    }
 	}
 
 	
