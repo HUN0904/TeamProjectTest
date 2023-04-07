@@ -109,10 +109,5 @@ function order(){
 	form.submit();
 }
 
-function go_insert_favorite(){
-   var form = document.getElementById("theform");
-   
-   form.action = "favorite_insert";
-   form.submit();
-}
+
 

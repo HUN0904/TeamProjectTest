@@ -32,8 +32,8 @@
 	            	$("#favorite_no").val(favorite.favorite_no);
 	            	
 	                // 페이지, 모달창에 하트수 갱신
-	                //$('#m_heart'+no).text(heart);
-	                //$('#heart'+no).text(heart);
+	                $('#m_heart'+no).text(heart);
+	                $('#heart'+no).text(heart);
 
 	                console.log("하트추가 성공");
 	            },
@@ -62,8 +62,8 @@
 					
 	                let heart = favorite.heart;
 	                // 페이지, 모달창에 하트수 갱신
-	               // $('#m_heart'+no).text(heart);
-	                //$('#heart'+no).text(heart);
+	                $('#m_heart'+no).text(heart);
+	                $('#heart'+no).text(heart);
 
 	                console.log("하트삭제 성공");
 	            },
@@ -85,7 +85,7 @@
 </script>
 
  <form  method="post" action="cart_insert" name="formm" id="theform">
- 	<input type="hidden" id="favorite_no" name="favotire_no" > 
+ 	<input type="hidden" id="favorite_no" name="favorite_no"  value="${favorite.favorite_no} "> 
    <fieldset>
      <a href="product_detail?product_no=${productVO.product_no}">         
        <span style="float: left;">
@@ -140,7 +140,7 @@
 	        </a>
 	    </c:otherwise>
 	</c:choose>
-	</span> <span id="m_heart${favorite.favorite_no}">${favorite.heart}</span>
+	
 <%-- End of 좋아요  --%>
           <input type="button" value="주문서 작성하기"   class="submit"    onclick="location.href='cart_write_form?product_no='+${productVO.product_no}">
           <input type="button" value="즉시 구매"       class="submit"    onclick="go_order()"> 
