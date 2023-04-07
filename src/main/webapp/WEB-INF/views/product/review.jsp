@@ -42,7 +42,7 @@
 <div class="container">
 	<div class="card p-4 m-5">
     <form id="reviewForm" name="reviewForm" method="post" enctype="multipart/form-data">
-<h2>리뷰작성</h2>
+<h2>리뷰작성</h2>${productReviewVO.review_no }
 		<table id="rep_input" style="table-layout: fixed">                    
 	        <div id="myform">
 				<fieldset id="score">
@@ -83,7 +83,7 @@
 <div class="container">
 	<div class="card p-4 m-5">
          <div>
-            <h3>구매후기 <span id="cCnt"> </span></h3> ${avg_score }
+            <h3>구매후기 <span id="cCnt"> </span></h3>${avg.avg}
         </div>
         <hr>
 	    <form id="reviewListForm" name="reviewListForm" method="post">
@@ -169,8 +169,8 @@
 				html += "<strong>" + item.id + "</strong>&nbsp;&nbsp;&nbsp;";
 				html += "<span id=\"write_date\">" + displayTime(item.review_regdate) + "</span><br>";
 				html += item.content+"<br></div>";
-				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delete_review('${productVO.product_no }')\">수정</button>";
-				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delect_review('${productVO.product_no }')\">삭제</button>";
+				html += "<button type=\"button\"  class=\"btn btn-secondary\" data-review-no=\"${productReviewVO.review_no}\">수정</button>";
+				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delect_review('${productReviewVO.review_no }')\">삭제</button>";
 				html += "<hr></div>";
 			});
 			
@@ -277,25 +277,18 @@
 	    });
 	}
 	
-	function delete_review(review_no) {
-
-	    var form_data = new FormData($('#reviewForm')[0]);
 	
+	function delect_review(review_no) {
 	    $.ajax({
-	        type: 'POST',
-	        url: 'reviews/delete',
-	        data: form_data,
-	        contentType: false,
-	        processData: false,
+	        type: 'GET',
+	        url: 'reviews/delete/' + review_no,
 	        success: function(data) {
-	            if (data == 'success') {    // 상품평 등록 성공
+	            if (data == 'success') {    // 상품평 삭제 성공
 	                getReviewList();        // 상품평 목록 요청함수 호출
-	                $("#content").val("");
-
 	            } else if (data == 'fail') {
-	                alert("상품평 삭제 실패하였습니다. 다시 시도해 주세요.");
+	                alert("상품평 삭제가 실패하였습니다. 다시 시도해 주세요.");
 	            } else if (data == 'not_logedin') {
-	                alert("상품평 등록은 로그인이 필요합니다.");
+	                alert("상품평 삭제는 로그인이 필요합니다.");
 	            }
 	        },
 	        error: function(request, status, error) {

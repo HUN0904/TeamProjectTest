@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
 <%@ include file="../header.jsp" %>   
+<script type="text/javascript" src="member/member.js"></script>
   <article>
   <section class="container"> 
 		<div class="d-flex justify-content-center">

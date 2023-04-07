@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team.biz.dto.MemberVO;
+import com.team.biz.dto.ProductVO;
 import com.team.biz.dto.ReviewVO;
 import com.team.biz.service.ReviewService;
 
@@ -46,8 +47,9 @@ public class ReviewController {
 		return reviewInfo;
 	}
 	@RequestMapping("/product_detail")
-	public String avgReviewScore(ReviewVO vo, Model model , Criteria criteria) {
-		double avg=reviewService.getAvgReviewScore(vo.getProduct_no());
+	public String avgReviewScore(ReviewVO vo, Model model , Criteria criteria, ProductVO prodVO) {
+		double avg=reviewService.getAvgReviewScore(prodVO.getProduct_no());
+		System.out.println("avg"+avg);
 		model.addAttribute("productReviewVO",reviewService.getReviewListWithPaging(criteria, vo.getProduct_no()) );
 		model.addAttribute("avg", avg);
 		return "product/productDetail";
