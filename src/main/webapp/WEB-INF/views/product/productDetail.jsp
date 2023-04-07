@@ -9,7 +9,7 @@
     </nav>
     <div id="itemdetail" >
    <script>
-    $(document).ready(function () {
+    $(document).ready(function () {     
     	
     	// 로그인 한 상태에서 하트를 클릭했을 때 (로그인한 상태인 하트의 <a></a> class명: heart-click)
     	$(".heart-click").click(function() {
