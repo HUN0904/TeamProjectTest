@@ -57,8 +57,6 @@ $(function() {
 		maxDate:'+1970-02-01',
 		minTime:'13:00',
 		maxTime:'18:00',
-		//${strDisAbleDates}
-		disabledDates: [${strDisAbleDates}],
 		disabledWeekDays :[0, 7],
 		onChangeDateTime:function(dp,$input){
 
