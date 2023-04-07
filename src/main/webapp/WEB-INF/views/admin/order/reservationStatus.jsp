@@ -31,18 +31,24 @@ $.datepicker.setDefaults({
     showMonthAfterYear: true,
     yearSuffix: '년'
 });
-
+function search_date(){
+	   var form = document.getElementById("dateSearch");
+	   form.action = "reservation_status";
+	   form.submit();
+	}
 </script>
 <article>
 <h1>예약 현황</h1>	
+<form name="dateSearch" id="dateSearch" method="post">
+<table>
+   <tr>
+   <td><input readonly type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
+   <td><input type="button" value="검색" onclick="search_date()" style="width:80px; text-align: center;"></td>
+   </tr>
+</table>
+</form>
 <form name="frm" id="order_form" method="post">
 
-<table>
-	<tr>
-	<td><input type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
-	<td><input type="button" value="검색" onclick="" style="width:80px; text-align: center;"></td>
-	</tr>
-</table>
 <table class="table" id="dateOrderList" border="1"   style="table-layout: fixed">
 	
     <tr>
