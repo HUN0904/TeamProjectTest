@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>  
 <%@ include file="../header.jsp" %>  
+
+
 <section class="container"> 
 		<div class="d-flex justify-content-center">
 	    	<div class="col-lg-4 col-md-6 col-sm-8">
