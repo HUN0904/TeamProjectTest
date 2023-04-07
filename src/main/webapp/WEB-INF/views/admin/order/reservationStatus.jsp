@@ -36,7 +36,9 @@ function search_date(){
 	   form.action = "reservation_status";
 	   form.submit();
 	}
+	
 </script>
+<!-- 테스트 -->
 <article>
 <h1>예약 현황</h1>	
 <form name="dateSearch" id="dateSearch" method="post">
