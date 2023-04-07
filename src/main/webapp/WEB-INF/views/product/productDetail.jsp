@@ -9,6 +9,8 @@
     </nav>
     <div id="itemdetail" >
    <script>
+   
+   
     $(document).ready(function () {     
     	
     	// 로그인 한 상태에서 하트를 클릭했을 때 (로그인한 상태인 하트의 <a></a> class명: heart-click)
@@ -83,6 +85,8 @@
     	});
     	
     });
+    
+    
     </script>
 
       <form  method="post" action="cart_insert" name="formm" id="theform"> 
@@ -154,9 +158,10 @@
       </form>  
         
     </div>
-
   <!-- 상품평 처리 -->
-<%@ include file="review.jsp" %>
+ <%@ include file="review.jsp" %> 
+  
+<%@ include file="../qna/qnalist.jsp" %>
   </article>
 <%@ include file="../footer.jsp" %>  
 
