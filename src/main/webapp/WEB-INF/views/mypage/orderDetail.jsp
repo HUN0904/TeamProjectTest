@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%@ include file="sub_menu.jsp" %>
 
 <form id="getOrderView" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="product_no" name="product_no" value="${cart.product_no }">

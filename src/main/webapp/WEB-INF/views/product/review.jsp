@@ -278,7 +278,7 @@
 	}
 	
 	function delete_review(review_no) {
-	    var score = $("input[name='rating']:checked").val();
+
 	    var form_data = new FormData($('#reviewForm')[0]);
 	
 	    $.ajax({
@@ -291,8 +291,7 @@
 	            if (data == 'success') {    // 상품평 등록 성공
 	                getReviewList();        // 상품평 목록 요청함수 호출
 	                $("#content").val("");
-	                $("#score").val("");
-	                $("#file").val("");
+
 	            } else if (data == 'fail') {
 	                alert("상품평 삭제 실패하였습니다. 다시 시도해 주세요.");
 	            } else if (data == 'not_logedin') {

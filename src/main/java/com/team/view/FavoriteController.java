@@ -29,7 +29,7 @@ public class FavoriteController {
 		System.out.println("insertFavorite(): FavoriteVO="+ vo);
 		vo.setId(loginUser.getId());
 		vo.setHeart("1");//heart 추가
-		favoriteService.insertFavorite(vo);
+		int fno=favoriteService.insertFavorite(vo);
 		System.out.println("좋아요 Insert 후 favorite_no="+vo.getFavorite_no());
 		
 		return vo;
