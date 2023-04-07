@@ -1,6 +1,5 @@
 package com.team.biz.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +36,9 @@ public class OrderServiceImpl implements OrderService {
 		OrderVO order = new OrderVO();
 		for(CartVO cart : cartList) {
 			
-			
 			order.setOrder_no(order_no);
 			order.setProduct_no(cart.getProduct_no());
-			order.setQuantity(cart.getQuantity());
+			order.setCart_no(cart.getCart_no());
 			
 			orderDetailInsert(order);
 			
