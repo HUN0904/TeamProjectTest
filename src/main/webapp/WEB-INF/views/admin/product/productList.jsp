@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
+<script type="text/javascript" src="admin/product/product.js"></script>
   <section class="container"> 
   <div class="card p-4 m-5">
 <article>
@@ -13,7 +14,7 @@
      <input type="text" name="key" id="key">
      <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">
      <input class="btn" type="button" name="btn_total" value="전체보기" onClick="go_total()">
-     <input class="btn" type="button" name="btn_write" value="상품등록" onClick="go_wrt()">
+     <input class="btn" type="button" name="btn_write" value="상품등록" onClick="location.href='insert_product'">
      <input class="btn" type="button" name="btn_chart" value="상품별 실적" onClick="location.href='admin_sales_record_form'">
   </td>
   </tr>
@@ -42,7 +43,7 @@
       <td height="23" align="center">${status.count}</td>
       <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
 <%--          <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')"> --%>
-  		<a href="#" onclick="go_detail('${productVO.product_no}')">    
+  		<a href="admin_product_detail?product_no=${productVO.product_no}">    
     	 ${productVO.product_name}     
    		</a>
    	  </td>

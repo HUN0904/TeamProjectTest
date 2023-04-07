@@ -41,4 +41,19 @@ public class ProductServiceImpl implements ProductService{
 		return pDao.countProductList(product_name);
 	}
 
+	@Override
+	public void insertProduct(ProductVO vo) {
+		pDao.insertProduct(vo);
+	}
+	
+	@Override
+	public void updateProduct(ProductVO vo) {
+		pDao.updateProduct(vo);
+	}
+	
+	@Override
+	public void deleteProduct(int product_no) {
+		pDao.deleteProduct(product_no);
+	}
+	
 }

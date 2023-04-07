@@ -20,9 +20,6 @@
     <div class="clear"></div>
      <div id="buttons" style="float:right">
       <input type="button"  value="목록보기"   class="submit"  onclick="location.href='notices_list'">  
-		<c:if test="${sessionScope.loginUser.admin == 'admin'}">
-			<input type="button"  value="수정하기"   class="submit"  onclick="location.href='notices_update_form?notices_no='+${noticesVO.notices_no}">  
-		</c:if>
       </div>
     </form>
   </article>

@@ -53,13 +53,10 @@ $(function() {
 		inline:true,
 		lang:'kr',
 		step:30,
-		defaultDate:'+1970-01-02',
-		defaultTime:'+13:00',
 		minDate:'+1970-01-02',
 		maxDate:'+1970-02-01',
 		minTime:'13:00',
 		maxTime:'18:00',
-		disabledDates: [''],
 		disabledWeekDays :[0, 7],
 		onChangeDateTime:function(dp,$input){
 
@@ -97,7 +94,7 @@ $(function() {
 	<form id="cart_insert" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="product_price" id="product_price" value="${product.price}">
 		
-
+${strDisAbleDates}
 
 		<div class="wrap">
 			<div class="item-image"></div>

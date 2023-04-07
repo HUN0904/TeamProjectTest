@@ -14,8 +14,6 @@ public class ProductVO {
 	private int category_no;
 	private String product_name; 
 	private String content; 
-	private int default_price;
-	private int discount_price; 
 	private int price;
 	private Date product_regdate; 
     private String bestyn; 

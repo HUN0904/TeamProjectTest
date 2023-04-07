@@ -40,6 +40,20 @@ public class ProductDAO {
 		
 		return mybatis.selectList("ProductMapper.listProductWithPaging", map);
 	}
+	
+	public void insertProduct(ProductVO vo) {
+		
+		mybatis.insert("ProductMapper.insertProduct", vo);
+	}
+	
+	public void updateProduct(ProductVO vo) {
+		
+		mybatis.update("ProductMapper.updateProduct",vo);
+	}
 
+	public void deleteProduct(int product_no) {
+		
+		mybatis.delete("ProductMapper.deleteProduct",product_no);
+	}
 }
 

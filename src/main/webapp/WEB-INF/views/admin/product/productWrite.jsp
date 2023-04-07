@@ -2,53 +2,44 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../adminheader.jsp"%>
-
-<article>
+<script type="text/javascript" src="admin/product/product.js"></script>
 <h1>상품등록</h1>  
-<!-- [1] 파일을 업로드 하기 위해서는 폼태그를 post 방식으로 전송하고,
-인코딩 타입을 multipart/form-data 로 지정해야 한다. -->
+<article>
 <form name="frm" id="write_form" method="post" enctype="multipart/form-data">
 <table id="list">
 <tr>
   <th>상품분류</th>
   <td colspan="5">
-  <select name="kind" id="kind">
-    <c:forEach items="${kindList}" var="kind" varStatus="status">
-      <option value="${status.count}">${kind}</option>
+  <select name="category_no" id="category_no">
+    <c:forEach items="${kindList}" var="category_no" varStatus="status">
+      <option value="${status.count}">${category_no}</option>
    </c:forEach>
   </select>      
 <tr>
   <th>상품명</th>
   <td width="343" colspan="5">
-       <input type="text" name="name" id="name" size="47" maxlength="100" value="킬힐">
+       <input type="text" name="product_name" id="product_name" size="47" maxlength="100" placeholder="상품명">
   </td>
 </tr>
 <tr>
-  <th>원가[A]</th>
+
+  <th>판매가</th>
   <td width="70">
-    <input type="text" name="price1" id="price1" size="11" onKeyUp='NumFormat(this)' value="10000">
+     <input type="text" name="price" id="price" size="11" placeholder="20000">
   </td>
-  <th>판매가[B]</th>
-  <td width="70">
-     <input type="text" name="price2" id="price2" size="11" onBlur="go_ab()" onKeyUp='NumFormat(this)' value="20000">
-  </td>
-  <th>[B-A]</th>
-    <td width="72">
-      <input type="text" name="price3" id="price3" size="11" readonly onKeyUp='NumFormat(this)'>
-    </td>
   </tr>
     
   <tr>
     <th>상세설명</th>
     <td colspan="5">
-      <textarea name="content" id="content" rows="8" cols="70" >이뻐요</textarea>
+      <textarea name="content" id="content" rows="8" cols="70" ></textarea>
     </td>
   </tr>
   <tr>
     <th>상품이미지</th>
     <td width="343" colspan="5">
 <!--  [2] 파일 업로드를 하기 위한 input 태그는 타입 속성 값을 file로 지정해야 한다.  -->
-      <input type="file" name="product_image" id="product_image">
+      <input type="file" name="image" id="image">
     </td>
   </tr>    
 </table>
@@ -57,5 +48,3 @@
 </form> 
 </article>
 <%@ include file="../../footer.jsp"%>
-</body>
-</html>
