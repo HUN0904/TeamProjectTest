@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %> 
 <%@ include file="sub_menu.jsp" %> 
-<link rel="stylesheet" href="css/common.css"> 
 <script type="text/javascript" src="mypage/mypage.js"></script>
   <article style="margin-bottom: 20px">
     <h2> ${sessionScope.loginUser.nickname} 님의 장바구니 </h2>
