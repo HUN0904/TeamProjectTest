@@ -10,7 +10,7 @@
 				<a class="nav-link" href="reservation_status">예약 현황</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">상품관리</a>
+				<a class="nav-link" href="admin_product_list">상품관리</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="admin_order_list">주문관리</a>
@@ -43,14 +43,4 @@
 	
 </nav>
 
-<body onload="go_ab()">  <!-- 페이지 로드시에 제품의 순매출 계산 -->
-	<div id="wrap">
-		<header>			
-			<div id="logo">
-				<a href="admin_login_form"> 
-					<img style="width:800px" src="admin/images/bar_01.gif">
-					<img src="admin/images/text.gif">
-				</a>
-			</div>			
-		</header>
 		<div class="clear"></div>

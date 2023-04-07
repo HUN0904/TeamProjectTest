@@ -56,7 +56,7 @@
 			</div>
 	        <tr>
 		 	<!-- 
-					<div class="col-sm-10">
+				<div class="col-sm-10">
 					<input type="file" name="image" id="image">(이미지 파일만 가능)
 					<small class="text-muted"></small>
 					<small id="file" class="text-info"></small>
