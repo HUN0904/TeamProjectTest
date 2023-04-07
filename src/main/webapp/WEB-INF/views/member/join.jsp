@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
 <%@ include file="../header.jsp" %>   
+<!-- 다음 우편번호 api -->
+<script type="text/javascript" src="js/postcode.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <article>
   <section class="container"> 
 		<div class="d-flex justify-content-center">

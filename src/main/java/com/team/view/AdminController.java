@@ -43,14 +43,12 @@ public class AdminController {
 	@Autowired
 	private NoticesService noticesService;
 
-
+	/* ================================관리자 로그인================================ */
 	@GetMapping("/admin_login_form")
 	public String adminLoginView() {
 
 		return "admin/main";
 	}
-
-
 
 	@GetMapping("/admin_logout")
 	public String adminLogout(SessionStatus status) {
@@ -59,7 +57,7 @@ public class AdminController {
 
 		return "admin/main";
 	}
-
+	/* ================================예약현황(reservationStatus)================================ */
 	// 페이징 처리 전 소스
 	/*
 	 * @GetMapping("/admin_product_list") public String adminProductList(
