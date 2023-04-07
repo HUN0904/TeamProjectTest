@@ -39,5 +39,7 @@ public class ReviewDAO {
 		return mybatis.selectList("ReviewMapper.reviewListWithPaging", map);
 	}
 	
-	
+	public void deleteReview(int review_no) {
+		mybatis.delete("ReviewMapper.deleteReview", review_no);
+	}
 }

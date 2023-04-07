@@ -21,7 +21,7 @@ function idcheck(){
 
 
 
-function go_save(){
+function join_save(){
 	//비밀번호 정규식
 	var checkpwd = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 	//이메일 정규식

@@ -17,4 +17,6 @@ public interface ReviewService {
 	List<ReviewVO> getReviewListWithPaging(Criteria criteria, int product_no);
 
 	List<ReviewVO> avgScoreList();
+	
+	void deleteReview(int review_no);
 }

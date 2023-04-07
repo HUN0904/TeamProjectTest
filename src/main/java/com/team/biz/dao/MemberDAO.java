@@ -22,6 +22,19 @@ public class MemberDAO {
 		if(pwd!=null) return 1;
 		else return 0;
 	}
+	public int joinconfirmnickname(String nickname) {
+		String id=mybatis.selectOne("MemberMapper.confirmID",nickname);
+		if(id!=null) return 1;
+		else return 0;
+	}
+	
+	public int modifyconfirmNickname(MemberVO vo) {
+		String id=mybatis.selectOne("MemberMapper.modifyconfirmNickname", vo);
+		if(id!=null) return 1;
+		else return 0;
+	}
+	
+	
 	
 	//admin 확인
 	public int adminCheck(String id) {
@@ -65,6 +78,10 @@ public class MemberDAO {
 	// 비밀번호 메일로 보내기
 	public String getPwdByNameEmail(String name) {
 	    return mybatis.selectOne("MemberMapper.getPwdByNameEmail",name);
+	}
+	
+	public void modifyMember(MemberVO vo) {
+		  mybatis.update("MemberMapper.modifyMember",vo);
 	}
 
 }

@@ -11,7 +11,7 @@
   </select>
   
   <select id="cartList" resultType="cart">
-  	SELECT * FROM cart_view WHERE id=#{id} ORDER BY cart_no DESC
+  	SELECT * FROM cart_view WHERE id=#{id} AND result ='2' ORDER BY cart_no DESC
   </select>
   
   
@@ -21,7 +21,16 @@
   
   <!-- 주문 처리 완료 -->
   <update id="updateCart">
-	UPDATE cart SET result='2'
+	UPDATE cart SET result='1'
 	 WHERE cart_no=#{cart_no}
   </update>
+  
+	<select id="disAbleDates" resultType="Date">
+		<![CDATA[
+		SELECT pickup_date AS disabledate
+		FROM order_view
+		GROUP BY pickup_date
+		HAVING sum(quantity) >= 5
+		 ]]>
+	</select>  
 </mapper>

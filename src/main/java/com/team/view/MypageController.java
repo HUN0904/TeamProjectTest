@@ -2,6 +2,9 @@ package com.team.view;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -59,9 +62,26 @@ public class MypageController {
 		if (loginUser == null) {
 			return "member/login";
 		} else {
+		SimpleDateFormat SDF = new SimpleDateFormat("yy/MM/dd");
+		
+		
+		
+		List<Date> disAbleDates = cartService.disAbleDates();
+		List<String> strDisAbleDates = new ArrayList<>();
+		System.out.println(">>>>>>Disable dates");
+		for(int i=0; i<disAbleDates.size(); i++) {
+			
+			String date = SDF.format(disAbleDates.get(i)); 
+			System.out.println(date);
+			strDisAbleDates.add(date);
+		}
+		
+		model.addAttribute("strDisAbleDates",strDisAbleDates);
+			
 		ProductVO product = productService.getProduct(vo);
-		MemberVO member = memberService.getMember(loginUser.getId());
 		model.addAttribute("product",product);
+		
+		MemberVO member = memberService.getMember(loginUser.getId());
 		model.addAttribute("member",member);
 		return "mypage/cartWrite";
 		}
@@ -88,7 +108,10 @@ public class MypageController {
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}
-			} 			
+			}
+			if(vo.getMessage() == null) {
+				vo.setMessage("X");
+			}
 			vo.setId(loginUser.getId());
 			cartService.insertCart(vo);
 			return "redirect:index";
@@ -102,7 +125,7 @@ public class MypageController {
 		if (loginUser == null) {
 			return "member/login";
 		} else {
-			List<CartVO> cartList = cartService.cartList(loginUser.getId());
+			List<CartVO> cartList = cartService.getCartList(loginUser.getId());
 			model.addAttribute("cartList",cartList);
 			return "mypage/cartList";
 		}
@@ -123,17 +146,14 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="cart_delete")
-	public String deleteNotices(CartVO vo,HttpSession session) {
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+	public String deleteNotices(@RequestParam(value="cart_no") int [] cart_no) {
 
-		if (loginUser == null) {
-			return "member/login";
-		} else {
-			vo.setId(loginUser.getId());
-			cartService.deleteCart(vo.getCart_no());
-
+		for(int i=0; i<cart_no.length; i++) {
+				cartService.deleteCart(cart_no[i]);
+			}
+			
 			return "redirect:cart_list";
-		}
+		
 	}
 	
 	@PostMapping("/order_insert")
@@ -151,7 +171,35 @@ public class MypageController {
 			
 			model.addAttribute("order_no", order_no);
 			
-			return "redirect:index";
+			return "redirect:order_list";
+		}
+	}
+	
+	@GetMapping("/order_list")
+	public String orderListById(HttpSession session, Model model,OrderVO vo) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			List<OrderVO> orderList = orderService.getOrderListById(loginUser.getId());
+			model.addAttribute("orderList",orderList);
+			return "mypage/orderList";
+		}
+	}
+	
+	@GetMapping("/order_detail")
+	public String getOrderDetail(OrderVO vo,Model model,HttpSession session) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			vo.setId(loginUser.getId());
+
+			OrderVO order = orderService.getOrderDetail(vo);
+			model.addAttribute("order", order);			
+			return "mypage/orderDetail";
 		}
 	}
 	

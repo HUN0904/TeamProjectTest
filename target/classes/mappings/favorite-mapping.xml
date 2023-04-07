@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="FavoriteMapper">
+    
+   <!-- 찜 추가 -->
+   <insert id="insertFavorite" parameterType="favorite" useGeneratedKeys="false">
+     INSERT INTO favorite (favorite_no,id,product_no,heart) VALUES (favorite_seq.NEXTVAL,#{id},#{product_no},#{heart})
+   
+     <selectKey keyProperty="favorite_no" resultType="int" order="AFTER">
+     	SELECT favorite_seq.CURRVAL FROM DUAL
+     </selectKey>
+   </insert>
+   
+   <!-- 찜 목록 -->
+   <select id="getListByFavorite" resultType="favorite">
+      SELECT * FROM favorite_view WHERE id=#{id,jdbcType=VARCHAR}
+   </select>
+   
+   <!-- heart  -->
+   <select id="getHeartByProduct" resultType="favorite">
+     SELECT * FROM favorite WHERE product_no = #{product_no} AND id=#{id}
+   </select>
+   
+   
+   <!-- 찜내역 삭제 -->
+   <delete id="deleteByFavorite">
+      DELETE FROM favorite WHERE favorite_no=#{favorite_no}
+   </delete>
+ 
+</mapper>

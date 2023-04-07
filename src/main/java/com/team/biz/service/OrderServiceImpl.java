@@ -1,5 +1,6 @@
 package com.team.biz.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,13 @@ public class OrderServiceImpl implements OrderService {
 		
 		int order_no = selectMaxOrder_no();
 		
+		vo.setOrder_no(order_no);
 		orderDAO.orderInsert(vo);
 		
-		List<CartVO> cartList = cartService.cartList(vo.getId());
-		
+		List<CartVO> cartList = cartService.getCartList(vo.getId());
+		OrderVO order = new OrderVO();
 		for(CartVO cart : cartList) {
-			OrderVO order = new OrderVO();
+			
 			
 			order.setOrder_no(order_no);
 			order.setProduct_no(cart.getProduct_no());
@@ -54,4 +56,39 @@ public class OrderServiceImpl implements OrderService {
 		orderDAO.orderDetailInsert(vo);
 	}
 
+	@Override
+	public List<OrderVO> getOrderListById(String id){
+		
+		return orderDAO.orderListById(id);
+	}
+	
+	@Override
+	public List<OrderVO> getOrderListByDate(String date){
+		
+		return orderDAO.orderListByDate(date);
+	}
+	
+	@Override
+	public OrderVO getOrderDetail(OrderVO vo) {
+		
+		return orderDAO.getOrderDetail(vo);
+	}
+	
+	@Override
+	public OrderVO getAdminOrderDetail(int order_dno) {
+		
+		return orderDAO.getAdminOrderDetail(order_dno);
+	}
+	
+	@Override
+	public List<OrderVO> getAdminOrderList(String product_name){
+		
+		return orderDAO.adminOrderList(product_name);
+	}
+	
+	@Override
+	public void updateOrderResult(int order_dno) {
+		
+		orderDAO.updateOrderResult(order_dno);
+	}
 }

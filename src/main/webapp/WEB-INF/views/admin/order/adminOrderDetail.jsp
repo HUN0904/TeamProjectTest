@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+<%@ include file="../adminheader.jsp"%>
 
 <form id="getOrderView" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="product_no" name="product_no" value="${cart.product_no }">
@@ -51,10 +51,10 @@
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">				
 
-					<button type="button" onclick="location.href='order_list'" class="btn btn-primary btn-order">목록으로</button>&emsp;&emsp;
+					<button type="button" onclick="location.href='admin_order_list'" class="btn btn-primary btn-order">목록으로</button>&emsp;&emsp;
 					</div>
 				</div>
 		</div>
 	</form>	
 
-<%@ include file="../footer.jsp"%>
+<%@ include file="../../footer.jsp"%>

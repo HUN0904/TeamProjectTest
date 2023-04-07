@@ -9,112 +9,94 @@
 <html>
 <head>
 <style>
-    #reply {
-    	margin-top: 8px;
-    	border-radius: 3px;
-    	border: 1px solid #ccc;
-    	padding: 5px;
-    }
-    table#rep_input td{
-    	border: 0px dotted;
-    }
-    .btn {
-    	border: 1px solid #ccc;
-    	border-radius: 3px;
-    	color: #fff;
-    	padding: 5px;
-    	margin: 0 5px;
-    }
-    #reviewList {
-    	background-color: rgba(254, 206, 229, 0.3);
-    	border-radius: 3px;
-    }
     
-    #myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
+	#myform fieldset{
+	    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+	    direction: rtl; /* 이모지 순서 반전 */
+	    border: 0; /* 필드셋 테두리 제거 */
 	}
 	#myform fieldset legend{
-	    text-align: right;
-	}
+   		text-align: left;
+	}	
 	#myform input[type=radio]{
-	    display: none;
-	}
-	#myform label{
-	    font-size: 3em;
-	    color: transparent;
-	    text-shadow: 0 0 0 #f0f0f0;
-	}
-	#myform label:hover{
-	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-	}
-	#myform label:hover ~ label{
-	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	    display: none; /* 라디오박스 감춤 */
 	}
 	#myform input[type=radio]:checked ~ label{
-	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    text-shadow: 0 0 0 #FACC00; /* 마우스 클릭 체크 */
+	}
+	#myform label{
+	    font-size: 3em; /* 이모지 크기 */
+	    color: transparent; /* 기존 이모지 컬러 제거 */
+	    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+	}
+	#myform label:hover{
+	    text-shadow: 0 0 0 #FACC00; /* 마우스 호버 */
+	}
+	#myform label:hover ~ label{
+	    text-shadow: 0 0 0 #FACC00; /* 마우스 호버 뒤에오는 이모지들 */
 	}
 
 </style>
 </head>
 <body>
 <div class="container">
-    <form id="reviewForm" name="reviewForm" method="post">
-    <br><br>
-        <div>
-            <div>
-                <h3>구매후기 <span id="cCnt"> </span></h3> 
-                
-            </div>
-
-            <div id="reply">
-                <table id="rep_input" style="width: 650px">                    
-                    <tr>
-			           	<div id="myform">
-							<fieldset>
-								<span class="text-bold">별점을 선택해주세요</span>
-								<input type="radio" name="reviewStar" value="1" id="score"><label for="score">★</label>
-								<input type="radio" name="reviewStar" value="2" id="score"><label for="score">★</label>
-								<input type="radio" name="reviewStar" value="3" id="score"><label for="score">★</label>
-								<input type="radio" name="reviewStar" value="4" id="score"><label for="score">★</label>
-								<input type="radio" name="reviewStar" value="5" id="score"><label for="score">★</label>
-							</fieldset>
-						</div>
-               			<td>	
-               			<a href="#" class="_3JijP7qf6h N=a:wrtrv.ath">사진/동영상 첨부하기</a>
-							<div class="col-sm-10">
-								<input type="file" name="file" id="file">
-								<small class="text-muted">(이미지 파일만 가능)</small>
-								<small id="file" class="text-info"></small>
-							</div>
-						</td>
-                        <td style="width:40%;">
-                            <textarea  rows="2" cols="60" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
-                        </td>
-                        <td style="width:10%;">
-                            <a href='#' onClick="save_review('${productVO.product_no }')" class="btn">등록</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+	<div class="card p-4 m-5">
+    <form id="reviewForm" name="reviewForm" method="post" enctype="multipart/form-data">
+<h2>리뷰작성</h2>
+		<table id="rep_input" style="table-layout: fixed">                    
+	        <div id="myform">
+				<fieldset id="score">
+				    <legend>별점</legend>
+				    <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+				    <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+				    <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+				    <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+				    <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+				</fieldset>
+			</div>
+	        <tr>
+		 	<!-- 
+					<div class="col-sm-10">
+					<input type="file" name="image" id="image">(이미지 파일만 가능)
+					<small class="text-muted"></small>
+					<small id="file" class="text-info"></small>
+				</div>
+		-->	
+        	<th>	
+				<div class="input-group">
+				  <input type="file" class="form-control" id="image" name="image" >
+				</div>
+			</th>
+			<th>
+           		<textarea  rows="2" cols="60" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
+            </th>
+            <th >
+            	<button type="button"  class="btn btn-secondary" onclick="save_review('${productVO.product_no }')">등록</button>
+		    </th>
+		   </tr>
+		</table>
         <input type="hidden" id="product_no" name="product_no" value="${productVO.product_no }" />        
     </form>
-</div>
 
+     </div>
+</div>
 <div class="container">
-    <form id="reviewListForm" name="reviewListForm" method="post">
-        <div id="reviewList">
+	<div class="card p-4 m-5">
+         <div>
+            <h3>구매후기 <span id="cCnt"> </span></h3> ${avg_score }
         </div>
-    </form>
-	<!-- 페이지 처리 영역 -->
-    <div>
-		<ul id="pagination">
-		</ul>
+        <hr>
+	    <form id="reviewListForm" name="reviewListForm" method="post">
+	        <div id="reviewList">
+	        </div>
+	    </form>
+		<!-- 페이지 처리 영역 -->
+	    <div>
+			<ul id="pagination">
+			</ul>
+		</div>
 	</div>
 </div>
-
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -175,20 +157,25 @@
 	function showHTML(pageMaker, reviewList, totalCount) {
 		var html = "";
 		var p_html = "";
-		
 		if (reviewList.length > 0) {
 			// 상품평의 각 항목별로 HTML 생성
 			$.each(reviewList, function(index, item){
 				html += "<div>";
 				html += "<div id=\"review_item\">"; 
+			    if(item.review_image != null && item.review_image != "") {
+			        html += "<img src=\"review_images/" + item.review_image + "\" style=\"float: right; width:100px; height:100px;\"/><br>";
+			    }
 				html += "별점<i class=\"bi bi-star-fill\" style=\"color:#FACC00\"></i> "+ item.score+"<br>";
 				html += "<strong>" + item.id + "</strong>&nbsp;&nbsp;&nbsp;";
 				html += "<span id=\"write_date\">" + displayTime(item.review_regdate) + "</span><br>";
 				html += item.content+"<br></div>";
+				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delete_review('${productVO.product_no }')\">수정</button>";
+				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delect_review('${productVO.product_no }')\">삭제</button>";
 				html += "<hr></div>";
 			});
 			
 			// 페이징 버튼 출력
+			p_html+="<div class=\"d-flex justify-content-center\">";
 			if (pageMaker.prev == true) {
 				p_html += "<li class=\"paginate_button previous\">";
 				p_html += "<a href='javascript:getReviewPaging("
@@ -206,6 +193,7 @@
 				p_html += "<a href='javascript:getReviewPaging("
 					  +(pageMaker.endPage+1)+","+pageMaker.criteria.rowsPerPage+","+${productVO.product_no}+")'>[다음]</a></li>";
 			}
+			p_html+="</div>";
 			
 		} else { // 조회된 상품평이 없을 경우
 			html += "<div>";
@@ -258,24 +246,63 @@
 	** 상품 댓글 등록
 	*/
 	function save_review(product_no) {
-		$.ajax({
-			type:'POST',
-			url:'reviews/save',
-			data:$("#reviewForm").serialize(),
-			success: function(data) {
-				if (data=='success') {	// 상품평 등록 성공
-					getReviewList(); 	// 상품평 목록 요청함수 호출
-					$("#content").val("");
-				} else if (data=='fail') {
-					alert("상품평 등록이 실패하였습니다. 다시 시도해 주세요.");
-				} else if (data=='not_logedin') {
-					alert("상품평 등록은 로그인이 필요합니다.");
-				}
-			},
-			error: function(request, status, error) {
-				alert("error:" + error);
-			}
-		});
+	    var score = $("input[name='rating']:checked").val();
+	    var form_data = new FormData($('#reviewForm')[0]);
+	    if (score != null) {
+	        form_data.append('score', score);
+	    }else{
+	    	 alert("별점을 선택해주세요.");
+	    }
+	    $.ajax({
+	        type: 'POST',
+	        url: 'reviews/save',
+	        data: form_data,
+	        contentType: false,
+	        processData: false,
+	        success: function(data) {
+	            if (data == 'success') {    // 상품평 등록 성공
+	                getReviewList();        // 상품평 목록 요청함수 호출
+	                $("#content").val("");
+	                $("#score").val("");
+	                $("#file").val("");
+	            } else if (data == 'fail') {
+	                alert("상품평 등록이 실패하였습니다. 다시 시도해 주세요.");
+	            } else if (data == 'not_logedin') {
+	                alert("상품평 등록은 로그인이 필요합니다.");
+	            }
+	        },
+	        error: function(request, status, error) {
+	            alert("error:" + error);
+	        }
+	    });
+	}
+	
+	function delete_review(review_no) {
+	    var score = $("input[name='rating']:checked").val();
+	    var form_data = new FormData($('#reviewForm')[0]);
+	
+	    $.ajax({
+	        type: 'POST',
+	        url: 'reviews/delete',
+	        data: form_data,
+	        contentType: false,
+	        processData: false,
+	        success: function(data) {
+	            if (data == 'success') {    // 상품평 등록 성공
+	                getReviewList();        // 상품평 목록 요청함수 호출
+	                $("#content").val("");
+	                $("#score").val("");
+	                $("#file").val("");
+	            } else if (data == 'fail') {
+	                alert("상품평 삭제 실패하였습니다. 다시 시도해 주세요.");
+	            } else if (data == 'not_logedin') {
+	                alert("상품평 등록은 로그인이 필요합니다.");
+	            }
+	        },
+	        error: function(request, status, error) {
+	            alert("error:" + error);
+	        }
+	    });
 	}
 </script>
 </body>
