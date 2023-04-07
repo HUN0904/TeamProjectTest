@@ -17,7 +17,6 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="js/member.js"></script>
-<script type="text/javascript" src="js/mypage.js"></script>
 <script type="text/javascript" src="js/product.js"></script>
 <!-- 다음 우편번호 api -->
 <script type="text/javascript" src="js/postcode.js"></script>
@@ -85,7 +84,7 @@
 
 		<!-- 내 프로필 -->
 		<li class="nav-item">
-			<a class="nav-link" href="">
+			<a class="nav-link" href="mypage">
 				<h5 class="bi bi-person-circle my-0"></h5>
 			</a>
 		</li>

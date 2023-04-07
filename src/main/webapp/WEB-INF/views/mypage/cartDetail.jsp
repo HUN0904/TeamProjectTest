@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../header.jsp"%>
-
+<%@ include file="sub_menu.jsp" %>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+<script type="text/javascript" src="mypage/mypage.js"></script>
 <script type="text/javascript">
 function delete_cart(cart_no){
 	var form = document.getElementById("getView");
@@ -12,9 +15,11 @@ function delete_cart(cart_no){
 		form.submit();
 	}
 }
+
 </script>
 
 <form id="getView" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="product_no" name="product_no" value="${cart.product_no }">
 		<div class="wrap">
 		<div>
 			<div class="item-image"></div>
@@ -27,8 +32,13 @@ function delete_cart(cart_no){
 					 <div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">금액</span>
-							<input type="text" readonly id="total_price" name="total_price" value="${cart.total_price}">
+							<input type="hidden" readonly id="total_price" name="total_price" value="${cart.total_price}">
+							<fmt:formatNumber value="${cart.total_price}" type="currency"/> 
 						</div>
+						<div class="input-group-prepend">
+						<label class="input-group-text" for="quantity">주문 수량</label>
+						<input type="text" readonly id="quantity" name="quantity" value="${cart.quantity}">						
+					</div>
 					</div>
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">픽업 날짜</span>
@@ -36,7 +46,9 @@ function delete_cart(cart_no){
 						</div>						
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">추가 문구</span>
-							<input type="text" readonly id="message" name="message" value="${cart.message}">
+							<c:if test="${cart.message ne 'X'}">
+								<input type="text" readonly id="message" name="message" value="${cart.message}">
+							</c:if>						
 						</div>							
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">커스텀 이미지</span>
@@ -49,15 +61,12 @@ function delete_cart(cart_no){
 					<input type="text" id="content" name="content" class="form-control"  aria-label="" aria-describedby="basic-addon1" value="${cart.content }">
 				</div>
 				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<label class="input-group-text" for="quantity">주문 수량</label>
-						<input type="text" readonly id="quantity" name="quantity" value="${cart.quantity}">						
-					</div>						
+						
 				</div>
 			</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">				
-					<button type="button" onclick="order()" class="btn btn-primary btn-order">주문하기</button>&emsp;&emsp;
+
 					<button type="button" onclick="location.href='cart_list'" class="btn btn-primary btn-order">장바구니 목록</button>&emsp;&emsp;
 					<button type="button" onclick="delete_cart('${cart.cart_no}')" class="btn btn-primary btn-order">삭제하기</button>
 					</div>
