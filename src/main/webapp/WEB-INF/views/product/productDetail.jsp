@@ -122,7 +122,9 @@
 		            <c:otherwise>
 		                <%-- 꽉찬 하트일때 --%>
 		                <a idx="${productVO.product_no}" href="javascript:"
-		                    class="heart-click heart_icon${favorite.favorite_no}"><svg
+		                    class="heart-click heart_icon${favorite.favorite_no}">
+		                    <i class="bi bi-heart-fill"></i>
+		                    <svg
 		                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 		                        fill="currentColor" class="bi bi-suit-heart-fill"
 		                        viewBox="0 0 16 16">
