@@ -7,6 +7,8 @@
 		<typeAlias type="com.team.biz.dto.CartVO" alias="cart"/>
 		<typeAlias type="com.team.biz.dto.ReviewVO" alias="review"/>
 		<typeAlias type="com.team.biz.dto.NoticesVO" alias="notices"/>
+		<typeAlias type="com.team.biz.dto.OrderVO" alias="order"/>
+		<typeAlias type="com.team.biz.dto.FavoriteVO" alias="favorite"/>
 	</typeAliases>
 	<!-- sql매핑 -->
 	<mappers>
@@ -15,6 +17,8 @@
 		<mapper resource="mappings/cart-mapping.xml"/>
 		<mapper resource="mappings/review-mapping.xml"/>
 		<mapper resource="mappings/notices-mapping.xml"/>
+		<mapper resource="mappings/order-mapping.xml"/>
+		<mapper resource="mappings/favorite-mapping.xml"/>
 	</mappers>
 </configuration>
 	

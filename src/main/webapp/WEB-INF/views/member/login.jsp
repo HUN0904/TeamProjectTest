@@ -37,8 +37,8 @@
 			         <input type="password" class="form-control" name="pwd" placeholder="Password">
 			      </div>
 			      <button type="submit" class="btn btn-primary btn-block mb-2">Login</button><br><br>
-			      <button type="submit" class="btn btn-secondary" onclick="find_id_form()">아이디 ┃ 비밀번호 찾기</button>
-			      <button type="submit" class="btn btn-secondary" onclick="location='join'">회원가입</button>
+			      <button type="button" class="btn btn-secondary" onclick="find_id_form()">아이디 ┃ 비밀번호 찾기</button>
+			      <button type="button" class="btn btn-secondary" onclick="location='join'">회원가입</button>
 			   </form>
 		</div>
 	</div>

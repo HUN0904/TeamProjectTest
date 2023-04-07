@@ -24,4 +24,13 @@ public interface MemberService {
 	
 	//이메일 보내기
 	public String getPwdByNameEmail(String name);
+	
+	//닉네임 중복체크
+	public int joinconfirmnickname(String nickname);
+	
+	//닉네임 중복체크2
+	public int modifyconfirmNickname(MemberVO vo);
+	
+	//회원정보수정
+	public void modifyMember(MemberVO vo);
 }

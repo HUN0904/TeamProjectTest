@@ -1,10 +1,13 @@
 package com.team.view;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -56,7 +59,6 @@ public class MemberController {
 		model.addAttribute("message", result);
 		return "member/idcheck";
 	}
-	
 	//중복 액션
 	@PostMapping("/id_check_form")
 	public String idCheckAction(MemberVO vo, Model model) {
@@ -65,6 +67,42 @@ public class MemberController {
 		model.addAttribute("message", result);
 		return "member/idcheck";
 	}
+	
+	@GetMapping(value="/joinnickname_check_form")
+	public String joinnicknameCheckView(MemberVO vo, Model model) {
+		int result=memberService.joinconfirmnickname(vo.getNickname());
+		model.addAttribute("nickname", vo.getNickname());
+		model.addAttribute("message", result);
+		return "member/joinnicknamecheck";
+	}
+	
+	@PostMapping("/joinnickname_check_form")
+	public String joinnicknameCheckViewAction(MemberVO vo, Model model) {
+		int result=memberService.joinconfirmnickname(vo.getNickname());
+		model.addAttribute("nickname", vo.getNickname());
+		model.addAttribute("message", result);
+		return "member/joinnicknamecheck";
+	}
+	
+	
+	@GetMapping(value="/modifynickname_check_form")
+	public String modifynicknameCheckView(MemberVO vo, Model model) {
+		int result=memberService.modifyconfirmNickname(vo);
+		model.addAttribute("nickname", vo.getNickname());
+		model.addAttribute("message", result);
+		return "member/modifynicknamecheck";
+	}
+	
+	@PostMapping("/modifynickname_check_form")
+	public String modifynicknameCheckAction(MemberVO vo, Model model) {
+		
+		int result=memberService.modifyconfirmNickname(vo);
+
+		model.addAttribute("nickname", vo.getNickname());
+		model.addAttribute("message", result);
+		return "member/modifynicknamecheck";
+	}
+	
 	@GetMapping("/join")
 	public String joinView() {
 		
@@ -106,5 +144,24 @@ public class MemberController {
 		
 		return "member/findResult";  // 아이디 조회결과 화면표시
 	}
-	
+	@RequestMapping("/modify_member_form")
+	public String modifyMember() {
+		
+		return "member/modify";
+	}
+	@RequestMapping("/modify_member")
+	public String modifyMemberAction(MemberVO vo, HttpSession session,Model model,
+		@RequestParam(value="addr1", defaultValue="") String addr1,
+		@RequestParam(value="addr2", defaultValue="") String addr2,
+		@RequestParam(value="phone1", defaultValue="") String phone1,
+		@RequestParam(value="phone2", defaultValue="") String phone2,
+		@RequestParam(value="phone3", defaultValue="") String phone3) {
+		vo.setAddress(addr1 + " " + addr2);
+		vo.setPhone(phone1 + "-" + phone2+ "-" + phone3);
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		vo.setId(loginUser.getId());
+		memberService.modifyMember(vo);
+		model.addAttribute("loginUser", memberService.getMember(vo.getId()));
+		return "redirect:/index";
+	}
 }
