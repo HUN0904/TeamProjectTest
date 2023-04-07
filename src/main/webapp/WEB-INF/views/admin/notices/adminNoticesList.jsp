@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%> 
   <article>
-    <h2> 공지사항 </h2>
+    <h1> 공지사항 </h1>
     <form name="formm" method="post">
-    <table id="noticesList" class="table" border="1"   style="table-layout: fixed">
+    <table id="noticesList" class="table" style="text-align:center">
 	    <tr>
 	      <th>번호</th> 
 	      <th>제목</th> 
@@ -29,6 +29,7 @@
 	      </div>
  	  </c:if>
     </form>
+<%@ include file="../page_area.jsp" %>    
   </article>
 <%@ include file="../../footer.jsp" %>
 

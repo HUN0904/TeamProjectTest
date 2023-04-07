@@ -32,7 +32,7 @@ function order_result() {
   </td>
   </tr>
 </table>
-<table class="table" id="adminOrderList" border="1"   style="table-layout: fixed">
+<table class="table" id="adminOrderList" style="text-align:center">
     <tr>
         <th>주문번호</th>
         <th>상품명</th>
@@ -55,7 +55,7 @@ function order_result() {
     <tr>
       <%-- <td height="23" align="center" >${productVO.pseq}</td> --%>
       <td height="23" align="center">${order.order_dno}</td>
-      <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
+      <td>   
 <%-- <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')"> --%>
   		<a href="admin_order_detail?order_dno=${order.order_dno}">    
     	 ${order.product_name}
@@ -73,9 +73,9 @@ function order_result() {
         	<td colspan="2"> 주문 처리 완료 </td>
       	</c:otherwise>
       </c:choose>
+      <td></td>
     </tr>
     </c:forEach>
-    <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
 	</c:otherwise>	
 </c:choose>  
 </table>
