@@ -3,7 +3,6 @@
 <mapper namespace="OrderMapper">
   
   	<select id="selectMaxOrder_no" resultType="int">
-		<!-- MAX(oseq)의 값이 null이 아니면 첫번째 값, null이면 두번째 값을 채택함. -->
 		SELECT NVL2(MAX(order_no), MAX(order_no)+1, 1) FROM orders
 	</select>
   
@@ -16,4 +15,42 @@
 		VALUES(order_detail_seq.NEXTVAL, #{order_no}, #{product_no}, #{quantity})	
 	</insert>
   
+ 	<select id="orderListById" resultType="order">
+		SELECT * FROM order_view
+		 WHERE id=#{id} ORDER BY indate,odresult DESC
+	</select>
+  
+	<select id="orderList" resultType="order">
+		SELECT * FROM order_view
+		 WHERE product_name LIKE '%'||#{product_name}||'%'
+		 ORDER BY order_dno,odresult DESC
+	</select>
+  
+ 	<select id="orderListByDate" resultType="order">
+		SELECT * FROM order_view
+		 WHERE TO_CHAR(pickup_date,'yyyy/MM/dd') LIKE '%'||#{pickup_date}||'%'
+		   AND odresult = '1'
+		 ORDER BY pickup_date
+	</select>  	
+  
+   	<select id="getOrderDetail" resultType="order">
+		SELECT * FROM order_view
+		 WHERE id=#{id} AND order_dno = #{order_dno}
+		 ORDER BY indate,odresult DESC
+	</select>	
+	
+	<select id="getAdminOrderDetail" resultType="order">
+		SELECT * FROM order_view
+		 WHERE order_dno = #{order_dno}
+		 ORDER BY indate,odresult DESC
+	</select>
+	
+	<update id="updateOrderResult">
+		UPDATE order_detail
+		   SET result = '1'
+		 WHERE order_dno = #{order_dno}
+	</update>
+	
+
+	
 </mapper>

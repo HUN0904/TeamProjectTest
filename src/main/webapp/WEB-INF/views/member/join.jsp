@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>  
 <%@ include file="../header.jsp" %>   
   <article>
+  <section class="container"> 
+		<div class="d-flex justify-content-center">
+	    	<div class="col-lg-4 col-md-6 col-sm-8">
     <h2>Join Us</h2>
      <form id="join" action="join" method="post" name="formm">
       <fieldset>
@@ -17,7 +20,9 @@
         <label>Name</label>
         <input type="text" name="name" id="name"><br>
         <label>NickName</label>
-        <input type="text" name="nickname" id="nickname"><br>
+        <input type="text" name="nickname" id="nickname">
+        <input type="hidden"    name="renickname" id="renickname" value="${renickname}" size= "10">
+        <input type="button"    value="중복 체크"  class="dup" onclick="joinnicknamecheck()"><br>
         <label>E-Mail</label>
         <input type="text" name="email" id="email"><br>
         <label>Phone Number</label> 
@@ -37,11 +42,14 @@
       
       <div class="clear"></div>
       <div id="buttons">
-        <input type="button"    value="회원가입"   class="submit" onclick="go_save()"> 
-        <input type="reset"      value="취소"     class="cancel">
+        <input type="button"    value="회원가입"   class="submit" onclick="join_save()"> 
+        <input type="button"      value="취소"     class="cancel" onclick="location='login_form'">
       </div>
       <br>
     </form>
+    		</div>
+	</div>
+</section>
   </article>
   
 <%@ include file="../footer.jsp" %>

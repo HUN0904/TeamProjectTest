@@ -1,10 +1,14 @@
 package com.team.view;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.biz.dto.FavoriteVO;
 import com.team.biz.dto.MemberVO;
@@ -16,17 +20,47 @@ public class FavoriteController {
 	@Autowired
 	private FavoriteService favoriteService;
 	
-	@PostMapping("/favorite_insert")
-	public String insertFavorite(FavoriteVO vo, HttpSession session) {
+	@GetMapping("/favorite_insert")
+	@ResponseBody
+	public FavoriteVO insertFavorite(FavoriteVO vo, HttpSession session) {
 		MemberVO loginUser= (MemberVO)session.getAttribute("loginUser");
 		
-		if(loginUser==null) {
-			return "member/login";
-		}else {
-			vo.setId(loginUser.getId());
-			favoriteService.insertFavorite(vo);
-			
-			return "redirect:favorite_list";
-		}
+
+		System.out.println("insertFavorite(): FavoriteVO="+ vo);
+		vo.setId(loginUser.getId());
+		vo.setHeart("1");//heart 추가
+		favoriteService.insertFavorite(vo);
+		System.out.println("좋아요 Insert 후 favorite_no="+vo.getFavorite_no());
+		
+		return vo;
 	}
+	
+	@GetMapping("/favorite_list")
+	public String listFavorite(HttpSession session,Model model,FavoriteVO vo) {
+       
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
+		if (loginUser == null) { // 로그인이 안된 경우
+			return "member/login";
+		} else {
+			vo.setId(loginUser.getId());
+			List<FavoriteVO> listFavorite= favoriteService.getListByFavorite(vo);
+			model.addAttribute("listFavorite",listFavorite);
+			return "mypage/favoriteList";
+		} 
+	}
+	
+	@GetMapping("/delete_favorite")
+	public String deleteFavorite(FavoriteVO vo, HttpSession session) {
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		System.out.println("deleteFavorite() : vo="+vo);
+
+		vo.setId(loginUser.getId());
+		favoriteService.deleteByFavorite(vo.getFavorite_no());
+		
+		return "mypage/favoriteList";
+
+	}
+	
+
 }

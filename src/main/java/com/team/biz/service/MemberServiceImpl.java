@@ -46,4 +46,26 @@ public class MemberServiceImpl implements MemberService {
 	public String getPwdByNameEmail(String name) {
 			return memberDao.getPwdByNameEmail(name);
 	}
+
+	@Override
+	public int modifyconfirmNickname(MemberVO vo) {
+		
+		return memberDao.modifyconfirmNickname(vo);
+	}
+
+	@Override
+	public void modifyMember(MemberVO vo) {
+		memberDao.modifyMember(vo);
+	}
+
+	@Override
+	public int joinconfirmnickname(String nickname) {
+		return memberDao.joinconfirmnickname(nickname);
+	}
+
+
+
+
+	
+	
 }

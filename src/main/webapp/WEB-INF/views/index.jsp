@@ -34,7 +34,7 @@
         <div class="col-3">
           <div class="card">
           <a href="product_detail?product_no=${vo.product_no}">
-            <img src="product_images/${vo.product_image }"  alt="" class="card-img-top" /><%-- *바꿔야됨* --%>
+            <img src="product_images/${vo.product_image }"  alt="" class="card-img-top" />
             <div class="card-body">
               <h5 class="card-title">제목임${vo.product_name }</h5>
               <p class="card-text">내용임${vo.content }</p>
@@ -50,5 +50,5 @@
 
       </div>
     </div>
-    
+
 <%@ include file="footer.jsp" %>    

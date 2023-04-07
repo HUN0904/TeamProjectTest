@@ -16,8 +16,8 @@ public class FavoriteServiceImpl implements FavoriteService {
 	private FavoriteDAO favoriteDao;
 	
 	@Override
-	public void insertFavorite(FavoriteVO vo) {
-		favoriteDao.insertFavorite(vo);
+	public int insertFavorite(FavoriteVO vo) {
+		return favoriteDao.insertFavorite(vo);
 
 	}
 
@@ -31,6 +31,12 @@ public class FavoriteServiceImpl implements FavoriteService {
 	public void deleteByFavorite(int favorite_no) {
 		favoriteDao.deleteByFavorite(favorite_no);
 
+	}
+
+	@Override
+	public FavoriteVO getHeartByProduct(FavoriteVO vo) {
+		
+		return favoriteDao.getHeartByProduct(vo);
 	}
 
 }

@@ -52,7 +52,7 @@
     </td>
   </tr>    
 </table>
-<input class="btn" type="button" value="등록" onClick="go_save()">           
+<input class="btn" type="button" value="등록" onClick="product_save()">           
 <input class="btn" type="button" value="취소" onClick="go_mov()">
 </form> 
 </article>
