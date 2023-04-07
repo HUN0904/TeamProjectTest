@@ -14,31 +14,36 @@ import utils.Criteria;
 public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
-	private ReviewDAO cDao;
+	private ReviewDAO reviewDAO;
 	
 	@Override
 	public int getCountReviewList(int product_no) {
-		return cDao.countReviewList(product_no);
+		return reviewDAO.countReviewList(product_no);
 	}
 
 	@Override
 	public List<ReviewVO> getReviewListWithPaging(Criteria criteria, int product_no) {
-		return cDao.reviewListWithPaging(criteria, product_no);
+		return reviewDAO.reviewListWithPaging(criteria, product_no);
 	}
 
 	@Override
 	public int saveReview(ReviewVO vo) {
-		return cDao.saveReview(vo);
+		return reviewDAO.saveReview(vo);
 	}
 
 	@Override
 	public double getAvgReviewScore(int product_no) {
-		return cDao.avgReviewScore(product_no);
+		return reviewDAO.avgReviewScore(product_no);
 	}
 
 	@Override
 	public List<ReviewVO> avgScoreList() {
-		return cDao.avgScoreList();
+		return reviewDAO.avgScoreList();
+	}
+
+	@Override
+	public void deleteReview(int review_no) {
+		reviewDAO.deleteReview(review_no);
 	}
 
 }

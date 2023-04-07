@@ -5,9 +5,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/common.css"> 
   <article>
+  <section class="container"> 
+  <div class="card p-4 m-5">
     <h2> 공지사항 </h2>
     <form name="formm" method="post">
-    <table id="noticesList" class="table" border="1"   style="table-layout: fixed">
+    <table id="noticesList" class="table"  style="table-layout: fixed">
 	    <tr>
 	      <th>번호</th> 
 	      <th>제목</th> 
@@ -33,6 +35,8 @@
 	      </div>
  	  </c:if>
     </form>
+    </div>
+    </section>
   </article>
 <%@ include file="../footer.jsp" %>
 

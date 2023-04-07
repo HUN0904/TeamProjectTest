@@ -36,7 +36,7 @@ function go_ab() {
 /*
  * 상품 등록 요청
  */
-function go_save() {
+function product_save() {
 	if (document.getElementById("kind").value == "") {
 		alert("상품 종류를 입력하세요");
 		document.getElementById("kind").focus();

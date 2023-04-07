@@ -5,7 +5,7 @@
       <nav class="navbar navbar-expand-lg bg-light" data-ui-position="fixed" data-ui="tab-control" data-page="product">
             <a href="#prd-info" data-id="prd-info" class="active">상품정보</a>
             <a href="#prd-enquiries" data-id="prd-enquiries" class="">배송 / 교환 / 환불</a>
-            <a href="#prd-review" data-id="prd-review" class="">구매후기<span id="cCnt"></span></a>
+            <a href="#prd-review" data-id="prd-review" class="">구매후기</a>
             <a href="#prd-reviews" data-id="prd-reviews" class="">댓글</a>
     </nav>
     <div id="itemdetail" >
@@ -22,9 +22,9 @@
           <label> 수 량 : </label>
           <input  type="text"   name="quantity" id="quantity" size="2"      value="1"><br>
           <input  type="hidden" name="product_no" value="${productVO.product_no}"><br>
-        <div id="buttons">
           <i class="bi bi-heart"></i>찜 빈하트 눌린경우 빨강 
           <i class="bi bi-heart-fill" ></i>
+          <input type="button" id="bi bi-heart" value="♡" class="bi bi-heart"    onclick="go_order()"> 
            							<!-- 좋아요 버튼 -->
 		<c:choose>
 			<c:when test="${sessionScope.member != null }">
@@ -39,8 +39,6 @@
 		</c:choose>
           <input type="button" value="주문서 작성하기"   class="submit"    onclick="location.href='cart_write_form?product_no='+${productVO.product_no}">
           <input type="button" value="즉시 구매"       class="submit"    onclick="go_order()"> 
-        
-        </div>
         </fieldset>
         <br>
         상품내용

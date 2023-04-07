@@ -16,8 +16,8 @@
 		select avg(score) from review where product_no=#{product_no}
 	</select>
 	<select id="avgScoreList" parameterType="review">
-	select product_no, round(avg(score),1) from review
-	group by product_no
+		select product_no, round(avg(score),1) from review
+		group by product_no
 	</select>
 	
 	<select id="countReviewList" resultType="int">
@@ -26,7 +26,11 @@
 	</select>
 	
 	<insert id="saveReview" parameterType="review">
-		INSERT INTO review(review_no, id, product_no, content, score)
-		VALUES(review_seq.NEXTVAL, #{id}, #{product_no}, #{content}, #{score})
+		INSERT INTO review(review_no, id, product_no, content, score, review_image)
+		VALUES(review_seq.NEXTVAL, #{id}, #{product_no}, #{content}, #{score}, #{review_image})
 	</insert>
+	<delete id="deleteReview">
+		DELETE FROM review WHERE review_no=#{review_no}
+	</delete>
+	
 </mapper>
