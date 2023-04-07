@@ -17,4 +17,10 @@ public interface ProductService {
 	List<ProductVO> getListProduct(String product_name);
 	
 	List<ProductVO> getListProductWithPaging(Criteria criteria, String product_name);
+	
+	void insertProduct(ProductVO vo);
+	
+	void updateProduct(ProductVO vo);
+	
+	void deleteProduct(int product_no);
 }

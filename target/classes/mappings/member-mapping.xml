@@ -9,6 +9,13 @@
 	<select id="confirmID" resultType="String">
 		select pwd from member where id=#{id}
 	</select>
+		<select id="joinconfirmNickname" resultType="String">
+		select id from member where nickname=#{nickname}
+	</select>
+	
+	<select id="modifyconfirmNickname" resultType="String">
+		select id from member where nickname=#{nickname} and id != #{id}
+	</select>
 	
 	<select id="adminCheck" resultType="String">
 		SELECT admin FROM member WHERE id=#{id}
@@ -29,14 +36,13 @@
 		SELECT pwd FROM member WHERE id=#{id} AND name=#{name} AND email=#{email}
 	</select>
 	
-<!-- 비밀번호 변경 -->
-	<update id="changePwd">
-		UPDATE member SET pwd=#{pwd} WHERE id=#{id}
-	</update>
-	
-<!-- 메일 보내기 -->
+	<!-- 메일 보내기 -->
 	<select id="getPwdByNameEmail" resultType="String">
 		SELECT pwd FROM member WHERE name = #{name}
 	</select>
 	
+	<!-- 내 정보 수정 -->
+	<update id="modifyMember">
+		UPDATE member SET pwd=#{pwd},nickname=#{nickname},address=#{address},email=#{email},phone=#{phone} WHERE id=#{id}
+	</update>
 </mapper>

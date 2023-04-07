@@ -108,7 +108,7 @@ function cart_delete() {
 }
 
 function order(){
-	alert("주문을 되었습니다.");
+	alert("주문이 되었습니다.");
 	var form = document.getElementById("theform");
 	form.action = "order_insert";
 	form.submit();

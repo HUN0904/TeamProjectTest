@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
-
+<script type="text/javascript" src="admin/product/product.js"></script>
 <article>
 <h1>상품 상세 보기</h1> 
 <form name="frm" id="detail_form" method="post">
@@ -15,16 +15,13 @@
      </td>    
     </tr>    
     <tr>
-        <th align="center" >상품 명</th>
+        <th align="center" >상품명</th>
         <td colspan="5">${productVO.product_name}</td>
     </tr>
     
     <tr>
-        <th >원가 [A]</th>
+        <th>판매가</th>
         <td width="60">${productVO.price}</td>
-        <th>판매가 [B]</th>
-        <td width="60">${productVO.price}</td>
-        <th>[B-A]</th><td>${productVO.price}</td>
     </tr>
      
     <tr>
@@ -36,7 +33,7 @@
      <th>상품이미지</th>
      <td colspan="5" align="center">
   <!--[7] 상품 이미지를 출력하기 -->     
-     <img src="product_images/${productVO.image}" width="200pt">    
+     <img src="product_images/${productVO.product_image}" width="200pt">    
      </td>
     </tr>
      

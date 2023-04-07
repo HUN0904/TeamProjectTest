@@ -42,7 +42,7 @@
 <div class="container">
 	<div class="card p-4 m-5">
     <form id="reviewForm" name="reviewForm" method="post" enctype="multipart/form-data">
-<h2>리뷰작성</h2>
+<h2>리뷰작성</h2>${productReviewVO.review_no }
 		<table id="rep_input" style="table-layout: fixed">                    
 	        <div id="myform">
 				<fieldset id="score">
@@ -56,7 +56,7 @@
 			</div>
 	        <tr>
 		 	<!-- 
-					<div class="col-sm-10">
+				<div class="col-sm-10">
 					<input type="file" name="image" id="image">(이미지 파일만 가능)
 					<small class="text-muted"></small>
 					<small id="file" class="text-info"></small>
@@ -83,7 +83,7 @@
 <div class="container">
 	<div class="card p-4 m-5">
          <div>
-            <h3>구매후기 <span id="cCnt"> </span></h3> ${avg_score }
+            <h3>구매후기${avg.avg} ${avg} <span id="cCnt"> </span></h3>
         </div>
         <hr>
 	    <form id="reviewListForm" name="reviewListForm" method="post">
@@ -169,8 +169,8 @@
 				html += "<strong>" + item.id + "</strong>&nbsp;&nbsp;&nbsp;";
 				html += "<span id=\"write_date\">" + displayTime(item.review_regdate) + "</span><br>";
 				html += item.content+"<br></div>";
-				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delete_review('${productVO.product_no }')\">수정</button>";
-				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delect_review('${productVO.product_no }')\">삭제</button>";
+				html += "<button class=\"deleteButton\" data-review-no=\"{{review_no}}\">삭제</button>";
+				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delect_review('{{review_no}}')\">삭제</button>";
 				html += "<hr></div>";
 			});
 			
@@ -277,31 +277,28 @@
 	    });
 	}
 	
-	function delete_review(review_no) {
-
-	    var form_data = new FormData($('#reviewForm')[0]);
 	
-	    $.ajax({
-	        type: 'POST',
-	        url: 'reviews/delete',
-	        data: form_data,
-	        contentType: false,
-	        processData: false,
-	        success: function(data) {
-	            if (data == 'success') {    // 상품평 등록 성공
-	                getReviewList();        // 상품평 목록 요청함수 호출
-	                $("#content").val("");
-
-	            } else if (data == 'fail') {
-	                alert("상품평 삭제 실패하였습니다. 다시 시도해 주세요.");
-	            } else if (data == 'not_logedin') {
-	                alert("상품평 등록은 로그인이 필요합니다.");
-	            }
-	        },
-	        error: function(request, status, error) {
-	            alert("error:" + error);
-	        }
-	    });
+	function delete_review() {
+		$(document).on("click", ".deleteButton", function(){
+		    var review_no = $(this).data('review-no');
+		    $.ajax({
+		        type: "GET",
+		        url: "/reviews/delete",
+		        data: {"review_no": review_no},
+		        success: function(data){
+		            if(data == "success"){
+		                alert("삭제되었습니다.");
+		                // 삭제 후 댓글 목록을 갱신하는 함수 호출
+		                getReviewList();
+		            } else {
+		                alert("삭제 실패");
+		            }
+		        },
+		        error: function(xhr, status, error){
+		            alert(error);
+		        }
+		    });
+		});
 	}
 </script>
 </body>
