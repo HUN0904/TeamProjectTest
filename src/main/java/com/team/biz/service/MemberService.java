@@ -1,5 +1,7 @@
 package com.team.biz.service;
 
+import java.util.List;
+
 import com.team.biz.dto.MemberVO;
 
 public interface MemberService {
@@ -17,20 +19,26 @@ public interface MemberService {
 	void insertMember(MemberVO memberVO);
 	
 	// 아이디 :이름,이메일
-	public String selectIdByNameEmail(MemberVO vo);
+	String selectIdByNameEmail(MemberVO vo);
 	
 	//비밀번호 : 이름 아이디 이메일 
-	public String selectPwdByIdNameEmail(MemberVO vo);
+	String selectPwdByIdNameEmail(MemberVO vo);
 	
 	//이메일 보내기
-	public String getPwdByNameEmail(String name);
+	String getPwdByNameEmail(String name);
 	
 	//닉네임 중복체크
-	public int joinconfirmnickname(String nickname);
+	int joinconfirmnickname(String nickname);
 	
 	//닉네임 중복체크2
-	public int modifyconfirmNickname(MemberVO vo);
+	int modifyconfirmNickname(MemberVO vo);
 	
 	//회원정보수정
-	public void modifyMember(MemberVO vo);
+	void modifyMember(MemberVO vo);
+	
+	//회원등급업
+	void gradeUpdate(MemberVO vo);
+	
+	//회원등급업 대상 아이디 추출
+	List<String> sumPriceById(int sum_price);
 }
