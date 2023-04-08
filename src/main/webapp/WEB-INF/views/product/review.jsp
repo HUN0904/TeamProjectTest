@@ -169,8 +169,7 @@
 				html += "<strong>" + item.id + "</strong>&nbsp;&nbsp;&nbsp;";
 				html += "<span id=\"write_date\">" + displayTime(item.review_regdate) + "</span><br>";
 				html += item.content+"<br></div>";
-				html += "<button class=\"deleteButton\" data-review-no=\"{{review_no}}\">삭제</button>";
-				html += "<button type=\"button\"  class=\"btn btn-secondary\" onclick=\"delect_review('{{review_no}}')\">삭제</button>";
+				html += "<button class=\"deleteButton\" onclick=\"delete_review(" + item.review_no + ")\">삭제</button>";
 				html += "<hr></div>";
 			});
 			
@@ -278,27 +277,24 @@
 	}
 	
 	
-	function delete_review() {
-		$(document).on("click", ".deleteButton", function(){
-		    var review_no = $(this).data('review-no');
-		    $.ajax({
-		        type: "GET",
-		        url: "/reviews/delete",
-		        data: {"review_no": review_no},
-		        success: function(data){
-		            if(data == "success"){
-		                alert("삭제되었습니다.");
-		                // 삭제 후 댓글 목록을 갱신하는 함수 호출
-		                getReviewList();
-		            } else {
-		                alert("삭제 실패");
-		            }
-		        },
-		        error: function(xhr, status, error){
-		            alert(error);
-		        }
-		    });
-		});
+	function delete_review(review_no) {
+	    $.ajax({
+	        type: "GET",
+	        url: "/reviews/delete",
+	        data: {"review_no": review_no},
+	        success: function(data){
+	            if(data == "success"){
+	                alert("삭제되었습니다.");
+	                // 삭제 후 댓글 목록을 갱신하는 함수 호출
+	                getReviewList();
+	            } else {
+	                alert("삭제 실패");
+	            }
+	        },
+	        error: function(xhr, status, error){
+	            alert(error);
+	        }
+	    });
 	}
 </script>
 </body>

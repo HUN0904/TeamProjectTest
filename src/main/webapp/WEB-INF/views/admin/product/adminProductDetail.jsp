@@ -44,6 +44,8 @@
 <input class="btn"  type="button" value="목록" onClick="go_list()">           
 </form>
 </article>
+	</div>
+</section>
 <%@ include file="../../footer.jsp"%>
 </body>
 </html>

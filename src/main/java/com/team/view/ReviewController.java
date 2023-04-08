@@ -92,7 +92,7 @@ public class ReviewController {
 	        return "not_logedin";
 	    } else {
 	        vo.setId(loginUser.getId());
-	        reviewService.deleteReview(vo.getReview_no());
+	        reviewService.deleteReview(review_no);
 	        return "success";
 	    }
 	}
