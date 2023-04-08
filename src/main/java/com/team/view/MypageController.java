@@ -62,19 +62,17 @@ public class MypageController {
 		if (loginUser == null) {
 			return "member/login";
 		} else {
-		SimpleDateFormat SDF = new SimpleDateFormat("yyyy/MM/dd");
-		
-		
+		SimpleDateFormat SDF = new SimpleDateFormat("yyyy/MM/dd");		
 		
 		List<Date> disAbleDates = cartService.disAbleDates();
-		//List<String> strDisAbleDates = new ArrayList<>();
-		String[] strDisAbleDates = new String[disAbleDates.size()];
+		List<String> strDisAbleDates = new ArrayList<>();
 		System.out.println(">>>>>>Disable dates");
 		for(int i=0; i<disAbleDates.size(); i++) {
 			
 			String date = SDF.format(disAbleDates.get(i)); 
+			date = "'" + date + "'";
 			System.out.println("date=" + date);
-			strDisAbleDates[i] = date;
+			strDisAbleDates.add(date);
 		}
 		
 		model.addAttribute("strDisAbleDates",strDisAbleDates);

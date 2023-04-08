@@ -57,7 +57,8 @@ $(function() {
 		maxDate:'+1970-02-01',
 		minTime:'13:00',
 		maxTime:'18:00',
-		disabledWeekDays :[0, 7],
+		defaultDate:'+1970/01/02',
+		disabledDates:${strDisAbleDates},
 		onChangeDateTime:function(dp,$input){
 
 		    var d = $input.datetimepicker('getValue');
@@ -93,8 +94,10 @@ $(function() {
 <body>
 	<form id="cart_insert" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="product_price" id="product_price" value="${product.price}">
-		
-${strDisAbleDates}
+		<c:forEach items="${strDisAbleDates}" var="date">
+		${date}		
+		</c:forEach>
+
 
 		<div class="wrap">
 			<div class="item-image"></div>

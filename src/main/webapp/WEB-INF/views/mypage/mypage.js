@@ -112,7 +112,6 @@ function cart_delete() {
 
 function order(){
 	result = window.confirm("장바구니 목록을 주문하시겠습니까?");
-	
 	if(result==true){	
 		alert("주문이 되었습니다.");
 		var form = document.getElementById("theform");
