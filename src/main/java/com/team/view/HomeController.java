@@ -27,9 +27,6 @@ public class HomeController {
 	public String home(Model model, ProductVO vo) {
 		//신상품 조회
 		List<ProductVO> ProductList=productService.getProductScoreList();
-		
-
-		
 		model.addAttribute("ProductList", ProductList);
 
 		return "index";

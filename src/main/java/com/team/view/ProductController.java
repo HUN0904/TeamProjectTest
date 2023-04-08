@@ -49,7 +49,7 @@ public class ProductController {
 		
 		model.addAttribute("productList",productList);
 		
-		return "product/productList";
+		return "index";
 	}
 	
 	@GetMapping("/product_insert")

@@ -2,8 +2,6 @@
   pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
 <script type="text/javascript" src="admin/product/product.js"></script>
-  <section class="container"> 
-  <div class="card p-4 m-5">
 <article>
 <h1>상품리스트</h1>	
 <form name="frm" id="prod_form" method="post">
@@ -19,7 +17,7 @@
   </td>
   </tr>
 </table>
-<table class="table" id="productList" style="table-layout: fixed">
+<table class="table" id="productList" style="text-align:center">
     <tr>
         <th>번호</th>
         <th>상품명</th>
@@ -41,7 +39,7 @@
     <tr>
       <%-- <td height="23" align="center" >${productVO.pseq}</td> --%>
       <td height="23" align="center">${status.count}</td>
-      <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
+      <td  style="text-align: left; padding-left: 50px; padding-right: 0px;">   
 <%--          <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')"> --%>
   		<a href="admin_product_detail?product_no=${productVO.product_no}">    
     	 ${productVO.product_name}     
@@ -63,6 +61,5 @@
 
 <%@ include file="../page_area.jsp" %>
 </article>
-</div>
-</section>
+
 <%@ include file="../../footer.jsp" %>

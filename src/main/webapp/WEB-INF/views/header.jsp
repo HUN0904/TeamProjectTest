@@ -33,7 +33,7 @@
 				<a class="nav-link" href="notices_list">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="product_list">케이크</a>
+				<a class="nav-link" href="index">케이크</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="">추가할메뉴</a>

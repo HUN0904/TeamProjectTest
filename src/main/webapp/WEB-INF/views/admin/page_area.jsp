@@ -25,7 +25,8 @@
 			
 	</ul>
 </div>
-
+</div>
+</section>
 
 
 

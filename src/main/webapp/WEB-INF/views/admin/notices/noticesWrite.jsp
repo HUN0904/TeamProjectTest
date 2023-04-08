@@ -19,4 +19,7 @@
 		  </div>
 		</form>
 	</article>
+	
+	</div>
+</section>
 <%@ include file="../../footer.jsp" %>
