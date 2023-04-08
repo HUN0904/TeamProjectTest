@@ -35,7 +35,7 @@ public class CartDAO {
 		mybatis.update("CartMapper.updateCart",cart_no);
 	}
 	
-	public List<Date> disAbleDates(){
+	public List<String> disAbleDates(){
 		return mybatis.selectList("CartMapper.disAbleDates");
 	}
 }

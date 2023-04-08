@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
+<%@ include file="sub_menu.jsp" %>
 <script type="text/javascript" src="mypage/mypage.js"></script>
+  <section class="container"> 
+  <div class="card p-4 m-5">
  <article>
       <h2> 주문 목록 </h2>
       <form name="formm" method="post" >
 
-       <table id="cartList" class="table" border="1"   style="table-layout: fixed">
+       <table id="cartList" class="table" style="text-align:center">
        <tr>
         <th>상품명</th> <th>수 량</th><th>가 격</th> <th>주문일</th> <th> 진행 상태 </th>    
        </tr>
@@ -33,9 +36,6 @@
 			</c:choose>
 		</tr>
        </c:forEach>
-       <tr>
-         <th>  </th>                
-       </tr> 
       </table>           
       <div class="clear"></div>
       <div id="buttons" style="float: right">
@@ -43,4 +43,6 @@
       </div>
     </form>  
   </article>
+  </div>
+  </section>
 <%@ include file="../footer.jsp" %>

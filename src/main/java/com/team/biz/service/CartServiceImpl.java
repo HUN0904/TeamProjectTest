@@ -46,7 +46,7 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public List<Date> disAbleDates(){
+	public List<String> disAbleDates(){
 
 		return cartDAO.disAbleDates();
 	}

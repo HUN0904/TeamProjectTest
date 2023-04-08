@@ -1,7 +1,7 @@
 package com.team.view;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.team.biz.dto.MemberVO;
 import com.team.biz.dto.NoticesVO;
@@ -44,66 +46,129 @@ public class AdminController {
 	private NoticesService noticesService;
 
 
-	@GetMapping("/admin_login_form")
-	public String adminLoginView() {
+	/* ================================상품(product)================================ */
+	
+	@GetMapping("/insert_product")
+	public String insertProduct(HttpSession session,Model model) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
-		return "admin/main";
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			String[] kindList = {"초코" , "바닐라" , "오레오" , "카스테라"};
+
+			model.addAttribute("kindList", kindList);
+
+			return "admin/product/productWrite";
+		}
 	}
+	
+	@PostMapping("/admin_insert_product")
+	public String adminProductWrite(ProductVO vo, HttpSession session,
+			@RequestParam(value="image") MultipartFile uploadFile) {
 
+		if(!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			vo.setProduct_image(fileName); // 테이블에 파일명 저장 용도
 
+			// 전송할 이미지 파일을 이동할 실제 경로 구하기
+			String image_path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
 
-	@GetMapping("/admin_logout")
-	public String adminLogout(SessionStatus status) {
-
-		status.setComplete();
-
-		return "admin/main";
+			try {
+				uploadFile.transferTo(new File(image_path+fileName));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		productService.insertProduct(vo);
+		
+		return "redirect:admin_product_list";
 	}
-
-	// 페이징 처리 전 소스
-	/*
-	 * @GetMapping("/admin_product_list") public String adminProductList(
-	 * 
-	 * @RequestParam(value="key", defaultValue="") String name, Model model) { //
-	 * (1) 전체 상품목록 조회 List<ProductVO> productList =
-	 * productService.getListProduct(name);
-	 * 
-	 * // (2) model 객체에 상품 목록 저장 model.addAttribute("productList", productList);
-	 * model.addAttribute("productListSize", productList.size());
-	 * 
-	 * // (3) 화면 호출: productList.jsp return "admin/product/productList"; }
-	 */
-
+	
 	@RequestMapping("/admin_product_list")
-	public String adminProductList(
-			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
-			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
-			@RequestParam(value="key", defaultValue="") String product_name, 
+	public String adminProductList(@RequestParam(value="key", defaultValue = "") String product_name, 
 			Model model) {
 
-		Criteria criteria = new Criteria();
-		criteria.setPageNum(Integer.parseInt(pageNum));
-		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
+		List<ProductVO> productList = productService.getListProduct(product_name);
 
-		System.out.println("adminProductList() : criteria="+criteria);
-
-		// (1) 전체 상품목록 조회
-		List<ProductVO> productList = productService.getListProductWithPaging(criteria, product_name);
-
-		// (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
-		pageMaker.setTotalCount(productService.countProductList(product_name)); // 전체 게시글의 수 저장
 
 		// (2) model 객체에 상품 목록 저장
 		model.addAttribute("productList", productList);
 		model.addAttribute("productListSize", productList.size());
-		model.addAttribute("pageMaker", pageMaker);
 
 		// (3) 화면 호출: productList.jsp
 		return "admin/product/productList";
 	}
 
+	@GetMapping("/admin_product_detail")
+	public String adminProductDetail(ProductVO vo, HttpSession session,Model model) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+
+		if (loginUser == null) {
+			return "member/login";
+		} else {		
+			String[] kindList = {"", "초코" , "바닐라" , "오레오" , "카스테라"};
+			int index = vo.getCategory_no();			
+			ProductVO product = productService.getProduct(vo);
+			model.addAttribute("productVO",product);
+			model.addAttribute("kindList", kindList[index]);
+			return "admin/product/adminProductDetail";
+		}
+	}
+	
+	@RequestMapping("/admin_product_update_form")
+	public String adminProductUpdateView(ProductVO vo,Model model) {
+		String[] kindList = {"초코" , "바닐라" , "오레오" , "카스테라"}; 
+
+		ProductVO product = productService.getProduct(vo);
+		model.addAttribute("productVO", product);
+		model.addAttribute("kindList", kindList);
+
+		return "admin/product/productUpdate";
+	}
+	
+	@PostMapping("/admin_product_update")
+	public String adminProductUpdate(ProductVO vo,
+			@RequestParam(value="image") MultipartFile uploadFile,
+			@RequestParam(value="origin_img") String org_image,
+			HttpSession session) {
+
+		if(!uploadFile.isEmpty()) { // 상품 이미지를 수정한 경우
+			String fileName = uploadFile.getOriginalFilename();
+			vo.setProduct_image(fileName); // 테이블에 파일명 저장 용도
+
+			// 전송할 이미지 파일을 이동할 실제 경로 구하기
+			String image_path = session.getServletContext().getRealPath("WEB-INF/resources/product_images/");
+
+
+			try {
+				uploadFile.transferTo(new File(image_path+fileName));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		} else { // 상품의 기존 이미지 사용
+			vo.setProduct_image(org_image);
+		}
+
+		if(vo.getBestyn()==null) {
+			vo.setBestyn("n");
+		} else {
+			vo.setBestyn("y");
+		}
+		productService.updateProduct(vo);
+		
+		return "redirect:admin_product_list";
+	}
+	
+	@PostMapping("/product_delete")
+	public String deleteProduct(ProductVO vo) {
+
+			productService.deleteProduct(vo.getProduct_no());
+
+			return "redirect:admin_product_list";
+		
+	}
 	/* ================================예약현황(reservationStatus)================================ */
 	// 예약 현황 조회
 	@RequestMapping("/reservation_status")
@@ -154,6 +219,27 @@ public class AdminController {
 		for(int i=0; i<order_dno.length; i++) {
 			orderService.updateOrderResult(order_dno[i]);
 		}		
+		return "forward:/grade_update";
+	}
+	
+	@RequestMapping(value="grade_update")
+	public String gradeUpdate(MemberVO vo) {
+		int grade =0;
+		int grageUpMaxPrice = 1000000;
+		
+		for(int i =100000 ;i <= grageUpMaxPrice;i += 100000) {
+			
+			grade = i/100000;
+			System.out.println("grade= ["+grade+"]");
+			List<String> sumPriceById = memberService.sumPriceById(i);
+						
+				for(String id: sumPriceById) {
+					
+					vo.setId(id);
+					vo.setGrade(grade);
+					memberService.gradeUpdate(vo);				
+				}
+		}
 		return "redirect:admin_order_list";
 	}
 	

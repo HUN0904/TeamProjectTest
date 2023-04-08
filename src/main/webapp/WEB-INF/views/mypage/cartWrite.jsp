@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
@@ -48,18 +49,20 @@ let pickup_date = '';
 jQuery.datetimepicker.setLocale("kr");
 $(function() {
 	$("#datetimepicker").datetimepicker({ 
-		format: "Y-m-d H:i",
+		format:"Y/m/d/H:i",
 		inline:true,
 		lang:'kr',
 		step:30,
-		defaultDate:'+1970-01-02',
-		defaultTime:'+13:00',
 		minDate:'+1970-01-02',
 		maxDate:'+1970-02-01',
 		minTime:'13:00',
 		maxTime:'18:00',
+		defaultDate:'+1970/01/02',
+		disabledDates:${strDisAbleDates},
 		onChangeDateTime:function(dp,$input){
+
 		    var d = $input.datetimepicker('getValue');
+			console.log(d)
 		    var month = (d.getMonth()+1);
 		    if(month<10){
 		    	month = '0'+month;
@@ -91,11 +94,13 @@ $(function() {
 <body>
 	<form id="cart_insert" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="product_price" id="product_price" value="${product.price}">
+		<input type="hidden" name="strDisAbleDates" id="strDisAbleDates" value="${strDisAbleDates}">
+
 		<div class="wrap">
 			<div class="item-image"></div>
 				<div class="item-desc">
 					<h1>${product.product_name}
-					<span class="item-price">가격: ${product.price}</span>
+					<span class="item-price">가격: ${product.price}원</span>
 				</h1>
 				</div>
 				<div>
@@ -107,18 +112,18 @@ $(function() {
 					<label>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<input type="checkbox" id="message_check" onchange="messageCheck(this)">문구 추가
+							<input type="checkbox" id="message_check" onchange="messageCheck(this)">문구 추가(+2000)
 							<label>
 								<span class="input-group-text" id="basic-addon1">문구	입력</span>
 							</label>
 						</div>
-					<input type="text" class="form-control" aria-describedby="basic-addon1" id="message" name='message' disabled>
+					<input type="text" class="form-control" aria-describedby="basic-addon1" id="message" name='message' disabled value="">
 					</div>
 					</label>
 					<label>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<input type="checkbox" id="image_check" onchange="imageCheck(this)">커스텀 추가		
+								<input type="checkbox" id="image_check" onchange="imageCheck(this)">커스텀 추가(+5000)		
 								<label for="image">
 	 								<div class="input-group-text" >파일 업로드하기</div>
 								</label>
@@ -127,6 +132,11 @@ $(function() {
 							</div>
 						</div>
 					</label>
+						
+				<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon1">옵션 금액</span>
+						<input type="text" readonly id="option_price" name="option_price" value="${product.price}">			
+				</div>	
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">기타 요청사항</span>
@@ -137,19 +147,19 @@ $(function() {
 					<div class="input-group-prepend">
 						<label class="input-group-text" for="quantity">수량</label>
 					</div>
-					<select class="custom-select" id="quantity" onchange="selectQuantity()">
-						<option value="0" selected>수량을 선택해주세요</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
+					<select class="custom-select" id="quantity" name="quantity" onchange="selectQuantity()">
+						<option name="quantity" value="0" selected>수량을 선택해주세요</option>
+						<option name="quantity" value="1">1</option>
+						<option name="quantity" value="2">2</option>
+						<option name="quantity" value="3">3</option>
 					</select>
 				</div>	
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">옵션 금액</span>
-						<input type="text" readonly id="option_price" name="option_price" value="${product.price}">
-						<span class="input-group-text" id="basic-addon1">최종 금액</span>
+						
+						<span class="input-group-text" id="basic-addon2">최종 금액</span>
 						<input type="text" readonly id="total_price" name="total_price" value="">
+						<span class="input-group-text" id="basic-addon1">회원님 등급으로 ${member.grade}% 할인</span>
 					</div>
 				</div>
 			</div>
@@ -157,6 +167,8 @@ $(function() {
 		
 			<button type="button" onclick="cart_save()" class="btn btn-primary btn-order">주문담기</button>
 		</div>
+
+		
 	</form>	
 </body>
 <%@ include file="../footer.jsp"%>

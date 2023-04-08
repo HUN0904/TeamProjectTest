@@ -1,5 +1,7 @@
 package com.team.biz.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.insertMember(memberVO);
 		
 	}
-
+ 
 	@Override
 	public String selectIdByNameEmail(MemberVO vo) {
 		return memberDao.selectIdByNameEmail(vo);
@@ -63,9 +65,17 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.joinconfirmnickname(nickname);
 	}
 
+	@Override
+	public void gradeUpdate(MemberVO vo) {
+		
+		memberDao.gradeUpdate(vo);
+	}
 
-
-
+	@Override
+	public List<String> sumPriceById(int sum_price){
+		
+		return memberDao.sumPriceById(sum_price);
+	}
 	
 	
 }

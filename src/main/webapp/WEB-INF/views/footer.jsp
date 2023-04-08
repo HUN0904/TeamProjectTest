@@ -2,7 +2,7 @@
   pageEncoding="UTF-8"%>
   <div class="clear"></div>
 
-  <footer>  
+  <footer style="text-align:center">  
     <hr>
     <div id="copy">
      팀 프로젝트 <br>
@@ -14,3 +14,7 @@
 
 </body>
 </html>
+
+
+
+

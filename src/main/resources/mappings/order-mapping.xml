@@ -11,8 +11,8 @@
 	</insert>
  
 	<insert id="orderDetailInsert">
-		INSERT INTO order_detail(order_dno, order_no, product_no, quantity)
-		VALUES(order_detail_seq.NEXTVAL, #{order_no}, #{product_no}, #{quantity})	
+		INSERT INTO order_detail(order_dno, cart_no, order_no, product_no)
+		VALUES(order_detail_seq.NEXTVAL, #{cart_no},#{order_no}, #{product_no})	
 	</insert>
   
  	<select id="orderListById" resultType="order">

@@ -39,4 +39,20 @@
 		SELECT pwd FROM member WHERE name = #{name}
 	</select>
 	
+	<!-- 회원 등급 업데이트 -->
+	<update id="gradeUpdate">
+		 UPDATE member SET grade = #{grade} WHERE id = #{id}
+	</update>
+	
+	<!-- 등급 업데이트 대상 아이디 검색 -->
+	<select id="sumPriceById" resultType="String">
+		<![CDATA[
+		 SELECT m.id FROM member m, cart c, order_detail od
+	   	  WHERE m.id = c.id 
+	        AND c.cart_no = od.cart_no
+	        AND od.result = '1'
+	        GROUP BY m.id
+	        HAVING SUM(c.total_price) >= #{sum_price}
+	        ]]>
+	</select>
 </mapper>

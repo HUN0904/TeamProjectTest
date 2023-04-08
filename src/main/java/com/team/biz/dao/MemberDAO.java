@@ -1,5 +1,7 @@
 package com.team.biz.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -82,6 +84,17 @@ public class MemberDAO {
 	
 	public void modifyMember(MemberVO vo) {
 		  mybatis.update("MemberMapper.modifyMember",vo);
+	}
+	
+	// 회원 등급 업데이트
+	public void gradeUpdate(MemberVO vo) {
+		
+		mybatis.update("MemberMapper.gradeUpdate",vo);
+	}
+	
+	public List<String> sumPriceById(int sum_price){
+		
+		return mybatis.selectList("MemberMapper.sumPriceById", sum_price);
 	}
 
 }

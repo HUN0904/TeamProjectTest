@@ -17,11 +17,7 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="js/member.js"></script>
-<script type="text/javascript" src="js/mypage.js"></script>
-<script type="text/javascript" src="js/product.js"></script>
-<!-- 다음 우편번호 api -->
-<script type="text/javascript" src="js/postcode.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 <body>
 <nav class="border-bottom navbar navbar-expand-md bg-white navbar-light sticky-top">
@@ -37,7 +33,7 @@
 				<a class="nav-link" href="notices_list">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="product_list">케이크</a>
+				<a class="nav-link" href="index">케이크</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="">추가할메뉴</a>
@@ -85,7 +81,7 @@
 
 		<!-- 내 프로필 -->
 		<li class="nav-item">
-			<a class="nav-link" href="">
+			<a class="nav-link" href="mypage">
 				<h5 class="bi bi-person-circle my-0"></h5>
 			</a>
 		</li>
