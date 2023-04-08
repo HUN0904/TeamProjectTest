@@ -3,9 +3,9 @@
 <%@ include file="header.jsp" %>  
 
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-    <div class="col-md-5 p-lg-5 mx-auto my-5">
-    <img alt="" src="product_images/1.jpg">
+<div class="position-relative overflow-hidden p-3 p-md-3 m-md-3 text-center bg-body-tertiary">
+    <div class="col-md-6 p-lg-5 mx-auto my-5">
+    <img alt="" src="product_images/1.jpg" width ="auto" height="500" >
       <h1 class="display-4 fw-normal"><font style="vertical-align: inherit;">
       <font style="vertical-align: inherit;">케이크 주문제작 </font></font></h1>
       <p class="lead fw-normal">
@@ -34,11 +34,7 @@
         <div class="col-3">
           <div class="card">
           <a href="product_detail?product_no=${vo.product_no}">
-<<<<<<< HEAD
             <img src="product_images/${vo.product_image }"  alt="" class="card-img-top" width="auto" height="200"/>
-=======
-            <img src="product_images/${vo.product_image }"  alt="" class="card-img-top" style="height:300px;"/>
->>>>>>> origin/MinHyeok
             <div class="card-body">
               <h5 class="card-title">제목임${vo.product_name }</h5>
               <p class="card-text">내용임${vo.content }</p>
@@ -48,8 +44,8 @@
               <p class="card-text">리뷰<i class="bi bi-star-fill" style="color:#FACC00;"></i>${vo.avg_score }점</p>
            </div>
            </a>
-           </div>
-            </div>
+          </div>
+       </div>
 </c:forEach>
 
       </div>

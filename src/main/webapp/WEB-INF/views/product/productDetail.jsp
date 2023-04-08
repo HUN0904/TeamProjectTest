@@ -83,18 +83,16 @@
  	<input type="hidden" id="favorite_no" name="favorite_no"  value="${favorite.favorite_no} "> 
    <fieldset>
        <span style="float: left;">
-<<<<<<< HEAD
-         <img src="product_images/${productVO.product_image}" width="auto" height="300" />
-=======
+
          <img src="product_images/${productVO.product_image}" style="float:right; width:800px; height:800px;" />
->>>>>>> origin/MinHyeok
+
        </span>              
        <h2> ${productVO.product_name} </h2>  
      <label> 가 격 :  </label>  
      <p> <fmt:formatNumber type="currency" value="${productVO.price}"/></p>  
      <label> 수 량 : </label>
 		<select class="custom-select" id="quantity" name="quantity">
-			<option name="quantity" value=0" selected>수량을 선택해주세요</option>
+			<option name="quantity" value="0" selected>수량을 선택해주세요</option>
 			<option name="quantity" value="1">1</option>
 			<option name="quantity" value="2">2</option>
 			<option name="quantity" value="3">3</option>
@@ -143,10 +141,7 @@
 	        </a>
 	    </c:otherwise>
 	</c:choose>
-<<<<<<< HEAD
-=======
-	</span> <span id="m_heart${favorite.favorite_no}">${favorite.heart}</span>
->>>>>>> origin/MinHyeok
+ <span id="m_heart${favorite.favorite_no}">${favorite.heart}</span>
 	
 <%-- End of 좋아요  --%>
           <input type="button" value="주문서 작성하기"   class="submit"    onclick="location.href='cart_write_form?product_no='+${productVO.product_no}">

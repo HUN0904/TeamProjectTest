@@ -125,9 +125,4 @@ function order(){
 		form.submit();
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/MinHyeok
-
 }
