@@ -219,6 +219,27 @@ public class AdminController {
 		for(int i=0; i<order_dno.length; i++) {
 			orderService.updateOrderResult(order_dno[i]);
 		}		
+		return "forward:/grade_update";
+	}
+	
+	@RequestMapping(value="grade_update")
+	public String gradeUpdate(MemberVO vo) {
+		int grade =0;
+		int grageUpMaxPrice = 1000000;
+		
+		for(int i =100000 ;i <= grageUpMaxPrice;i += 100000) {
+			
+			grade = i/100000;
+			System.out.println("grade= ["+grade+"]");
+			List<String> sumPriceById = memberService.sumPriceById(i);
+						
+				for(String id: sumPriceById) {
+					
+					vo.setId(id);
+					vo.setGrade(grade);
+					memberService.gradeUpdate(vo);				
+				}
+		}
 		return "redirect:admin_order_list";
 	}
 	
