@@ -161,7 +161,7 @@
   <!-- 상품평 처리 -->
  <%@ include file="review.jsp" %> 
   
-<%@ include file="../qna/qnalist.jsp" %>
+<%-- <%@ include file="../qna/qnalist.jsp" %> --%>
   </article>
 <%@ include file="../footer.jsp" %>  
 
