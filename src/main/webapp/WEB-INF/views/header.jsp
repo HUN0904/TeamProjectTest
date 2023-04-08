@@ -16,8 +16,11 @@
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="js/member.js"></script>
-
+<script type="text/javascript" src="member/member.js"></script>
+<script type="text/javascript" src="js/product.js"></script>
+<!-- 다음 우편번호 api -->
+<script type="text/javascript" src="member/postcode.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 <nav class="border-bottom navbar navbar-expand-md bg-white navbar-light sticky-top">
@@ -33,7 +36,7 @@
 				<a class="nav-link" href="notices_list">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="index">케이크</a>
+				<a class="nav-link" href="product_list">케이크</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="">추가할메뉴</a>
@@ -68,6 +71,8 @@
 		        ${sessionScope.loginUser.name}(${sessionScope.loginUser.nickname})
 		      </li>
 	       	  <li><a href="logout">LOGOUT</a></li>
+	       	  <br>
+	       	   <li><a href="modify_member_form">정보수정</a></li>
 	        </c:otherwise> 
 	      </c:choose>
 	  </ul>
