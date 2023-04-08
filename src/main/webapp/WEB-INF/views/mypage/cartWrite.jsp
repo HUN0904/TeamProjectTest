@@ -112,7 +112,7 @@ ${strDisAbleDates}
 					<label>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<input type="checkbox" id="message_check" onchange="messageCheck(this)">문구 추가
+							<input type="checkbox" id="message_check" onchange="messageCheck(this)">문구 추가(+2000)
 							<label>
 								<span class="input-group-text" id="basic-addon1">문구	입력</span>
 							</label>
@@ -123,7 +123,7 @@ ${strDisAbleDates}
 					<label>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<input type="checkbox" id="image_check" onchange="imageCheck(this)">커스텀 추가		
+								<input type="checkbox" id="image_check" onchange="imageCheck(this)">커스텀 추가(+5000)		
 								<label for="image">
 	 								<div class="input-group-text" >파일 업로드하기</div>
 								</label>
@@ -132,6 +132,11 @@ ${strDisAbleDates}
 							</div>
 						</div>
 					</label>
+						
+				<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon1">옵션 금액</span>
+						<input type="text" readonly id="option_price" name="option_price" value="${product.price}">			
+				</div>	
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">기타 요청사항</span>
@@ -151,10 +156,10 @@ ${strDisAbleDates}
 				</div>	
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">옵션 금액</span>
-						<input type="text" readonly id="option_price" name="option_price" value="${product.price}">
-						<span class="input-group-text" id="basic-addon1">최종 금액</span>
+						
+						<span class="input-group-text" id="basic-addon2">최종 금액</span>
 						<input type="text" readonly id="total_price" name="total_price" value="">
+						<span class="input-group-text" id="basic-addon1">회원님 등급으로 ${member.grade}% 할인</span>
 					</div>
 				</div>
 			</div>

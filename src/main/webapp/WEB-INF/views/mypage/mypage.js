@@ -81,11 +81,14 @@ function cart_save() {
 	} else if(document.getElementById("pickup_date").value==""){
 		alert("픽업하실 날짜와 시간을 입력해주세요");
 	}else {
-		alert("장바구니에 추가되었습니다.");
-		var form = document.getElementById("cart_insert");
-		form.enctype = "multipart/form-data";
-		form.action = "cart_write";
-		form.submit();
+		result = window.confirm("장바구니에 추가 하시겠습니까?");
+		if(result==true){	
+			alert("장바구니에 추가되었습니다.");	
+			var form = document.getElementById("cart_insert");
+			form.enctype = "multipart/form-data";
+			form.action = "cart_write";
+			form.submit();
+		}
 	}
 }
 
@@ -108,8 +111,14 @@ function cart_delete() {
 }
 
 function order(){
-	alert("주문이 되었습니다.");
-	var form = document.getElementById("theform");
-	form.action = "order_insert";
-	form.submit();
+	result = window.confirm("장바구니 목록을 주문하시겠습니까?");
+	
+	if(result==true){	
+		alert("주문이 되었습니다.");
+		var form = document.getElementById("theform");
+		form.action = "order_insert";
+		form.submit();
+	}
+
+
 }
