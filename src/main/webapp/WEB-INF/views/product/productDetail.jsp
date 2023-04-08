@@ -89,7 +89,7 @@
    <fieldset>
      <a href="product_detail?product_no=${productVO.product_no}">         
        <span style="float: left;">
-         <img src="product_images/${productVO.product_image}" />
+         <img src="product_images/${productVO.product_image}" width="auto" height="300" />
        </span>              
        <h2> ${productVO.product_name} </h2>  
      </a>    
