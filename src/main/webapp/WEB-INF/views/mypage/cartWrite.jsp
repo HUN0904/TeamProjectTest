@@ -94,16 +94,13 @@ $(function() {
 <body>
 	<form id="cart_insert" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="product_price" id="product_price" value="${product.price}">
-		<c:forEach items="${strDisAbleDates}" var="date">
-		${date}		
-		</c:forEach>
-
+		<input type="hidden" name="strDisAbleDates" id="strDisAbleDates" value="${strDisAbleDates}">
 
 		<div class="wrap">
 			<div class="item-image"></div>
 				<div class="item-desc">
 					<h1>${product.product_name}
-					<span class="item-price">가격: ${product.price}</span>
+					<span class="item-price">가격: ${product.price}원</span>
 				</h1>
 				</div>
 				<div>

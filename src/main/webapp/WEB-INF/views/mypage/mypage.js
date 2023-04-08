@@ -69,7 +69,14 @@ function readURL(input) {
 	  }
 }
 function cart_save() {
-	if(document.getElementById("message_check").checked == true && document.getElementById("message").value == ""){
+	var pickup_day = document.getElementById("pickup_date").value.substr(0,10);
+	if(pickup_day.length == 0){
+		alert("픽업하실 날짜와 시간을 입력해주세요");
+		return false;
+	} else if(document.getElementById("strDisAbleDates").value.includes(pickup_day)){	
+		alert("해당 날짜는 주문량이 많아 선택이 불가능합니다. 다른 날짜를 선택해주세요.");
+		return false;
+	} else if(document.getElementById("message_check").checked == true && document.getElementById("message").value == ""){
 		alert("문구 추가를 하시고 입력을 하지 않으셨습니다. 문구 추가를 원하시면 입력해주세요.");
 		document.getElementById("message").focus();
 		return false;
@@ -78,9 +85,8 @@ function cart_save() {
 		return false;
 	} else if(document.getElementById("quantity").value=="0"){
 		alert("수량을 입력해주세요");
-	} else if(document.getElementById("pickup_date").value==""){
-		alert("픽업하실 날짜와 시간을 입력해주세요");
-	}else {
+		return false;
+	} else {
 		result = window.confirm("장바구니에 추가 하시겠습니까?");
 		if(result==true){	
 			alert("장바구니에 추가되었습니다.");	

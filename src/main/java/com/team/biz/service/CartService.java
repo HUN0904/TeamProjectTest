@@ -17,5 +17,5 @@ public interface CartService {
 
 	CartVO getCart(int cart_no);
 	
-	List<Date> disAbleDates();
+	List<String> disAbleDates();
 }
