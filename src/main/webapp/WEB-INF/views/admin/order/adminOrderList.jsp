@@ -2,24 +2,31 @@
   pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
 <script type="text/javascript">
-function order_result() {
-	const query = 'input[name="order_dno"]:checked';
-	
-	var len = document.querySelectorAll(query).length;
-	console.log(len);
-	
-	if (len == 0) {
-		alert("주문완료 처리할 항목을 선택해 주세요.")
-	} else {
-		result = window.confirm("주문 완료 처리하시겠습니까?");
-		if(result==true){		
-			var form = document.getElementById("order_form");
-			form.action = "order_result_update";
-			form.submit();
+	function order_result() {
+		const query = 'input[name="order_dno"]:checked';
+		
+		var len = document.querySelectorAll(query).length;
+		console.log(len);
+		
+		if (len == 0) {
+			alert("주문완료 처리할 항목을 선택해 주세요.")
+		} else {
+			result = window.confirm("주문 완료 처리하시겠습니까?");
+			if(result==true){		
+				var form = document.getElementById("order_form");
+				form.action = "order_result_update";
+				form.submit();
+			}
 		}
 	}
-}
+	function checkAll() {
+	    var checkboxes = document.getElementsByName('order_dno'); // 
+	    var allCheckbox = document.getElementById('all');
 
+	    for (var i = 0; i < checkboxes.length; i++) {
+	        checkboxes[i].checked = allCheckbox.checked; // "전체
+	    }
+	}
 </script>
 <article>
 <h1>주문 리스트</h1>	
@@ -40,7 +47,8 @@ function order_result() {
         <th>주문자</th>
         <th>주문일자</th>
         <th>주문상태</th>        
-        <th><input type="button" value="주문 완료하기" onclick="order_result()"></th>
+        <td><input type="button" value="주문 완료하기" onclick="order_result()"></td>
+        <th><input type="checkbox" name="all" id="all" onclick="checkAll()">전체 선택</th>
     </tr>
     <c:choose>
     <c:when test="${orderListSize<=0}">
@@ -66,8 +74,8 @@ function order_result() {
       <td><fmt:formatDate value="${order.indate}"/></td>
       <c:choose>
 		<c:when test= "${order.odresult eq '2'}">					
-        	<td> 처리 진행 중 </td>
-        	<td><input type="checkbox" name="order_dno" id="orderd_no" value= "${order.order_dno}"></td>
+        	<td> 처리 진행 중 </td><td></td>
+        	<td><input type="checkbox" name="order_dno" id="order_dno" value= "${order.order_dno}"></td>
         </c:when>
       	<c:otherwise>
         	<td colspan="2"> 주문 처리 완료 </td>
