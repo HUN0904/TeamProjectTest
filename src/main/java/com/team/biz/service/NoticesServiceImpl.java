@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.team.biz.dao.NoticesDAO;
 import com.team.biz.dto.NoticesVO;
 
+import utils.Criteria;
+
 @Service("noticesService")
 public class NoticesServiceImpl implements NoticesService {
 
@@ -20,6 +22,16 @@ public class NoticesServiceImpl implements NoticesService {
 		return noticesDAO.noticesList();
 	}
 
+	@Override
+	public int countnoticesList(String title) {
+		
+		return noticesDAO.countnoticesList(title);
+	}	
+	@Override
+	public List<NoticesVO> getListNoticesWithPaging(Criteria criteria, String title) {
+		
+		return noticesDAO.listNoticesWithPaging(criteria, title);
+	}
 	@Override
 	public NoticesVO getNotices(int notices_no) {
 		
@@ -36,6 +48,12 @@ public class NoticesServiceImpl implements NoticesService {
 	public void updateNotices(NoticesVO vo) {
 		
 		noticesDAO.updateNotices(vo);
+	}
+	
+	@Override
+	public void IncreaseHits(int notices_no) {
+		
+		noticesDAO.IncreaseHits(notices_no);
 	}
 
 	@Override
