@@ -29,9 +29,5 @@ public class OrderVO {
 	private Date indate;
 	private String cresult;
 	private String odresult;
-	private int sum_price;
-	private int sum_quantity;
-	private String start_date;
-	private String end_date;
 	
 }
