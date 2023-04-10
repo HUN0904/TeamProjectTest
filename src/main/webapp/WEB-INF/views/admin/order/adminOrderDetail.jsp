@@ -17,7 +17,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">금액</span>
 							<input type="hidden" readonly id="total_price" name="total_price" value="${order.total_price}">
-							<fmt:formatNumber value="${order.total_price}" type="currency"/> 
+							<fmt:formatNumber value="${order.total_price}" pattern="#,###"/>원
 						</div>
 						<div class="input-group-prepend">
 						<label class="input-group-text" for="quantity">주문 수량</label>
@@ -29,10 +29,15 @@
 							<fmt:formatDate pattern="yyyy/MM/dd/HH:mm" value="${order.pickup_date }" type="date"/>
 						</div>						
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">추가 문구</span>
-							<c:if test="${order.message ne 'X'}">
-								<input type="text" readonly id="message" name="message" value="${order.message}">
-							</c:if>						
+						<c:choose>
+   							<c:when test="${order.message ne 'X'}">
+   								<span class="input-group-text" id="basic-addon1">추가 문구</span>
+   								<input type="text" readonly id="message" name="message" value="${order.message}">
+   							</c:when>
+   							<c:otherwise>
+								<span class="input-group-text" id="basic-addon1">추가 문구 X</span>
+							</c:otherwise>
+   						</c:choose>					
 						</div>							
 						<div class="input-group-prepend">
 							<span class="input-group-text" id="basic-addon1">커스텀 이미지</span>

@@ -25,11 +25,11 @@
 	 WHERE cart_no=#{cart_no}
   </update>
   
-	<select id="disAbleDates" resultType="Date">
+	<select id="disAbleDates" resultType="String">
 		<![CDATA[
-		SELECT pickup_date AS disabledate
+ 		SELECT TO_CHAR(pickup_date,'yyyy/MM/dd') AS "disabledate"
 		FROM order_view
-		GROUP BY pickup_date
+		GROUP BY TO_CHAR(pickup_date,'yyyy/MM/dd')
 		HAVING sum(quantity) >= 5
 		 ]]>
 	</select>  

@@ -41,4 +41,19 @@
 		 AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
 		]]>
 	</select>	
+	
+	<insert id="insertProduct" parameterType="product">
+		INSERT INTO product(product_no, category_no ,product_name, price, content, product_image)
+		VALUES(product_seq.NEXTVAL, #{category_no}, #{product_name}, #{price}, #{content}, #{product_image})
+	</insert>
+	
+	<update id="updateProduct" parameterType="product">
+		UPDATE product SET category_no=#{category_no}, product_name=#{product_name}, 
+				price=#{price}, content=#{content}, product_image=#{product_image}, bestyn=#{bestyn}
+		 WHERE product_no=#{product_no}
+	</update>
+	
+	<delete id="deleteProduct">
+		DELETE FROM product WHERE product_no=#{product_no}
+	</delete>
 </mapper>

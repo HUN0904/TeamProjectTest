@@ -1,6 +1,5 @@
 package com.team.biz.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,7 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	@Override
-	public List<Date> disAbleDates(){
+	public List<String> disAbleDates(){
 
 		return cartDAO.disAbleDates();
 	}

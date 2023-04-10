@@ -1,5 +1,6 @@
 package com.team.biz.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.biz.dto.OrderVO;
+
+import utils.Criteria;
 
 @Repository
 public class OrderDAO {
@@ -17,6 +20,45 @@ public class OrderDAO {
 	public int selectMaxOrder_no() {
 		
 		return mybatis.selectOne("OrderMapper.selectMaxOrder_no");
+	}
+	
+	public int countOrderList(String name) {
+		
+		return mybatis.selectOne("OrderMapper.countOrderList", name);
+	}
+	
+	public int countOrderListByDate(String date) {
+		
+		return mybatis.selectOne("OrderMapper.countOrderListByDate", date);
+	}
+	
+	public int countOrderListById(String id) {
+		
+		return mybatis.selectOne("OrderMapper.countOrderListById", id);
+	}
+	
+	public List<OrderVO> listOrderWithPaging(Criteria criteria, String name) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("criteria", criteria);
+		map.put("name", name);
+		
+		return mybatis.selectList("OrderMapper.listOrderWithPaging", map);
+	}
+	
+	public List<OrderVO> listOrderWithPagingByDate(Criteria criteria, String date){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("criteria", criteria);
+		map.put("pickup_date", date);
+		
+		return mybatis.selectList("OrderMapper.listOrderWithPagingByDate", map);
+	}
+	
+	public List<OrderVO> listOrderWithPagingById(Criteria criteria, String id) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("criteria", criteria);
+		map.put("id", id);
+		
+		return mybatis.selectList("OrderMapper.listOrderWithPagingById", map);
 	}
 	
 	public void orderInsert(OrderVO vo) {
@@ -34,10 +76,6 @@ public class OrderDAO {
 		return mybatis.selectList("OrderMapper.orderListById", id);
 	}
 	
-	public List<OrderVO> orderListByDate(String date){
-		
-		return mybatis.selectList("OrderMapper.orderListByDate", date);
-	}
 	
 	public OrderVO getOrderDetail(OrderVO vo) {
 		
@@ -60,7 +98,11 @@ public class OrderDAO {
 		mybatis.update("OrderMapper.updateOrderResult",order_dno);
 	}
 	
-
+	public List<OrderVO> listProductSales(OrderVO vo){
+		
+		return mybatis.selectList("OrderMapper.listProductSales", vo);
+	}
+	
 }
 
 
