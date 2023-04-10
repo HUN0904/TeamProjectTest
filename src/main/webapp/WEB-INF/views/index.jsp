@@ -85,8 +85,13 @@
 	      주문제작 케이크 만들어 드려요.
 	      </font>
 	      <font style="vertical-align: inherit;">
+<<<<<<< HEAD
 	      정성으로 만들어드림   
 	      </font>  
+=======
+	      정성으로 만들어드림 깃허브테
+	      </font>
+>>>>>>> main
       </font></p>
       <a class="btn btn-outline-secondary" href="product_images/1.jpg">
       <font style="vertical-align: inherit;">
