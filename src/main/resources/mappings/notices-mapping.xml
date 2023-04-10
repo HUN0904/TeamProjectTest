@@ -6,10 +6,33 @@
 		SELECT * FROM notices ORDER BY notices_date DESC
 	</select>
 	
+	<select id="countnoticesList" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM notices
+		 WHERE title LIKE '%'||#{title}||'%'
+	</select>
+	
+	<!-- 전체 공지사항 페이징 처리 -->
+	<select id="listNoticesWithPaging" resultType="notices">
+		<![CDATA[
+		SELECT rn, notices_no, id,title,notices_date, hits
+		FROM (SELECT row_number() OVER (ORDER BY notices_no DESC) rn, notices_no, id,title,notices_date, hits
+			  FROM notices
+			  WHERE title LIKE '%'||#{title}||'%')
+		WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		 AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>	
+  	
 	<!-- 공지사항 상세보기 -->
 	<select id="getNotices" resultType="notices">
 		SELECT * FROM notices WHERE notices_no=#{notices_no} 
 	</select>
+	
+	<!-- 공지사항 조회수 증가 -->
+	<update id="IncreaseHits">
+		UPDATE notices SET hits = hits + 1
+		 WHERE notices_no = #{notices_no}
+	</update>
 	
 	<!-- 공지사항 작성하기 -->
 	<insert id="insertNotices">

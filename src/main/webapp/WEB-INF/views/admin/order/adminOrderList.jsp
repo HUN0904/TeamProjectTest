@@ -34,8 +34,9 @@
 <table>
   <tr>
   <td width="642">
-      상품명 
+      주문자 
      <input type="text" name="key" id="key">
+     <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">
   </td>
   </tr>
 </table>
@@ -54,20 +55,16 @@
     <c:when test="${orderListSize<=0}">
     <tr>
       <td width="100%" colspan="7" align="center" height="23">
-        등록된 상품이 없습니다.
+        들어온 주문이 없습니다.
       </td>      
     </tr>
     </c:when>
 	<c:otherwise>
 	<c:forEach items="${orderList}" var="order" varStatus="status">
     <tr>
-      <%-- <td height="23" align="center" >${productVO.pseq}</td> --%>
       <td height="23" align="center">${order.order_dno}</td>
       <td>   
-<%-- <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')"> --%>
-  		<a href="admin_order_detail?order_dno=${order.order_dno}">    
-    	 ${order.product_name}
-   		</a>
+  		<a href="admin_order_detail?order_dno=${order.order_dno}">${order.product_name}</a>
    	  </td>
    	  <td><fmt:formatNumber value="${order.total_price}" pattern="#,###"/>원</td>
    	  <td>${order.name }</td>
@@ -84,10 +81,40 @@
       <td></td>
     </tr>
     </c:forEach>
+    <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
 	</c:otherwise>	
 </c:choose>  
 </table>
 </form>
-<%@ include file="../page_area.jsp" %>
+
+<%-- 페이징 --%>
+<div class="d-flex justify-content-center">
+	<ul class="pagination">
+	
+		<c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous">
+				<a href="admin_order_list${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
+			</li>
+		</c:if>				
+		<!-- [1][2][3]... 표시 부분 -->
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
+			<a href="admin_order_list${pageMaker.makeQuery(index)}">[${index}]</a>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next">
+				<a href="admin_order_list${pageMaker.makeQuery(pageMaker.endPage+1)}">[다음]</a>
+			</li>
+		</c:if>				
+	</ul>
+</div>
 </article>
 <%@ include file="../../footer.jsp" %>
+
+
+
+
+
+
+
+

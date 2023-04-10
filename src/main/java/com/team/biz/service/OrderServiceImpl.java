@@ -9,6 +9,8 @@ import com.team.biz.dao.OrderDAO;
 import com.team.biz.dto.CartVO;
 import com.team.biz.dto.OrderVO;
 
+import utils.Criteria;
+
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
 
@@ -55,15 +57,45 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public int countOrderList(String name) {
+	
+		return orderDAO.countOrderList(name);
+	}
+	
+	@Override
+	public int countOrderListById(String id) {
+		
+		return orderDAO.countOrderListById(id);
+	}
+	
+	@Override
+	public int countOrderListByDate(String date) {
+		
+		return orderDAO.countOrderListByDate(date);
+	}
+	
+	@Override
+	public List<OrderVO> getListOrderWithPaging(Criteria criteria, String name){
+		
+		return orderDAO.listOrderWithPaging(criteria, name);
+	}
+	
+	@Override
+	public List<OrderVO> getListOrderWithPagingById(Criteria criteria, String id){
+		
+		return orderDAO.listOrderWithPagingById(criteria, id);
+	}
+	
+	@Override
 	public List<OrderVO> getOrderListById(String id){
 		
 		return orderDAO.orderListById(id);
 	}
 	
 	@Override
-	public List<OrderVO> getOrderListByDate(String date){
+	public List<OrderVO> getListOrderWithPagingByDate(Criteria criteria, String date){
 		
-		return orderDAO.orderListByDate(date);
+		return orderDAO.listOrderWithPagingByDate(criteria, date);
 	}
 	
 	@Override

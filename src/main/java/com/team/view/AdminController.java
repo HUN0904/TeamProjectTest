@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team.biz.dto.MemberVO;
@@ -86,21 +85,35 @@ public class AdminController {
 		return "redirect:admin_product_list";
 	}
 	
+
 	@RequestMapping("/admin_product_list")
-	public String adminProductList(@RequestParam(value="key", defaultValue = "") String product_name, 
+	public String adminProductList(
+			@RequestParam(value="key", defaultValue="") String name,
+			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
+			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
 			Model model) {
 
-		List<ProductVO> productList = productService.getListProduct(product_name);
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(Integer.parseInt(pageNum));
+		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
 
+		// (1) 전체 상품목록 조회
+		List<ProductVO> productList = productService.getListProductWithPaging(criteria, name);
+
+		// (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
+		pageMaker.setTotalCount(productService.countProductList(name)); // 전체 게시글의 수 저장
 
 		// (2) model 객체에 상품 목록 저장
 		model.addAttribute("productList", productList);
 		model.addAttribute("productListSize", productList.size());
+		model.addAttribute("pageMaker", pageMaker);
 
 		// (3) 화면 호출: productList.jsp
 		return "admin/product/productList";
 	}
-
+	
 	@GetMapping("/admin_product_detail")
 	public String adminProductDetail(ProductVO vo, HttpSession session,Model model) {
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
@@ -171,27 +184,65 @@ public class AdminController {
 	}
 	/* ================================예약현황(reservationStatus)================================ */
 	// 예약 현황 조회
+//	@RequestMapping("/reservation_status")
+//	public String orderListByDate(
+//	        @RequestParam(value="date", defaultValue = "") String date, Model model) {
+//	    System.out.println("date 값 ==["+date+"]");
+//	    List<OrderVO> orderList = orderService.getOrderListByDate(date);
+//
+//	    model.addAttribute("orderList",orderList);
+//	    return "admin/order/reservationStatus";
+//	}
+	
 	@RequestMapping("/reservation_status")
-	public String orderListByDate(
-	        @RequestParam(value="date", defaultValue = "") String date, Model model) {
-	    System.out.println("date 값 ==["+date+"]");
-	    List<OrderVO> orderList = orderService.getOrderListByDate(date);
+	public String listOrderWithPagingByDate(
+			@RequestParam(value="date", defaultValue="") String date,
+			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
+			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
+			Model model) {
+		System.out.println("date 값 ==["+date+"]");
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(Integer.parseInt(pageNum));
+		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
 
-	    model.addAttribute("orderList",orderList);
-	    return "admin/order/reservationStatus";
-	}
-	
-	
+		List<OrderVO> orderList = orderService.getListOrderWithPagingByDate(criteria, date);
 
-	/* ========================================주문(Order)======================================== */
-	// 전체 관리자 주문 내역 조회
-	@RequestMapping("/admin_order_list")
-	public String adminOrderList(
-			@RequestParam(value="key",defaultValue = "") String product_name, Model model) {
-
-		List<OrderVO> orderList = orderService.getAdminOrderList(product_name);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(orderService.countOrderListByDate(date)); 
 
 		model.addAttribute("orderList",orderList);
+		model.addAttribute("orderListSize", orderList.size());
+		model.addAttribute("pageMaker", pageMaker);
+
+	    return "admin/order/reservationStatus";
+	}
+
+	/* ========================================주문(Order)======================================== */
+
+	
+	// 주문 내역 페이징 처리 조회
+	@RequestMapping("/admin_order_list")
+	public String listOrderWithPaging(
+			@RequestParam(value="key", defaultValue="") String name,
+			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
+			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
+			Model model) {
+
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(Integer.parseInt(pageNum));
+		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
+
+		List<OrderVO> orderList = orderService.getListOrderWithPaging(criteria, name);
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);
+		pageMaker.setTotalCount(orderService.countOrderList(name)); 
+
+		model.addAttribute("orderList",orderList);
+		model.addAttribute("orderListSize", orderList.size());
+		model.addAttribute("pageMaker", pageMaker);
+
 		return "admin/order/adminOrderList";
 	}
 	
@@ -245,22 +296,35 @@ public class AdminController {
 	
 	
 	/* ========================================공지사항(Notices)======================================== */
-	// 전체 관리자 공지사항 리스트
-	@GetMapping("/admin_notices_list")
-	public String noticesList(Model model,HttpSession session) {
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+	// 전체 관리자 공지사항 리스트 
+	@RequestMapping("/admin_notices_list")
+	public String adminnoticesList(
+			@RequestParam(value="key", defaultValue="") String title,
+			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
+			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
+			Model model) {
 
-		if (loginUser == null) {
-			return "member/login";
-		} else {
-			List<NoticesVO> noticesList = noticesService.getNoticesList();
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(Integer.parseInt(pageNum));
+		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
 
-			model.addAttribute("noticesList",noticesList);
+		// (1) 전체 상품목록 조회
+		List<NoticesVO> noticesList = noticesService.getListNoticesWithPaging(criteria, title);
 
-			return "admin/notices/adminNoticesList";
-		}
-	}
+		// (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
+		pageMaker.setTotalCount(noticesService.countnoticesList(title)); // 전체 게시글의 수 저장
 
+		// (2) model 객체에 상품 목록 저장
+		model.addAttribute("noticesList", noticesList);
+		model.addAttribute("noticesListSize", noticesList.size());
+		model.addAttribute("pageMaker", pageMaker);
+
+		// (3) 화면 호출: productList.jsp
+		return "admin/notices/adminNoticesList";
+	}	
+	
 	// 관리자 공지사항 상세보기
 	@GetMapping("/admin_notices_view")
 	public String getNotices(NoticesVO vo, Model model,HttpSession session) {

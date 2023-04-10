@@ -5,8 +5,6 @@
 <article>
 <h1>상품 상세 보기</h1> 
 <form name="frm" id="detail_form" method="post">
-<input type="hidden" name="pageNum" value="${criteria.pageNum}">
-<input type="hidden" name="rowsPerPage" value="${criteria.rowsPerPage}">
 <table id="list">
   <tr>
     <th>상품분류</th>
@@ -38,14 +36,17 @@
     </tr>
      
 </table>
-<!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. --> 
-<input class="btn"  type="button" value="수정" onClick="go_mod('${productVO.product_no}')">
-<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. --> 
-<input class="btn"  type="button" value="목록" onClick="go_list()">           
+
+
+<div class="input-group mb-3">
+	<div class="input-group-prepend">		
+		<button type="button" onclick="go_mod('${productVO.product_no}')" class="btn btn-primary btn-order">수정하기</button>&emsp;&emsp;		
+		<button type="button" onclick="go_list()" class="btn btn-primary btn-order">목록으로</button>
+	</div>
+</div>        
 </form>
 </article>
-	</div>
-</section>
+
 <%@ include file="../../footer.jsp"%>
 </body>
 </html>

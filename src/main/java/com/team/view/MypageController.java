@@ -27,6 +27,9 @@ import com.team.biz.service.MemberService;
 import com.team.biz.service.OrderService;
 import com.team.biz.service.ProductService;
 
+import utils.Criteria;
+import utils.PageMaker;
+
 @Controller
 public class MypageController {
 
@@ -53,38 +56,6 @@ public class MypageController {
 			return "mypage/mypage";
 		}
 	}
-
-
-	//	@GetMapping("/cart_write_form")
-	//	public String cartWriteForm(Model model,HttpSession session,ProductVO vo) {
-	//		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-	//
-	//		if (loginUser == null) {
-	//			return "member/login";
-	//		} else {
-	//		SimpleDateFormat SDF = new SimpleDateFormat("yyyy/MM/dd");		
-	//		
-	//		List<Date> disAbleDates = cartService.disAbleDates();
-	//		List<String> strDisAbleDates = new ArrayList<>();
-	//		System.out.println(">>>>>>Disable dates");
-	//		for(int i=0; i<disAbleDates.size(); i++) {
-	//			
-	//			String date = SDF.format(disAbleDates.get(i)); 
-	//			date = "'" + date + "'";
-	//			System.out.println("date=" + date);
-	//			strDisAbleDates.add(date);
-	//		}
-	//		
-	//		model.addAttribute("strDisAbleDates",strDisAbleDates);
-	//			
-	//		ProductVO product = productService.getProduct(vo);
-	//		model.addAttribute("product",product);
-	//		
-	//		MemberVO member = memberService.getMember(loginUser.getId());
-	//		model.addAttribute("member",member);
-	//		return "mypage/cartWrite";
-	//		}
-	//	}
 
 	@GetMapping("/cart_write_form")
 	public String cartWriteForm(Model model,HttpSession session,ProductVO vo) {
@@ -190,6 +161,8 @@ public class MypageController {
 
 	}
 
+
+	/* ========================================주문(Order)======================================== */
 	@PostMapping("/order_insert")
 	public String orderInsert(HttpSession session, OrderVO order, Model model) {
 		// 로그인 확인 
@@ -209,15 +182,43 @@ public class MypageController {
 		}
 	}
 
-	@GetMapping("/order_list")
-	public String orderListById(HttpSession session, Model model,OrderVO vo) {
+//	@GetMapping("/order_list")
+//	public String orderListById(HttpSession session, Model model,OrderVO vo) {
+//		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+//
+//		if (loginUser == null) {
+//			return "member/login";
+//		} else {
+//			List<OrderVO> orderList = orderService.getOrderListById(loginUser.getId());
+//			model.addAttribute("orderList",orderList);
+//			return "mypage/orderList";
+//		}
+//	}
+
+	@RequestMapping("/order_list")
+	public String listOrderWithPagingById(HttpSession session,
+			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
+			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
+			Model model) {
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
 		if (loginUser == null) {
 			return "member/login";
 		} else {
-			List<OrderVO> orderList = orderService.getOrderListById(loginUser.getId());
+			Criteria criteria = new Criteria();
+			criteria.setPageNum(Integer.parseInt(pageNum));
+			criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
+
+			List<OrderVO> orderList = orderService.getListOrderWithPagingById(criteria, loginUser.getId());
+
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCriteria(criteria);
+			pageMaker.setTotalCount(orderService.countOrderListById(loginUser.getId())); 
+
 			model.addAttribute("orderList",orderList);
+			model.addAttribute("orderListSize", orderList.size());
+			model.addAttribute("pageMaker", pageMaker);
+
 			return "mypage/orderList";
 		}
 	}

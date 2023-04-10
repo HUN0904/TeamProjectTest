@@ -11,10 +11,11 @@
 
        <table id="cartList" class="table" style="text-align:center">
        <tr>
-        <th>상품명</th> <th>수 량</th><th>가 격</th> <th>주문일</th> <th> 진행 상태 </th>    
+        <th>주문번호</th><th>상품명</th> <th>수 량</th><th>가 격</th> <th>주문일</th> <th> 진행 상태 </th>    
        </tr>
        <c:forEach items="${orderList}"  var="orderVO">
-       <tr>      
+       <tr>
+       <td>${orderVO.order_dno}</td>      
         <td>
             <a href="order_detail?order_dno=${orderVO.order_dno}">
               <h3> ${orderVO.product_name} </h3>              
@@ -36,12 +37,34 @@
 			</c:choose>
 		</tr>
        </c:forEach>
+       <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
       </table>           
       <div class="clear"></div>
+       <%-- 페이징 --%>
+<div class="d-flex justify-content-center">
+	<ul class="pagination">
+	
+		<c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous">
+				<a href="order_list${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
+			</li>
+		</c:if>				
+		<!-- [1][2][3]... 표시 부분 -->
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
+			<a href="order_list${pageMaker.makeQuery(index)}">[${index}]</a>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next">
+				<a href="order_list${pageMaker.makeQuery(pageMaker.endPage+1)}">[다음]</a>
+			</li>
+		</c:if>				
+	</ul>
+</div>
       <div id="buttons" style="float: right">
        <input type="button"    value="쇼핑 계속하기"  class="cancel"  onclick="location.href='index'">     
       </div>
-    </form>  
+    </form>      
   </article>
   </div>
   </section>

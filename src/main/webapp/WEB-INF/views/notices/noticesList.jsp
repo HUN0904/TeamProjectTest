@@ -9,6 +9,17 @@
   <div class="card p-4 m-5">
     <h2> 공지사항 </h2>
     <form name="formm" method="post">
+    <table>
+    <tr>
+      <td width="642">
+      제목
+     <input type="text" name="key" id="key">
+     <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">
+     <input class="btn" type="button" name="btn_total" value="전체보기" onClick="go_total()">
+  </td>
+  </tr>
+    
+    </table>
     <table id="noticesList" class="table"  style="table-layout: fixed">
 	    <tr>
 	      <th>번호</th> 
@@ -27,16 +38,30 @@
 		</tr>
 	</c:forEach>    
     </table>
-    
-      <c:if test="${sessionScope.loginUser.admin == 'admin'}">
-	   	  <div id="buttons" style="float:right">
-	      	<input type="button"  value="공지사항 작성하기"  class="submit"    
-			onclick="location.href='notices_write_form'">  <!-- 컨트롤러로 보내기 -->
-	      </div>
- 	  </c:if>
+     <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
     </form>
     </div>
     </section>
+    <div class="d-flex justify-content-center">
+	<ul class="pagination">
+	
+		<c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous">
+				<a href="notices_list${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
+			</li>
+		</c:if>				
+		<!-- [1][2][3]... 표시 부분 -->
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
+			<a href="notices_list${pageMaker.makeQuery(index)}">[${index}]</a>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next">
+				<a href="notices_list${pageMaker.makeQuery(pageMaker.endPage+1)}">[다음]</a>
+			</li>
+		</c:if>				
+	</ul>
+</div>
   </article>
 <%@ include file="../footer.jsp" %>
 
