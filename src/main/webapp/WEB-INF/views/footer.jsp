@@ -5,7 +5,7 @@
   <footer style="text-align:center">  
     <hr>
     <div id="copy">
-      <div align="left">
+      <div align="center">
           <a class="dropdown-item" href="https://www.instagram.com/ileen_keki/"> 인스타!
 		  	   <i class="bi bi-instagram"></i>
 		    </a>
