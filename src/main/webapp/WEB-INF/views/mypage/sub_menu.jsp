@@ -9,7 +9,7 @@
     </button>
  <ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="nav-link" href="">회원정보수정</a>
+				
 			</li>
 			</ul>   
     </div>

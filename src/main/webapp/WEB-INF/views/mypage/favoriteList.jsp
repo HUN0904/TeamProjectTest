@@ -15,8 +15,8 @@ function delete_favorite_no(f_no){
 <hr>
 
 <c:choose>
-	<c:when test="${favoriteList.size == 0}">
-		<h3 style="color: red; text-align: center;">찜목록이없습니다.</h3>
+	<c:when test="${favoriteList == 0}">
+		<h3 style="color: black; text-align: center;">찜목록이 없습니다.</h3>
 	</c:when>
 	<c:otherwise>
 		<form id="fav_list_form" method="get">
