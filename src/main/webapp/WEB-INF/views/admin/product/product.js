@@ -74,7 +74,12 @@ function go_mod_save(product_no) {
 }
 
 
-
+function go_list() {
+	var form = document.getElementById("detail_form");
+	
+	form.action = "admin_product_list";
+	form.submit();
+}
 
 
 
