@@ -101,6 +101,17 @@
 		 WHERE order_dno = #{order_dno}
 	</update>
 	
+	<select id="listProductSales" resultType="order">
+	<![CDATA[
+		SELECT product_name ,SUM(total_price) AS sum_price, SUM(quantity) AS sum_quantity
+  		  FROM ORDER_VIEW
+ 		 WHERE  TO_CHAR(indate,'yyyy-MM-dd') >= #{start_date}
+ 		   AND  TO_CHAR(indate,'yyyy-MM-dd') <= #{end_date}
+ 		   AND  odresult ='1'
+ 		 GROUP BY product_name
+ 		 ]]>
+	</select>
+
 
 	
 </mapper>
