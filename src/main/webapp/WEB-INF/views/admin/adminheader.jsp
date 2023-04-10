@@ -27,6 +27,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="#">QNA관리</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="admin_sales_record_form">판매 실적</a>
+			</li>
 		</ul>
 	</div>
 	<div class="dropdown">
