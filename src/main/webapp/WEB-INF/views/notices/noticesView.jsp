@@ -4,12 +4,12 @@
   <article>
       <h2> 공지사항 </h2>
     <form name="formm" method="post">
-    <table class="table" id="notice" border="1"   style="table-layout: fixed">
+    <table class="table" id="notice" border="1"   style="table-layout: fixed; text-align:center;">
 	    <tr>
 	    	<th>
 	      		<h3> ${noticesVO.title}</h3><br>
-	      		&nbsp;${noticesVO.id}&nbsp;
-		        <fmt:formatDate value="${noticesVO.notices_date}" type="date"/>
+	      		&nbsp;${noticesVO.id}&nbsp;&nbsp;&nbsp;
+		        <fmt:formatDate value="${noticesVO.notices_date}" type="date"/>&nbsp;&nbsp;&nbsp;
 	    		&nbsp;조회&nbsp;${noticesVO.hits}
 	        </th>
 	    </tr>

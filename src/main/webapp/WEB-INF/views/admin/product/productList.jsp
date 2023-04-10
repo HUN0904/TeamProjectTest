@@ -35,10 +35,8 @@
 	<c:otherwise>
 	<c:forEach items="${productList}" var="productVO" varStatus="status">
     <tr>
-      <%-- <td height="23" align="center" >${productVO.pseq}</td> --%>
       <td height="23" align="center">${status.count}</td>
       <td  style="text-align: left; padding-left: 50px; padding-right: 0px;">   
-<%--          <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')"> --%>
   		<a href="admin_product_detail?product_no=${productVO.product_no}">    
     	 ${productVO.product_name}     
    		</a>

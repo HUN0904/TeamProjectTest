@@ -43,19 +43,3 @@
     background: rgb(77,77,77);
     color: #fff;
 }
-  table {
-    width:70%; 
-    margin-left:15%; 
-    margin-right:15%;
-}
-
-table, td, th {
-    border-collapse : collapse;
-    border : 1px solid black;
-}
-
-card-img-top{
-	height:300px;
-	width:300px;
-	odject-fit:cover;
-}
