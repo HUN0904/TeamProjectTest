@@ -35,24 +35,17 @@
 			<li class="nav-item">
 				<a class="nav-link" href="index">케이크</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="">추가할메뉴</a>
-			</li>	
 			<c:if test="${sessionScope.loginUser.admin eq 'admin'}">		
 			<li class="nav-item">
 				<a class="nav-link" href="admin_product_list">관리자 페이지</a>
 			</li>
 			</c:if>	
+			<li class="nav-item">
+				<a class="nav-link" href="qna_list">Q&A</a>
+			</li>
 		</ul>
 	</div>
-	<!-- 통합 검색창 -->
-	<form name="total-search" class="form-inline ml-auto" action="total_search" method="GET">
-		<label for="search_bar" class="bi bi-search" style="position: relative; z-index: 10; left: 23px;"> </label>
-		<div class="input-group flex-nowrap">
-			<input id="search_bar" class="form-control mr-sm-2 pl-4" type="search" name="target" placeholder="통합검색" aria-label="Search" value="" required="">
-			<button type="submit" class="d-none"></button>
-		</div>
-	</form>
+
 	<ul class="navbar-nav">
 		<c:choose>
 	       <c:when test="${empty sessionScope.loginUser}">
@@ -64,27 +57,20 @@
 				</li>
 			</c:when>
 	        <c:otherwise>
-		      <li style="color:orange">
-		        ${sessionScope.loginUser.name}(${sessionScope.loginUser.nickname})
+		      <li class="nav-item" >
+		        <a class="nav-link" href="mypage" style="color:orange">${sessionScope.loginUser.name}(${sessionScope.loginUser.nickname})</a>
 		      </li>
-	       	  <li><a href="logout">LOGOUT</a></li>
+	       	  <li class="nav-item">
+	       	 	<a class="nav-link" href="logout">LOGOUT</a>
+	       	  </li>
 	        </c:otherwise> 
 	      </c:choose>
-	  </ul>
-	<ul class="navbar-nav">
-		<!-- 채팅 알림 -->
-		<li class="nav-item">
-			<a class="nav-link" href="">
-				<h5 class="bi bi-chat-dots my-0"></h5>
-			</a>
-		</li>
-
-		<!-- 내 프로필 -->
-		<li class="nav-item">
-			<a class="nav-link" href="mypage">
-				<h5 class="bi bi-person-circle my-0"></h5>
-			</a>
-		</li>
+			<!-- 내 프로필 -->
+			<li class="nav-item">
+				<a class="nav-link" href="mypage">
+					<h5 class="bi bi-person-circle my-0"></h5>
+				</a>
+			</li>
 	</ul>
 	
 	<div class="dropdown">
