@@ -4,7 +4,7 @@
 
 
 <div class="position-relative overflow-hidden p-3 p-md-3 m-md-3 text-center bg-body-tertiary">
-    <div class="col-md-6 p-lg-5 mx-auto my-5">
+    <div class="col-md-7 p-lg-5 mx-auto my-5">
     <img alt="" src="product_images/1.jpg" width ="auto" height="500" >
       <h1 class="display-4 fw-normal"><font style="vertical-align: inherit;">
       <font style="vertical-align: inherit;">케이크 주문제작 </font></font></h1>
@@ -31,11 +31,11 @@
     <div class="container">
       <div class="row">
 <c:forEach var="vo" items="${ProductList}" varStatus="st">
-        <div class="col-3">
+        <div class="col-3 mb-5">
           <div class="card">
           <a href="product_detail?product_no=${vo.product_no}">
             <img src="product_images/${vo.product_image }"  alt="" class="card-img-top" width="auto" height="200"/>
-            <div class="card-body">
+            <div class="card-body" style="background-color:#FDE3CC">
               <h5 class="card-title">제목임${vo.product_name }</h5>
               <p class="card-text">내용임${vo.content }</p>
               <p class="card-text">

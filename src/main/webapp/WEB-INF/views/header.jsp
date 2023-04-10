@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/common.css">  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
 <!-- js파일 다 몰아버림 -->
+
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
@@ -21,9 +23,14 @@
 <!-- 다음 우편번호 api -->
 <script type="text/javascript" src="member/postcode.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Dropdowns
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+ -->
 </head>
-<body>
-<nav class="border-bottom navbar navbar-expand-md bg-white navbar-light sticky-top">
+<body style="background-color:#FDE3CC">
+<nav class="border-bottom navbar navbar-expand-md bg-#FDE3CC navbar-light sticky-top" style="background-color:#FDE3CC">
 	<a class="navbar-brand" href="index">
 		<img src="images/default.jpg" style="white:30px; height:30px;">
 	</a>
@@ -48,14 +55,7 @@
 			</c:if>	
 		</ul>
 	</div>
-	<!-- 통합 검색창 -->
-	<form name="total-search" class="form-inline ml-auto" action="total_search" method="GET">
-		<label for="search_bar" class="bi bi-search" style="position: relative; z-index: 10; left: 23px;"> </label>
-		<div class="input-group flex-nowrap">
-			<input id="search_bar" class="form-control mr-sm-2 pl-4" type="search" name="target" placeholder="통합검색" aria-label="Search" value="" required="">
-			<button type="submit" class="d-none"></button>
-		</div>
-	</form>
+
 	<ul class="navbar-nav">
 		<c:choose>
 	       <c:when test="${empty sessionScope.loginUser}">
@@ -93,13 +93,17 @@
 	</ul>
 	
 	<div class="dropdown">
-		<button type="button" class="btn btn-secondary dropdown-toggle" 
-			type="button" data-bs-toggle="dropdown" aria-expanded="false">메뉴 눌러보셈
-		</button>
-		<div class="dropdown-menu">
-			<a class="dropdown-item" href="#">물건 등록</a>
-			<a class="dropdown-item" href="#">추가할종류들</a>
-		</div>
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Click!
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="https://www.instagram.com/ileen_keki/"> 인스타!
+		      <i class="bi bi-instagram"></i>
+		    </a>
+		    <a class="dropdown-item" href="http://pf.kakao.com/_ixcmVxj">카카오!
+		       <i class="bi bi-chat-fill"></i>
+		    </a>
+		  </div>
 	</div>
 	
 </nav>
