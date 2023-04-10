@@ -30,7 +30,7 @@ public class QnaController {
 		model.addAttribute("qnaList", qnaList);
 		return "qna/qnaList";
 	}
-	@GetMapping(value="/qna_write_form")
+	@GetMapping("/qna_write_form")
 	public String qnaWrite(Model model, HttpSession session, 
 			@RequestParam(value="product_no") int product_no) {
 		// 사용자 로그인 확인
@@ -40,6 +40,7 @@ public class QnaController {
 			return "member/login";
 		} else {
 			model.addAttribute("product_no", product_no);
+			System.out.println(product_no);
 			return "qna/qnaWrite";
 		}
 	}

@@ -79,6 +79,7 @@ function qna_save(product_no) {
 		console.log(product_no);
 		form.action = "qna_write";
 		form.submit();
+		window.close();
 	}
 }
 
