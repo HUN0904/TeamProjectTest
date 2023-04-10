@@ -37,11 +37,6 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewVO> avgScoreList() {
-		return reviewDAO.avgScoreList();
-	}
-
-	@Override
 	public void deleteReview(int review_no) {
 		reviewDAO.deleteReview(review_no);
 	}

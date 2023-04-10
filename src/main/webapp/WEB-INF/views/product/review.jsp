@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,50 +43,49 @@
 <div class="container">
 	<div class="card p-4 m-5">
     <form id="reviewForm" name="reviewForm" method="post" enctype="multipart/form-data">
-<h2>리뷰작성</h2>${productReviewVO.review_no }
-		<table id="rep_input" style="table-layout: fixed">                    
-	        <div id="myform">
-				<fieldset id="score">
-				    <legend>별점</legend>
-				    <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-				    <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-				    <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-				    <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-				    <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
-				</fieldset>
-			</div>
-	        <tr>
-		 	<!-- 
-				<div class="col-sm-10">
-					<input type="file" name="image" id="image">(이미지 파일만 가능)
-					<small class="text-muted"></small>
-					<small id="file" class="text-info"></small>
-				</div>
-		-->	
-        	<th>	
-				<div class="input-group">
-				  <input type="file" class="form-control" id="image" name="image" >
-				</div>
-			</th>
-			<th>
-           		<textarea  rows="2" cols="60" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
-            </th>
-            <th >
-            	<button type="button"  class="btn btn-secondary" onclick="save_review('${productVO.product_no }')">등록</button>
-		    </th>
-		   </tr>
-		</table>
-        <input type="hidden" id="product_no" name="product_no" value="${productVO.product_no }" />        
+<h2>리뷰작성</h2>
+	    <div id="myform">
+			<fieldset id="score">
+			    <legend>별점</legend>
+			    <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+			    <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+			    <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+			    <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+			    <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+			</fieldset>
+		</div>
+		<div class="input-group">
+			<input type="file" class="form-control" id="image" name="image" >
+		</div>
+		<div>
+			<textarea  rows="2" cols="60" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
+		</div>
+		<button type="button"  class="btn btn-secondary" onclick="save_review('${productVO.product_no }')">등록</button>
+		<input type="hidden" id="product_no" name="product_no" value="${productVO.product_no }" />        
     </form>
-
      </div>
 </div>
 <div class="container">
 	<div class="card p-4 m-5">
          <div>
-            <h3>구매후기${avg.avg} ${avg} <span id="cCnt"> </span></h3>
+            <h2>구매후기(${cnt })</h2>
         </div>
+        <div>
+        <c:if test="${cnt>0 }">
+			<h3>사용자 총 평점</h3>
+			<c:forEach var="i" begin="1" end="5">
+			  <c:choose>
+			    <c:when test="${i-1 <= avg}">
+			      <i class="bi bi-star-fill" style="color:#FACC00; display:inline-block;"></i>
+			    </c:when>
+			    <c:otherwise>
+			      <i class="bi bi-star" style="color:#FACC00; display:inline-block;"></i>
+			    </c:otherwise>
+			  </c:choose>
+			</c:forEach> ${avg } / 5
         <hr>
+        </c:if>
+        </div>
 	    <form id="reviewListForm" name="reviewListForm" method="post">
 	        <div id="reviewList">
 	        </div>
@@ -162,14 +162,15 @@
 			$.each(reviewList, function(index, item){
 				html += "<div>";
 				html += "<div id=\"review_item\">"; 
-			    if(item.review_image != null && item.review_image != "") {
+			    if(item.review_image != null && item.review_image != ""&& item.review_image != "noimage") {
 			        html += "<img src=\"review_images/" + item.review_image + "\" style=\"float: right; width:100px; height:100px;\"/><br>";
 			    }
 				html += "별점<i class=\"bi bi-star-fill\" style=\"color:#FACC00\"></i> "+ item.score+"<br>";
 				html += "<strong>" + item.id + "</strong>&nbsp;&nbsp;&nbsp;";
 				html += "<span id=\"write_date\">" + displayTime(item.review_regdate) + "</span><br>";
 				html += item.content+"<br></div>";
-				html += "<button class=\"deleteButton\" onclick=\"delete_review(" + item.review_no + ")\">삭제</button>";
+				html += item.review_no+"<br></div>";
+				html += "<button type=\"button\" class=\"delete_review\" data-review-no=\"" + item.review_no + "\">삭제</button>";
 				html += "<hr></div>";
 			});
 			
@@ -249,8 +250,6 @@
 	    var form_data = new FormData($('#reviewForm')[0]);
 	    if (score != null) {
 	        form_data.append('score', score);
-	    }else{
-	    	 alert("별점을 선택해주세요.");
 	    }
 	    $.ajax({
 	        type: 'POST',
@@ -262,12 +261,14 @@
 	            if (data == 'success') {    // 상품평 등록 성공
 	                getReviewList();        // 상품평 목록 요청함수 호출
 	                $("#content").val("");
-	                $("#score").val("");
-	                $("#file").val("");
+	                $("input[name='rating']").prop('checked', false);
+	                $("#image").val("");
 	            } else if (data == 'fail') {
 	                alert("상품평 등록이 실패하였습니다. 다시 시도해 주세요.");
 	            } else if (data == 'not_logedin') {
 	                alert("상품평 등록은 로그인이 필요합니다.");
+	            } else if (data == 'not_score') {
+	                alert("별점을 선택해주세요.");
 	            }
 	        },
 	        error: function(request, status, error) {
@@ -276,25 +277,30 @@
 	    });
 	}
 	
+	$(document).on("click", ".delete_review", function() {
+	    var review_no = $(this).data("review-no");
+	    delete_review(review_no);
+	});
 	
 	function delete_review(review_no) {
 	    $.ajax({
-	        type: "GET",
-	        url: "/reviews/delete",
-	        data: {"review_no": review_no},
+	        type: 'GET',
+	        url: 'reviews/remove',
+	        data: {'review_no': review_no},
 	        success: function(data){
 	            if(data == "success"){
 	                alert("삭제되었습니다.");
 	                // 삭제 후 댓글 목록을 갱신하는 함수 호출
 	                getReviewList();
-	            } else {
-	                alert("삭제 실패");
+	            }  else if (data == 'not_logedin') {
+	                alert("상품평 삭제는 로그인이 필요합니다.");
 	            }
 	        },
-	        error: function(xhr, status, error){
-	            alert(error);
+	        error: function(request, status, error){
+	            alert("error:" + error);
 	        }
 	    });
+		
 	}
 </script>
 </body>

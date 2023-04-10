@@ -12,23 +12,22 @@
            AND  rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}  
         ]]>
 	</select>	
+	<!-- 상품별 리뷰 평점 -->
 	<select id="avgReviewScore" resultType="double">
 		select round(avg(score),1) as avg from review where product_no=#{product_no}
 	</select>
-	<select id="avgScoreList" parameterType="review">
-		select product_no, round(avg(score),1) from review
-		group by product_no
-	</select>
-	
+
+	<!-- 상품별 리뷰 카운트 -->
 	<select id="countReviewList" resultType="int">
 		select count(*) from review
 		where product_no=#{product_no}
 	</select>
-	
+	<!-- 리뷰 저장 -->
 	<insert id="saveReview" parameterType="review">
 		INSERT INTO review(review_no, id, product_no, content, score, review_image)
 		VALUES(review_seq.NEXTVAL, #{id}, #{product_no}, #{content}, #{score}, #{review_image})
 	</insert>
+	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview">
 		DELETE FROM review WHERE review_no=#{review_no}
 	</delete>

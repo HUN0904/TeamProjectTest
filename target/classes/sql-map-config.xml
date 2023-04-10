@@ -9,6 +9,7 @@
 		<typeAlias type="com.team.biz.dto.NoticesVO" alias="notices"/>
 		<typeAlias type="com.team.biz.dto.OrderVO" alias="order"/>
 		<typeAlias type="com.team.biz.dto.FavoriteVO" alias="favorite"/>
+		<typeAlias type="com.team.biz.dto.QnaVO" alias="qna"/>
 	</typeAliases>
 	<!-- sql매핑 -->
 	<mappers>
@@ -19,6 +20,7 @@
 		<mapper resource="mappings/notices-mapping.xml"/>
 		<mapper resource="mappings/order-mapping.xml"/>
 		<mapper resource="mappings/favorite-mapping.xml"/>
+		<mapper resource="mappings/qna-mapping.xml"/>
 	</mappers>
 </configuration>
 	
