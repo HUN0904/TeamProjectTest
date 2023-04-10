@@ -20,7 +20,6 @@
     <tr>
         <th>번호</th>
         <th>상품명</th>
-        <th>원가</th>
         <th>판매가</th>
         <th>등록일</th>
         <th>관리자페이지에서 더볼것들 여기서부터 추가</th>
@@ -44,8 +43,7 @@
     	 ${productVO.product_name}     
    		</a>
    	  </td>
-   	  <td><fmt:formatNumber value="${productVO.price}"/>여기도변경</td>
-      <td><fmt:formatNumber value="${productVO.price}"/></td>
+   	  <td><fmt:formatNumber value="${productVO.price}"/>원</td>
       <td><fmt:formatDate value="${productVO.product_regdate}"/></td>
       <td>
 		여기다 볼것들 더추가 	
