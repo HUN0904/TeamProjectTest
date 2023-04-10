@@ -29,11 +29,11 @@
 	}
 </script>
 <article>
-<h1>주문 리스트</h1>	
+<h1 align="center">주문 리스트</h1>	
 <form name="frm" id="order_form" method="post">
 <table>
   <tr>
-  <td width="642">
+  <td width="642" align="right">
       주문자 
      <input type="text" name="key" id="key">
      <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">
@@ -45,11 +45,11 @@
         <th>주문번호</th>
         <th>상품명</th>
         <th>결제금액</th>
-        <th>주문자</th>
+        <th align="center">주문자</th>
         <th>주문일자</th>
         <th>주문상태</th>        
         <td><input type="button" value="주문 완료하기" onclick="order_result()"></td>
-        <th><input type="checkbox" name="all" id="all" onclick="checkAll()">전체 선택</th>
+        <th><input type="checkbox" name="all" id="all" onclick="checkAll()">&nbsp;전체 선택</th>
     </tr>
     <c:choose>
     <c:when test="${orderListSize<=0}">

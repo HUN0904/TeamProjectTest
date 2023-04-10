@@ -2,7 +2,7 @@
   pageEncoding="UTF-8"%>
   <div class="clear"></div>
 
-  <footer style="text-align:center">  
+ <footer style="text-align:center">  
     <hr>
     <div id="copy">
       <div align="center">
@@ -14,7 +14,7 @@
 		   </a>
        </div>
     </div>         
-  </footer>
+ </footer>
 
 
 </body>

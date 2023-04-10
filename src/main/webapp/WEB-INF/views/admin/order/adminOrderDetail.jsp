@@ -17,22 +17,22 @@
 				<div class="item-order">
 					 <div class="input-group mt-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">금액 </span>
+							<span class="input-group-text" id="basic-addon1">&nbsp;&nbsp;&nbsp;금&nbsp;&nbsp;&nbsp;액&nbsp;&nbsp;&nbsp; </span>
 
 							&nbsp;<input type="hidden" readonly id="total_price" name="total_price" value="${order.total_price}">
 							<fmt:formatNumber value="${order.total_price}" type="currency"/> 
 						</div>
 					</div>
 					<div class="input-group-prepend">
-						<label class="input-group-text" for="quantity">주문 액수량</label>&nbsp;&nbsp;
-						<input type="text" readonly id="quantity" name="quantity" value="${order.quantity}">						
+						<label class="input-group-text" for="quantity">&nbsp;&nbsp;주문&nbsp;수량&nbsp;&nbsp;</label>&nbsp;&nbsp;
+						<input type="text" readonly id="quantity" name="quantity" size="2"  value="${order.quantity}">						
 					</div>
 						<div class="input-group-prepend">
-							<span class="input-group-text " id="basic-addon1" >픽업 날짜</span>&nbsp;
+							<span class="input-group-text " id="basic-addon1" >&nbsp;&nbsp;픽업&nbsp;날짜&nbsp;&nbsp;</span>&nbsp;
 							<fmt:formatDate pattern="yyyy/MM/dd/HH:mm" value="${order.pickup_date }" type="date"/>
 						</div>						
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">추가 문구</span>
+							<span class="input-group-text" id="basic-addon1">&nbsp;&nbsp;추가&nbsp;문구&nbsp;&nbsp;</span>
 							<c:if test="${order.message ne 'X'}">
 								<input type="text" readonly id="message" name="message" value="${order.message}">
 							</c:if>						
