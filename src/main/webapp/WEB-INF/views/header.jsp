@@ -23,18 +23,17 @@
 <!-- 다음 우편번호 api -->
 <script type="text/javascript" src="member/postcode.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- Dropdowns
+<!-- Dropdowns -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
- -->
+
 </head>
-<body style="background-color:#FDE3CC">
-<nav class="border-bottom navbar navbar-expand-md bg-#FDE3CC navbar-light sticky-top" style="background-color:#FDE3CC">
+<body>
+<nav class="border-bottom navbar navbar-expand-md bg-#FDE3CC navbar-light position:fixed">
 	<a class="navbar-brand" href="index">
 		<img src="images/default.jpg" style="white:30px; height:30px;">
 	</a>
-	<div class="collapse navbar-collapse" id="navbarText">
+	<div class="collapse navbar-collapse" id="navbarText" style="padding:">
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link" href="index">홈</a>
@@ -56,7 +55,7 @@
 		</ul>
 	</div>
 
-	<ul class="navbar-nav">
+	<ul class="navbar-nav" style="padding-left:5px;">
 		<c:choose>
 	       <c:when test="${empty sessionScope.loginUser}">
 				<li class="nav-item">
@@ -70,40 +69,44 @@
 		      <li style="color:orange">
 		        ${sessionScope.loginUser.name}(${sessionScope.loginUser.nickname})
 		      </li>
+		      &nbsp;
 	       	  <li><a href="logout">LOGOUT</a></li>
 	       	  <br>
-	       	   <li><a href="modify_member_form">정보수정</a></li>
 	        </c:otherwise> 
 	      </c:choose>
 	  </ul>
 	<ul class="navbar-nav">
-		<!-- 채팅 알림 -->
-		<li class="nav-item">
-			<a class="nav-link" href="">
-				<h5 class="bi bi-chat-dots my-0"></h5>
-			</a>
-		</li>
-
 		<!-- 내 프로필 -->
 		<li class="nav-item">
-			<a class="nav-link" href="mypage">
+			<a class="nav-link" href="modify_member_form">
 				<h5 class="bi bi-person-circle my-0"></h5>
 			</a>
 		</li>
 	</ul>
 	
-	<div class="dropdown">
+	
+	<div class="dropdown" >
 		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    Click!
 		  </button>
-		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		    <a class="dropdown-item" href="https://www.instagram.com/ileen_keki/"> 인스타!
-		      <i class="bi bi-instagram"></i>
+		<c:choose>
+		   <c:when test="${empty sessionScope.loginUser}">
+               <a href="login_form"></a>
+		      </c:when>
+		  <c:otherwise>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
+		    <a class="dropdown-item" href="cartList">장바구니
+		      <i class="bi bi-cart"></i>
 		    </a>
-		    <a class="dropdown-item" href="http://pf.kakao.com/_ixcmVxj">카카오!
-		       <i class="bi bi-chat-fill"></i>
+		    <a class="dropdown-item " href="favoriteList" >찜목록
+			      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+	 				 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+				  </svg>
 		    </a>
 		  </div>
+		  </c:otherwise>
+	   </c:choose>
+		  
 	</div>
 	
 </nav>

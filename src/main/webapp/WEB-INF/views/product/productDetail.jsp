@@ -139,7 +139,6 @@
 	        </a>
 	    </c:otherwise>
 	</c:choose>
- <!-- <span id="m_heart${favorite.favorite_no}">${favorite.heart}</span> -->
 	
 <%-- End of 좋아요  --%>
           <input type="button" value="주문서 작성하기"   class="submit"    onclick="location.href='cart_write_form?product_no='+${productVO.product_no}">
@@ -147,8 +146,6 @@
           </div>
         </fieldset>
         <br>
-        상품내용
-        ${productVO.content}
       </form>  
     </div>
 <div class="container">
