@@ -95,7 +95,7 @@
 			<option name="quantity" value="3">3</option>
 		</select>
 	</label>
-     <input  type="text"   name="quantity" id="quantity" size="2"  value="1"><br>
+    
      <input  type="hidden" name="product_no" value="${productVO.product_no}"><br>
    <div id="buttons">
    

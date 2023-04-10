@@ -17,7 +17,8 @@
 				<div class="item-order">
 					 <div class="input-group mt-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text " id="basic-addon1">금액 </span>
+							<span class="input-group-text" id="basic-addon1">금액 </span>
+
 							&nbsp;<input type="hidden" readonly id="total_price" name="total_price" value="${order.total_price}">
 							<fmt:formatNumber value="${order.total_price}" type="currency"/> 
 						</div>
@@ -46,9 +47,7 @@
 					</div>
 					<input type="text" id="content" name="content" class="form-control"  aria-label="" aria-describedby="basic-addon1" value="${order.content }">
 				</div>
-				<div class="input-group mb-3">
-						
-				</div>
+			
 			</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">				
