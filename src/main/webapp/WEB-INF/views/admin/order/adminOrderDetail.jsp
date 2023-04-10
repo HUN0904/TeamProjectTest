@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
 
+
+
 <form id="getOrderView" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="product_no" name="product_no" value="${cart.product_no }">
 		<div class="wrap">
@@ -13,19 +15,19 @@
 		</div>
 		<img  src="product_images/${order.product_image}" style="width: 500px; height: 300px;">
 				<div class="item-order">
-					 <div class="input-group mb-3">
+					 <div class="input-group mt-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">금액</span>
-							<input type="hidden" readonly id="total_price" name="total_price" value="${order.total_price}">
+							<span class="input-group-text " id="basic-addon1">금액 </span>
+							&nbsp;<input type="hidden" readonly id="total_price" name="total_price" value="${order.total_price}">
 							<fmt:formatNumber value="${order.total_price}" type="currency"/> 
 						</div>
-						<div class="input-group-prepend">
-						<label class="input-group-text" for="quantity">주문 수량</label>
+					</div>
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="quantity">주문 액수량</label>&nbsp;&nbsp;
 						<input type="text" readonly id="quantity" name="quantity" value="${order.quantity}">						
 					</div>
-					</div>
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">픽업 날짜</span>
+							<span class="input-group-text " id="basic-addon1" >픽업 날짜</span>&nbsp;
 							<fmt:formatDate pattern="yyyy/MM/dd/HH:mm" value="${order.pickup_date }" type="date"/>
 						</div>						
 						<div class="input-group-prepend">
