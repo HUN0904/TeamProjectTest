@@ -1,6 +1,5 @@
 package com.team.biz.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -35,7 +34,7 @@ public class CartDAO {
 		mybatis.update("CartMapper.updateCart",cart_no);
 	}
 	
-	public List<Date> disAbleDates(){
+	public List<String> disAbleDates(){
 		return mybatis.selectList("CartMapper.disAbleDates");
 	}
 }

@@ -38,6 +38,7 @@ public class MemberDAO {
 	
 	
 	
+	
 	//admin 확인
 	public int adminCheck(String id) {
 		String admin=mybatis.selectOne("MemberMapper.adminCheck", id);

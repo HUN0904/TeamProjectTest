@@ -13,7 +13,6 @@
      <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">
      <input class="btn" type="button" name="btn_total" value="전체보기" onClick="go_total()">
      <input class="btn" type="button" name="btn_write" value="상품등록" onClick="location.href='insert_product'">
-     <input class="btn" type="button" name="btn_chart" value="상품별 실적" onClick="location.href='admin_sales_record_form'">
   </td>
   </tr>
 </table>

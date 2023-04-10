@@ -5,12 +5,17 @@
   <footer style="text-align:center">  
     <hr>
     <div id="copy">
-     팀 프로젝트 <br>
-     주문제작 케이크, 베이커리 <br>
-     공지사항 고객센터 인스타 등등 링크 
+      <div align="center">
+          <a class="dropdown-item" href="https://www.instagram.com/ileen_keki/"> 인스타!
+		  	   <i class="bi bi-instagram"></i>
+		    </a>
+		  <a class="dropdown-item" href="http://pf.kakao.com/_ixcmVxj">카카오!
+		       <i class="bi bi-chat-fill"></i>
+		   </a>
+       </div>
     </div>         
   </footer>
-</div>
+
 
 </body>
 </html>

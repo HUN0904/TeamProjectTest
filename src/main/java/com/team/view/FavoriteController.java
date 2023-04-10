@@ -25,8 +25,6 @@ public class FavoriteController {
 	public FavoriteVO insertFavorite(FavoriteVO vo, HttpSession session) {
 		MemberVO loginUser= (MemberVO)session.getAttribute("loginUser");
 		
-
-		System.out.println("insertFavorite(): FavoriteVO="+ vo);
 		vo.setId(loginUser.getId());
 		vo.setHeart("1");//heart 추가
 		int fno=favoriteService.insertFavorite(vo);
@@ -47,7 +45,7 @@ public class FavoriteController {
 			List<FavoriteVO> listFavorite= favoriteService.getListByFavorite(vo);
 			model.addAttribute("listFavorite",listFavorite);
 			return "mypage/favoriteList";
-		} 
+		}
 	}
 	
 	@GetMapping("/delete_favorite")
