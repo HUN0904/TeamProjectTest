@@ -42,9 +42,6 @@
 				<a class="nav-link" href="notices_list">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="product_list">케이크</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="">추가할메뉴</a>
 			</li>	
 			<c:if test="${sessionScope.loginUser.admin eq 'admin'}">		
@@ -92,7 +89,15 @@
 		<c:choose>
 		   <c:when test="${empty sessionScope.loginUser}">
                <a href="login_form"></a>
-		      </c:when>
+		   </c:when>
+		 <c:when test="${sessionScope.loginUser.admin eq 'admin'}">
+		      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
+				    <a class="dropdown-item" href="cart_list">장바구니
+				      <i class="bi bi-cart"></i>
+				    </a>
+		      </div>  
+		   </c:when>  
+		      
 		  <c:otherwise>
 		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
 		    <a class="dropdown-item" href="cart_list">장바구니
@@ -112,5 +117,6 @@
 	   </c:choose>
 		  
 	</div>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
 </nav>

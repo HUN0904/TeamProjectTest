@@ -102,10 +102,10 @@
     <div class="container">
       <div class="row">
 	<c:forEach var="vo" items="${ProductList}" varStatus="st">
-      		<div class="card col-3 ml-5 mb-3 " style="padding:0 10px 10px 0;" >
+      		<div class="card col-3 ml-5 mb-3 " >
       		  
 
-		          <img src="product_images/${vo.product_image }"  alt="" class="card-img-top" width="auto" height="150"/>
+		          <img src="product_images/${vo.product_image}"  alt="" class="card-img-top" width="auto" height="250"/>
 			          <a href="product_detail?product_no=${vo.product_no}">
 			          
 		            <div class="card-body">
@@ -120,7 +120,8 @@
       		    <form  method="post" action="cart_insert" name="formm" id="theform">
 				 	<input type="hidden" id="favorite_no" name="favorite_no"  value="${favorite.favorite_no}">
 				   <fieldset>
-      		  <!-- 좋아요 버튼 -->				
+      		  <!-- 좋아요 버튼 -->	
+      		  <br>			
 				<c:choose>
 				    <%-- 로그인 상태일때 - 하트 클릭 되게 --%>
 				    <c:when test="${not empty sessionScope.loginUser}">
