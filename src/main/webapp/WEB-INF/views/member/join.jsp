@@ -4,6 +4,7 @@
 <!-- 다음 우편번호 api -->
 <script type="text/javascript" src="member/postcode.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="member/member.js"></script>
   <article>
   <section class="container"> 
 		<div class="d-flex justify-content-center">

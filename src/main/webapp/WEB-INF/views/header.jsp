@@ -18,8 +18,6 @@
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="member/member.js"></script>
-<script type="text/javascript" src="js/product.js"></script>
 
 <!-- Dropdowns -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -38,9 +36,6 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="notices_list">공지사항</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="product_list">케이크</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="">추가할메뉴</a>
@@ -90,13 +85,21 @@
 		<c:choose>
 		   <c:when test="${empty sessionScope.loginUser}">
                <a href="login_form"></a>
-		      </c:when>
+		   </c:when>
+		 <c:when test="${sessionScope.loginUser.admin eq 'admin'}">
+		      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
+				    <a class="dropdown-item" href="cart_list">장바구니
+				      <i class="bi bi-cart"></i>
+				    </a>
+		      </div>  
+		   </c:when>  
+		      
 		  <c:otherwise>
 		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
 		    <a class="dropdown-item" href="cart_list">장바구니
 		      <i class="bi bi-cart"></i>
 		    </a>
-		    <a class="dropdown-item " href="favorite_list" >찜목록
+		     <a class="dropdown-item " href="favorite_list" >찜목록
 			      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
 	 				 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
 				  </svg>
@@ -110,5 +113,6 @@
 	   </c:choose>
 		  
 	</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
 </nav>
