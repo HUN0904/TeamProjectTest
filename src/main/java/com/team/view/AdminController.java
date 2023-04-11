@@ -438,7 +438,7 @@ public class AdminController {
 		return "admin/qna/adminQnaList";
 	}
 	// Q&A 답변 및 수정페이지 이동
-	@RequestMapping(value="qna_update_form")
+	@RequestMapping(value="/qna_update_form")
 	public String updateqnaform(QnaVO vo,HttpSession session, Model model) {
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
