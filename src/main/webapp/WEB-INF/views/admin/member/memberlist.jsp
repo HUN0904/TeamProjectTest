@@ -63,7 +63,7 @@ function member_total() {
       <td>${memberVO.address}</td>
       <td>${memberVO.email}</td> 
       <td>${memberVO.grade }</td>
-      <td>${memberVO.regdate }</td>
+      <td> <fmt:formatDate value="${memberVO.regdate }" pattern="yyyy/MM/dd"/></td>
     </tr>
     </c:forEach>
     <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
