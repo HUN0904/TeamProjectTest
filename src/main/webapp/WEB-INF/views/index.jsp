@@ -76,7 +76,7 @@
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
     <div class="image-box">
-    <img alt="" src="product_images/cuteDog.jpg" style="width:800px; height:550px;">
+    <img alt="" src="product_images/lily.jpg" style="width:800px; height:550px;">
       <h1 class="display-4 fw-normal"><font style="vertical-align: inherit;">
       <font style="vertical-align: inherit;">Custom CakeShop! </font></font></h1>
       <p class="lead fw-normal">
@@ -102,17 +102,18 @@
    <div class="container">
       <div class="row">
 	<c:forEach var="vo" items="${ProductList}" varStatus="st">
-      		<div class="card col-3 mb-3 ">
+      		<div class="card col-3 mb-3" style="background-color:#fbe4e3">
 		          <img src="product_images/${vo.product_image}"  alt="" class="card-img-top" style="width:250px; height:250px;"/>
 			          <a href="product_detail?product_no=${vo.product_no}">
 			          
-		            <div class="card-body">
+		            <div class="card-body" style="background-color:#fbe4e3">
 		              <h5 class="card-title">${vo.product_name }</h5>
 		              <p class="card-text">${vo.content }</p>
 		              <p class="card-text">
 		              	<fmt:formatNumber value="${vo.price}" type="number"/>원
 		              </p>
 		              <p class="card-text">리뷰<i class="bi bi-star-fill" style="color:#FACC00;"></i>${vo.avg_score}점 </p>
+		           
 		           
 		                <div class="card-icon">
       		    <form  method="post" action="cart_insert" name="formm" id="theform">
@@ -164,6 +165,7 @@
 	          찜하기</fieldset>
 	         </form>
 	       </div> 
+	  
        <!-- END 좋아요 -->
 		           </div>
 		          </a> 
