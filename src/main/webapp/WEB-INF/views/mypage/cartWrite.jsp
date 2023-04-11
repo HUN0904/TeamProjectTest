@@ -114,10 +114,10 @@ $(function() {
 						<div class="input-group-prepend">
 							<input type="checkbox" id="message_check" onchange="messageCheck(this)">문구 추가(+2000)
 							<label>
-								<span class="input-group-text" id="basic-addon1">문구	입력</span>
+								<span class="input-group-text" id="basic-addon1" style="display:inline-block; height:35px; width:110px;">문구	입력</span>
 							</label>
 						</div>
-					<input type="text" class="form-control" aria-describedby="basic-addon1" id="message" name='message' disabled value="">
+					<input type="text" class="form-control" aria-describedby="basic-addon1" id="message" name='message' disabled value="" style="height:35px;">
 					</div>
 					</label>
 					<label>
@@ -125,7 +125,7 @@ $(function() {
 							<div class="input-group-prepend">
 								<input type="checkbox" id="image_check" onchange="imageCheck(this)">커스텀 추가(+5000)		
 								<label for="image">
-	 								<div class="input-group-text" >파일 업로드하기</div>
+	 								<div class="input-group-text" style="display:inline-block; height:35px; width:110px;">파일 업로드하기</div>
 								</label>
 								<input type="file" name="image" id="image" disabled style="display:none;" onchange="readURL(this)">
 								<img id="preview" name="preview" style="width:152px; height:100px; display:none;" />
@@ -134,18 +134,18 @@ $(function() {
 					</label>
 						
 				<div class="input-group mb-3">
-						<span class="input-group-text" id="basic-addon1">옵션 금액</span>
+						<span class="input-group-text" id="basic-addon1" style="display:inline-block; height:35px; width:110px;">옵션 금액</span>
 						<input type="text" readonly id="option_price" name="option_price" value="${product.price}">			
 				</div>	
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">기타 요청사항</span>
+						<span class="input-group-text" id="basic-addon1" style="display:inline-block; height:35px; width:110px;">기타 요청사항</span>
 					</div>
 					<input type="text" id="content" name="content" class="form-control" placeholder="ex) 초 2개 주세요!" aria-label="" aria-describedby="basic-addon1">
 				</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<label class="input-group-text" for="quantity">수량</label>
+						<label class="input-group-text" for="quantity" style="display:inline-block; height:35px; width:110px;">수량</label>
 					</div>
 					<select class="custom-select" id="quantity" name="quantity" onchange="selectQuantity()">
 						<option name="quantity" value="0" selected>수량을 선택해주세요</option>
@@ -157,9 +157,9 @@ $(function() {
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						
-						<span class="input-group-text" id="basic-addon2">최종 금액</span>
+						<span class="input-group-text" id="basic-addon2" style="display:inline-block; height:35px; width:110px;">최종 금액</span>
 						<input type="text" readonly id="total_price" name="total_price" value="">
-						<span class="input-group-text" id="basic-addon1">회원님 등급으로 ${member.grade}% 할인</span>
+						<span class="input-group-text" id="basic-addon1" >회원님 등급으로 ${member.grade}% 할인</span>
 					</div>
 				</div>
 			</div>

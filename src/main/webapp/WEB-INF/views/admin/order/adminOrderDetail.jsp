@@ -17,33 +17,33 @@
 				<div class="item-order">
 					 <div class="input-group mt-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">&nbsp;&nbsp;&nbsp;금&nbsp;&nbsp;&nbsp;액&nbsp;&nbsp;&nbsp; </span>
+							<span class="input-group-text" id="basic-addon1" style="display:inline-block; height:35px; width:110px;">금액</span>
 
-							&nbsp;<input type="hidden" readonly id="total_price" name="total_price" value="${order.total_price}">
+							<input type="hidden" readonly id="total_price" name="total_price" value="${order.total_price}">
 							<fmt:formatNumber value="${order.total_price}" type="currency"/> 
 						</div>
 					</div>
 					<div class="input-group-prepend">
-						<label class="input-group-text" for="quantity">&nbsp;&nbsp;주문&nbsp;수량&nbsp;&nbsp;</label>&nbsp;&nbsp;
+						<label class="input-group-text" for="quantity" style="display:inline-block; height:35px; width:110px;">주문수량</label>
 						<input type="text" readonly id="quantity" name="quantity" size="2"  value="${order.quantity}">						
 					</div>
 						<div class="input-group-prepend">
-							<span class="input-group-text " id="basic-addon1" >&nbsp;&nbsp;픽업&nbsp;날짜&nbsp;&nbsp;</span>&nbsp;
+							<span class="input-group-text " id="basic-addon1" style="display:inline-block; height:35px; width:110px;">픽업날짜</span>
 							<fmt:formatDate pattern="yyyy/MM/dd/HH:mm" value="${order.pickup_date }" type="date"/>
 						</div>						
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">&nbsp;&nbsp;추가&nbsp;문구&nbsp;&nbsp;</span>
+							<span class="input-group-text" id="basic-addon1" style="display:inline-block; height:35px; width:110px;">추가문구</span>
 							<c:if test="${order.message ne 'X'}">
 								<input type="text" readonly id="message" name="message" value="${order.message}">
 							</c:if>						
 						</div>							
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">커스텀 이미지</span>
+							<span class="input-group-text" id="basic-addon1" style="display:inline-block; height:35px; width:110px;">커스텀 이미지</span>
 							<img  src="custom_images/${order.custom_image}" style="width: 500px; height: 300px;">
 						</div>							
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<span class="input-group-text" id="basic-addon1">기타 요청사항</span>
+						<span class="input-group-text" id="basic-addon1" style="display:inline-block; height:35px; width:110px;">기타 요청사항</span>
 					</div>
 					<input type="text" id="content" name="content" class="form-control"  aria-label="" aria-describedby="basic-addon1" value="${order.content }">
 				</div>
