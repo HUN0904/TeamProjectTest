@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!--  각 화면의 페이지 번호가 표시되는 영역의 구현 -->
-<div>
-	<ul class="pagination">
+<div >
+	<ul class="pagination" align="center">
 	
 		<c:if test="${pageMaker.prev}">
 			<li class="paginate_button previous">
@@ -13,7 +13,7 @@
 		</c:if>
 				
 		<!-- [1][2][3]... 표시 부분 -->
-		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
+		<c:forEach  begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
 			<a href="admin_member_list${pageMaker.makeQuery(index)}">[${index}]</a>
 		</c:forEach>
 		

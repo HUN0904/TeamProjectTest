@@ -23,6 +23,10 @@
 			</li>
 			
 			<li class="nav-item">
+				<a class="nav-link" href="admin_member_list">회원관리</a>
+			</li>
+			
+			<li class="nav-item">
 				<a class="nav-link" href="#">QNA관리</a>
 			</li>
 			<li class="nav-item">
@@ -34,4 +38,4 @@
 </nav>
 <div class="clear"></div>
   <section class="container"> 
-  <div class="card p-4 m-5">
+  <div class="card p-4 m-5" style="background-color:#fdefec">
