@@ -21,7 +21,7 @@ public class MailController {
         	System.out.println("send(): email="+email);
             emailService.sendMail(email); // dto (메일관련 정보)를 sendMail에 저장함
             model.addAttribute("message", "이메일이 발송되었습니다."); // 이메일이 발송되었다는 메시지를 출력시킨다.
- 
+            	
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("message", "이메일 발송 실패..."); // 이메일 발송이 실패되었다는 메시지를 출력
