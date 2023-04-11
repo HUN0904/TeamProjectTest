@@ -128,7 +128,7 @@
 				            <c:when test="${empty favorite.favorite_no}">
 				                <%-- 빈 하트일때 --%>
 				                <a idx="${vo.product_no}" href="javascript:"
-				                    class="heart-click heart_icon${favorite.favorite_no}">
+				                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;">
 				                    <svg
 				                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 				                        fill="currentColor" class="bi bi-suit-heart"
@@ -140,7 +140,7 @@
 				            <c:otherwise>
 				                <%-- 꽉찬 하트일때 --%>
 				                <a idx="${vo.product_no}" href="javascript:"
-				                    class="heart-click heart_icon${favorite.favorite_no}"><svg
+				                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;"><svg
 				                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 				                        fill="currentColor" class="bi bi-suit-heart-fill"
 				                        viewBox="0 0 16 16">
@@ -152,7 +152,7 @@
 				    </c:when>
 				    <%-- 로그인 상태가 아닐때  - 하트클릭 안되게 --%>
 				    <c:otherwise>
-				        <a href="javascript:" class="heart-notlogin"> 
+				        <a href="javascript:" class="heart-notlogin" style="color:red;"> 
 				          <svg class="heart3" xmlns="http://www.w3.org/2000/svg" width="16"
 				                height="16" fill="currentColor" class="bi bi-suit-heart"
 				                viewBox="0 0 16 16">
