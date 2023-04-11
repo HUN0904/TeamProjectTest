@@ -13,7 +13,7 @@
 	</select>
 	
 	<!-- Q&A작성하기 -->
-	<insert id="insertQna">
+	<insert id="insertQna" parameterType="qna">
 		insert into qna(qna_no, id, secret_yn, product_no, title, content)
 		values(qna_seq.nextval, #{id}, #{secret_yn}, #{product_no}, #{title}, #{content})
   	</insert>

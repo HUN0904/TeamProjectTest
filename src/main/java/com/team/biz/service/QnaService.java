@@ -8,7 +8,7 @@ public interface QnaService {
 
 	List<QnaVO> qnaList();
 
-	void insertQna(QnaVO vo);
+	int insertQna(QnaVO vo);
 	
 	List<QnaVO> getProductQna(int product_no);
 }

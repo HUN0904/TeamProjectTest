@@ -22,7 +22,7 @@ public class QnaDAO {
 		return mybatis.selectList("QnaMapper.getProductQna",product_no);
 	}
 	
-	public void insertQna(QnaVO vo) {
-		mybatis.insert("QnaMapper.insertQna", vo);
+	public int insertQna(QnaVO vo) {
+		return mybatis.insert("QnaMapper.insertQna", vo);
 	}
 }

@@ -103,7 +103,10 @@
 		// 상품상세정보 로딩 시에 상품평 목록을 조회하여 출력
 		getReviewList();
 	});
-	
+	$(document).ready(function() {
+		// 상품상세정보 로딩 시에 Q&A 목록을 조회하여 출력
+		getQnaList();
+	});
 	// 상품평 목록 불러오기
 	function getReviewList() {
 		
