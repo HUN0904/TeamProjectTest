@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.team.biz.dao.MemberDAO;
 import com.team.biz.dto.MemberVO;
 
+import utils.Criteria;
+
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 	@Autowired
@@ -41,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String selectPwdByIdNameEmail(MemberVO vo) {
-		return null;
+		return memberDao.selectPwdByIdNameEmail(vo);
 	}
 
 	@Override
@@ -61,9 +63,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int joinconfirmnickname(String nickname) {
-		return memberDao.joinconfirmnickname(nickname);
+	public int joinconfirmNickname(String nickname) {
+		return memberDao.joinconfirmNickname(nickname);
 	}
+	
+	@Override
+	public int confirmMail(String email) {
+	
+		return memberDao.confirmMail(email);
+	}
+	
 
 	@Override
 	public void gradeUpdate(MemberVO vo) {
@@ -77,5 +86,22 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.sumPriceById(sum_price);
 	}
 	
+	@Override
+	public List<MemberVO> listMember(String name) {
+		return memberDao.listMember(name);
+	}
+
+	@Override
+	public List<MemberVO> listMemberWithPaging(Criteria criteria, String name) {
+	
+		return memberDao.listMemberWithPaging(criteria, name);
+	}
+
+	@Override
+	public int countmemberlist(String name) {
+	
+		return memberDao.countmemberlist(name);
+	}
+
 	
 }

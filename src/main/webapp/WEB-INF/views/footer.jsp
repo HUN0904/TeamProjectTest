@@ -3,7 +3,7 @@
   <div class="clear"></div>
 
 
- <footer style="text-align:center">  
+ <footer style="text-align:center; background-color:#fdefec">  
     <hr>
     <div id="copy">
       <div align="center">

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/common.css">  
 
 <meta charset="UTF-8">
-<title>아이디 중복 체크</title>
+<title>E-Mail 중복 체크</title>
 <link href="CSS/subpage.css" rel="stylesheet">
 <style type="text/css">
 body{   
@@ -31,30 +31,30 @@ input[type=button], input[type=submit] {
 }
 </style>
 <script type="text/javascript">
-function idok(){
-  opener.formm.id.value="${id}"; 
-  opener.formm.reid.value="${id}";
+function emailok(){
+  opener.formm.email.value="${email}"; 
+  opener.formm.reemail.value="${email}";
   self.close();
 }
 </script>
 </head>
 <body>
 <div id="wrap">
-  <h1>ID 중복확인</h1>
+  <h1>Email 중복확인</h1>
   <form method="post" name="formm" id="theform" style="margin-right:0 "
-  		action="id_check_form" >
-    User ID <input type="text" name="id" value="${id}"> 
+  		action="email_check_form" >
+    Email <input type="text" name="email" value="${email}"> 
             <input type="submit" value="검색" class="submit"><br>     
     <div style="margin-top: 20px">   
       <c:if test="${message == 1}">
         <script type="text/javascript">
-          opener.document.formm.id.value="";
+          opener.document.formm.email.value="";
         </script>
-        ${id}는 이미 사용중인 아이디입니다.
+        ${email}는 이미 사용중인 이메일 주소입니다.
       </c:if>
       <c:if test="${message==0}">
-        ${id}는 사용 가능한 ID입니다.
-        <input type="button" value="사용" class="cancel" onclick="idok()">
+        ${email}는 사용 가능한 이메일 주소입니다.
+        <input type="button" value="사용" class="cancel" onclick="emailok()">
       </c:if>
     </div>
   </form>

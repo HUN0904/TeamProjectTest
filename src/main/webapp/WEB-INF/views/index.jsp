@@ -103,9 +103,9 @@
       <div class="row">
 	<c:forEach var="vo" items="${ProductList}" varStatus="st">
       		<div class="card col-3 mb-3" style="background-color:#fbe4e3">
+      		  <a href="product_detail?product_no=${vo.product_no}">
 		          <img src="product_images/${vo.product_image}"  alt="" class="card-img-top" style="width:250px; height:250px;"/>
-			          <a href="product_detail?product_no=${vo.product_no}">
-			          
+  
 		            <div class="card-body" style="background-color:#fbe4e3">
 		              <h5 class="card-title">${vo.product_name }</h5>
 		              <p class="card-text">${vo.content }</p>

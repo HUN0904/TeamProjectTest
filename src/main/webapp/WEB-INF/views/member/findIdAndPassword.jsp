@@ -3,9 +3,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-	  <link href="css/shopping.css" rel="stylesheet"> 
-	  <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
-	  <script type="text/javascript" src="member/member.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/common.css">  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="member/member.js"></script>
   </head>
   <body>
   <div id="wrap">
@@ -33,22 +38,23 @@
 	<table>
 	<tr>
 		<td align="right"><label> 아이디</label></td>
-		<td><input type="text" name="id" id="id2" value=""></td>
+		<td><input type="text" name="receiverId" id="receiverId" value=""></td>
 	</tr>	
 	<tr>
 		<td align="right"><label> 이름</label></td>
-		<td><input type="text" name="receiverName" id="name2" value=""></td>
+		<td><input type="text" name="receiverName" id="receiverName" value=""></td>
 	</tr>	
 	<tr>
 		<td align="right"><label> 이메일</label></td>
-		<td><input type="text" name="receiver" id="email2" value=""></td>
+		<td><input type="text" name="receiver" id="receiver" value=""></td>
 		
 	</tr>
 	<tr>
 		<td align="center" colspan="2"><input type="button" value="비밀번호 찾기" onclick="sendpwd()"></td>
 	</tr>
+	
 	</table>
-		${massege}
+	<div>${message}</div>	
 	</form>
 	</div>
 </body>

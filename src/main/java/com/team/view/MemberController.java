@@ -68,9 +68,26 @@ public class MemberController {
 		return "member/idcheck";
 	}
 	
+	
+	@GetMapping(value="/email_check_form")
+	public String emailCheckView(MemberVO vo, Model model) {
+		int result=memberService.confirmMail(vo.getEmail());
+		model.addAttribute("email", vo.getEmail());
+		model.addAttribute("message", result);
+		return "member/emailcheck";
+	}
+	//중복 액션
+	@PostMapping("/email_check_form")
+	public String emailCheckAction(MemberVO vo, Model model) {
+		int result=memberService.confirmMail(vo.getEmail());
+		model.addAttribute("email", vo.getEmail());
+		model.addAttribute("message", result);
+		return "member/emailcheck";
+	}
+	
 	@GetMapping(value="/joinnickname_check_form")
 	public String joinnicknameCheckView(MemberVO vo, Model model) {
-		int result=memberService.joinconfirmnickname(vo.getNickname());
+		int result=memberService.joinconfirmNickname(vo.getNickname());
 		model.addAttribute("nickname", vo.getNickname());
 		model.addAttribute("message", result);
 		return "member/joinnicknamecheck";
@@ -78,7 +95,7 @@ public class MemberController {
 	
 	@PostMapping("/joinnickname_check_form")
 	public String joinnicknameCheckViewAction(MemberVO vo, Model model) {
-		int result=memberService.joinconfirmnickname(vo.getNickname());
+		int result=memberService.joinconfirmNickname(vo.getNickname());
 		model.addAttribute("nickname", vo.getNickname());
 		model.addAttribute("message", result);
 		return "member/joinnicknamecheck";
@@ -102,6 +119,7 @@ public class MemberController {
 		model.addAttribute("message", result);
 		return "member/modifynicknamecheck";
 	}
+	
 	
 	@GetMapping("/join")
 	public String joinView() {
@@ -129,7 +147,7 @@ public class MemberController {
 		
 		return "member/findIdAndPassword";
 	}
-	
+		
 	@PostMapping("/find_id")
 	public String findIdAction(MemberVO vo, Model model) {
 		
@@ -144,6 +162,7 @@ public class MemberController {
 		
 		return "member/findResult";  // 아이디 조회결과 화면표시
 	}
+	
 	@RequestMapping("/modify_member_form")
 	public String modifyMember() {
 		

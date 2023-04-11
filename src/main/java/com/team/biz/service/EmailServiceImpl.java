@@ -30,7 +30,6 @@ public class EmailServiceImpl implements EmailService {
 			msg.addFrom(new InternetAddress[] {new InternetAddress(email.getSenderMail(), email.getSenderName())});
 			msg.setSubject("["+email.getReceiverName()+"]"+"님 요청하신 비밀번호 입니다.","UTF-8");
 			msg.setText("요청하신 비밀번호는 ["+memberService.getPwdByNameEmail(email.getReceiverName())+"] 입니다.","UTF-8");//TEXT
-			
 			mailSender.send(msg);
 		} catch (Exception e) {
 			e.printStackTrace();

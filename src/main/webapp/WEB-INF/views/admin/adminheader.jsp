@@ -2,10 +2,10 @@
   pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<nav class="border-bottom navbar navbar-expand-md navbar-light sticky-top" style="background-color:#fdefec">
-	<div class="collapse navbar-collapse" id="navbarText" >
+<nav class="border-bottom navbar navbar-expand-md navbar-light position:fixed" style="background-color:#fdefec">
+	<div class="collapse navbar-collapse" id="navbarText" style="background-color:#fdefec" >
 	
-		<ul class="navbar-nav" >
+		<ul class="navbar-nav"style="background-color:#fdefec" >
 			<li class="nav-item">
 				<a class="nav-link" href="reservation_status">예약 현황</a>
 			</li>
@@ -23,6 +23,10 @@
 			</li>
 			
 			<li class="nav-item">
+				<a class="nav-link" href="admin_member_list">회원관리</a>
+			</li>
+			
+			<li class="nav-item">
 				<a class="nav-link" href="#">QNA관리</a>
 			</li>
 			<li class="nav-item">
@@ -34,4 +38,4 @@
 </nav>
 <div class="clear"></div>
   <section class="container"> 
-  <div class="card p-4 m-5">
+  <div class="card p-4 m-5" style="background-color:#fdefec">
