@@ -2,24 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %> 
 <style>
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-section.notice {
-  padding: 80px 0;
-}
-
-.page-title {
-  margin-bottom: 60px;
-}
-.page-title h3 {
-  font-size: 50px;
-  color: #333333;
-  font-weight: 400;
-  text-align: center;
-}
-
 #board-search .search-window {
   padding: 15px 0;
   background-color: #f9f7f9;
@@ -52,56 +34,16 @@ section.notice {
   padding: 0;
   font-size: 16px;
 }
-
-.board-table {
-  font-size: 15px;
-  width: 100%;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+.page-title {
+  margin-bottom: 60px;
 }
-
-.board-table a {
-  color: #333;
-  display: inline-block;
-  line-height: 1.4;
-  word-break: break-all;
-  vertical-align: middle;
-}
-.board-table a:hover {
-  text-decoration: underline;
-}
-.board-table th {
+.page-title h3 {
+  font-size: 50px;
+  color: #333333;
+  font-weight: 400;
   text-align: center;
 }
 
-.board-table .th-num {
-  width: 100px;
-  text-align: center;
-}
-
-.board-table .th-date {
-  width: 200px;
-}
-
-.board-table th, .board-table td {
-  padding: 14px 0;
-}
-
-.board-table tbody td {
-  border-top: 1px solid #e7e7e7;
-  text-align: center;
-}
-
-.board-table tbody th {
-  padding-left: 28px;
-  padding-right: 14px;
-  border-top: 1px solid #e7e7e7;
-  text-align: left;
-}
-
-.board-table tbody th p{
-  display: none;
-}
 
 .btn {
   display: inline-block;
@@ -158,9 +100,9 @@ section.notice {
   margin: 0 auto;
 }
 
-
 </style>
-<section class="notice">
+
+<section class="container">
   <div class="page-title">
         <div class="container">
             <h3>공지사항</h3>
@@ -182,15 +124,14 @@ section.notice {
     </div>
    
   <!-- board list area -->
-    <div id="board-list">
         <div class="container">
-            <table class="board-table">
+            <table class="table" style="text-align:center">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-date">등록일</th>
-                    <th scope="col" class="th-date">조회수</th>
+                    <th >번호</th>
+                    <th >제목</th>
+                    <th >등록일</th>
+                    <th >조회수</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -202,12 +143,10 @@ section.notice {
 	                    	<td>${noticesVO.hits}</td>
 	                	</tr>
                 	</c:forEach>
-                	<tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
                 </tbody>
             </table>
             
         </div>
-    </div>
 <div class="d-flex justify-content-center">
 	<ul class="pagination">
 	
