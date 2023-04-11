@@ -1,10 +1,15 @@
 package com.team.biz.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team.biz.dao.MemberDAO;
 import com.team.biz.dto.MemberVO;
+import com.team.biz.dto.ProductVO;
+
+import utils.Criteria;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -61,6 +66,23 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int joinconfirmnickname(String nickname) {
 		return memberDao.joinconfirmnickname(nickname);
+	}
+
+	@Override
+	public List<MemberVO> listMember(String name) {
+		return memberDao.listMember(name);
+	}
+
+	@Override
+	public List<ProductVO> listMemberWithPaging(Criteria criteria, String name) {
+	
+		return memberDao.listMemberWithPaging(criteria, name);
+	}
+
+	@Override
+	public int countmemberlist(String name) {
+	
+		return memberDao.countmemberlist(name);
 	}
 
 

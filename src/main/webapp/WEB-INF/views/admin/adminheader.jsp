@@ -22,7 +22,7 @@
 				<a class="nav-link" href="admin_notices_list">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">회원관리</a>
+				<a class="nav-link" href="admin_member_list"">회원관리</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">QNA관리</a>

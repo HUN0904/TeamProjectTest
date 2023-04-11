@@ -1,10 +1,16 @@
 package com.team.biz.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.biz.dto.MemberVO;
+import com.team.biz.dto.ProductVO;
+
+import utils.Criteria;
 
 @Repository("memberDAO")
 public class MemberDAO {
@@ -84,5 +90,21 @@ public class MemberDAO {
 	public void modifyMember(MemberVO vo) {
 		  mybatis.update("MemberMapper.modifyMember",vo);
 	}
-
+	
+	public List<MemberVO> listMember(String name){
+		
+		return mybatis.selectList("MemberMapper.listMember",name);
+	}
+	
+	public List<ProductVO> listMemberWithPaging(Criteria criteria, String name) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("criteria", criteria);
+		map.put("name", name);
+		
+		return mybatis.selectList("MemberMapper.listMemberWithPaging", map);
+	}
+	
+	public int countmemberlist(String name) {
+		return mybatis.selectOne("MemberMapper.countmemberlist", name);
+	}
 }

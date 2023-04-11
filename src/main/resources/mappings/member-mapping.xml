@@ -45,4 +45,29 @@
 	<update id="modifyMember">
 		UPDATE member SET pwd=#{pwd},nickname=#{nickname},address=#{address},email=#{email},phone=#{phone} WHERE id=#{id}
 	</update>
+	
+	<!-- 어드민 멤버리스트 -->
+	<select id="listMember" resultType="member">
+		select * from member
+			where name like '%'||#{name}||'%'
+			order by name
+	</select>
+	
+	<select id="listMemberWithPaging" resultType="member">
+		<![CDATA[
+		SELECT rn, id, name, nickname, phone, address, email, grade, regdate
+		FROM (
+  		SELECT row_number() OVER (ORDER BY name) rn, id, name, nickname, phone, address, email, grade, regdate
+  		FROM member
+ 		WHERE name LIKE '%'||#{name}||'%')
+		WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>
+	
+	<select id="countmemberlist" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member
+		 WHERE name LIKE '%'||#{name}||'%'
+	</select>
+	
 </mapper>

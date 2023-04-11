@@ -1,6 +1,11 @@
 package com.team.biz.service;
 
+import java.util.List;
+
 import com.team.biz.dto.MemberVO;
+import com.team.biz.dto.ProductVO;
+
+import utils.Criteria;
 
 public interface MemberService {
 	
@@ -33,4 +38,11 @@ public interface MemberService {
 	
 	//회원정보수정
 	public void modifyMember(MemberVO vo);
+	
+	//어드민 리스트
+	public List<MemberVO> listMember(String name);
+	
+	public List<ProductVO> listMemberWithPaging(Criteria criteria, String name);
+	
+	public int countmemberlist(String name);
 }
