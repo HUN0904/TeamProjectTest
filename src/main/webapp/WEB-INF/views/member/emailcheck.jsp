@@ -4,17 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>아이디 찾기</title>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/common.css">  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
 
+<meta charset="UTF-8">
+<title>E-Mail 중복 체크</title>
+<link href="CSS/subpage.css" rel="stylesheet">
 <style type="text/css">
 body{   
-  background-color:;
+  background-color:
   font-family: Verdana;
 }
 #wrap{     
@@ -31,29 +31,32 @@ input[type=button], input[type=submit] {
 }
 </style>
 <script type="text/javascript">
-function idok(){
+function emailok(){
+  opener.formm.email.value="${email}"; 
+  opener.formm.reemail.value="${email}";
   self.close();
 }
 </script>
 </head>
 <body>
 <div id="wrap">
-  <h1>ID 찾기 결과</h1>
-  <form method=post name=formm style="margin-right:0 "
-  		action="id_check_form" >
-    User ID <input type=text name="id" value="${id}">   
+  <h1>Email 중복확인</h1>
+  <form method="post" name="formm" id="theform" style="margin-right:0 "
+  		action="email_check_form" >
+    Email <input type="text" name="email" value="${email}"> 
+            <input type="submit" value="검색" class="submit"><br>     
     <div style="margin-top: 20px">   
       <c:if test="${message == 1}">
         <script type="text/javascript">
-          opener.document.formm.id.value="";
+          opener.document.formm.email.value="";
         </script>
-             요청하신 ID는 ${id}입니다.
+        ${email}는 이미 사용중인 이메일 주소입니다.
       </c:if>
-      <c:if test="${message == -1}">
-             가입하지 않은 ID입니다.
+      <c:if test="${message==0}">
+        ${email}는 사용 가능한 이메일 주소입니다.
+        <input type="button" value="사용" class="cancel" onclick="emailok()">
       </c:if>
     </div>
-    <input type="button" value="확인" class="cancel" onclick="idok()">
   </form>
 </div>  
 </body>

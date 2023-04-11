@@ -1,5 +1,6 @@
 package com.team.biz.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.biz.dto.MemberVO;
+
+import utils.Criteria;
 
 @Repository("memberDAO")
 public class MemberDAO {
@@ -24,8 +27,8 @@ public class MemberDAO {
 		if(pwd!=null) return 1;
 		else return 0;
 	}
-	public int joinconfirmnickname(String nickname) {
-		String id=mybatis.selectOne("MemberMapper.confirmID",nickname);
+	public int joinconfirmNickname(String nickname) {
+		String id=mybatis.selectOne("MemberMapper.joinconfirmNickname",nickname);
 		if(id!=null) return 1;
 		else return 0;
 	}
@@ -36,6 +39,11 @@ public class MemberDAO {
 		else return 0;
 	}
 	
+	public int confirmMail(String email) {
+		String id=mybatis.selectOne("MemberMapper.confirmMail", email);
+		if(id!=null) return 1;
+		else return 0;
+	}
 	
 	
 	
@@ -98,4 +106,21 @@ public class MemberDAO {
 		return mybatis.selectList("MemberMapper.sumPriceById", sum_price);
 	}
 
+	
+	public List<MemberVO> listMember(String name){
+		
+		return mybatis.selectList("MemberMapper.listMember",name);
+	}
+	
+	public List<MemberVO> listMemberWithPaging(Criteria criteria, String name) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("criteria", criteria);
+		map.put("name", name);
+		
+		return mybatis.selectList("MemberMapper.listMemberWithPaging", map);
+	}
+	
+	public int countmemberlist(String name) {
+		return mybatis.selectOne("MemberMapper.countmemberlist", name);
+	}
 }

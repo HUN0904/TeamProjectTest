@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/common.css">  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+
 
 <meta charset="UTF-8">
 <title>닉네임 중복 체크</title>
@@ -40,10 +42,10 @@ function joinnicknameok(){
 </head>
 <body>
 <div id="wrap">
-  <h1>ID 중복확인</h1>
+  <h1>닉네임 중복확인</h1>
   <form method="post" name="formm" id="theform" style="margin-right:0 "
   		action="joinnickname_check_form" >
-    User ID <input type="text" name="nickname" value="${nickname}"> 
+   	닉네임 <input type="text" name="nickname" value="${nickname}"> 
             <input type="submit" value="검색" class="submit"><br>     
     <div style="margin-top: 20px">   
       <c:if test="${message == 1}">

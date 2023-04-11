@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.team.biz.dto.MemberVO;
 
+import utils.Criteria;
+
 public interface MemberService {
 	
 	// 회원 상세정보 조회
@@ -27,12 +29,14 @@ public interface MemberService {
 	//이메일 보내기
 	String getPwdByNameEmail(String name);
 	
-	//닉네임 중복체크
-	int joinconfirmnickname(String nickname);
+	//가입 닉네임 중복체크
+	int joinconfirmNickname(String nickname);
 	
-	//닉네임 중복체크2
+	//수정 닉네임 중복체크
 	int modifyconfirmNickname(MemberVO vo);
 	
+	//메일 중복체크
+	public int confirmMail(String email);
 	//회원정보수정
 	void modifyMember(MemberVO vo);
 	
@@ -41,4 +45,11 @@ public interface MemberService {
 	
 	//회원등급업 대상 아이디 추출
 	List<String> sumPriceById(int sum_price);
+	
+	//어드민 리스트
+	public List<MemberVO> listMember(String name);
+	
+	public List<MemberVO> listMemberWithPaging(Criteria criteria, String name);
+	
+	public int countmemberlist(String name);
 }
