@@ -84,10 +84,16 @@
          <img src="product_images/${productVO.product_image}" style="float:left; padding-left:50px; width:600px; height:auto;" />
 
        </span>              
-         <h1 align="center" style="padding-top:60px;">&nbsp; ${productVO.product_name} </h1>  <br><br><br> 
-                   <label  style="font-size:30px; padding-left:100px; padding-top:"> 가 격 : 
+         <h1 align="center" style="padding-top:20px; margin-left:400px;">&nbsp;&nbsp;&nbsp;&nbsp; ${productVO.product_name} </h1>  <br><br><br> 
+                   <label  style="font-size:30px; margin-left:400px"> 가 격 : 
      					&nbsp; <fmt:formatNumber type="currency" value="${productVO.price}"/>
-                   </label> 
+                   </label>
+               
+               <label style="strong-color:red; font-size:15px; margin-left:225px">
+                 <br> <br> 샘플 사진의 레터링 및 커스텀은 예시이며 <strong> <span style="color:red;">미포함 </span></strong> 입니다.<br>
+                   원하는 레터링 및 커스텀 옵션을 빠짐없이 작성해 주세요.
+               </label>
+                  
     
      <input  type="hidden" name="product_no" value="${productVO.product_no}"><br>
    
@@ -126,7 +132,7 @@
 	    </c:when>
 	    <%-- 로그인 상태가 아닐때  - 하트클릭 안되게 --%>
 	    <c:otherwise>
-	        <a href="javascript:" class="heart-notlogin" style="margin-left:700px"> 
+	        <a href="javascript:" class="heart-notlogin" style="margin-bottom:50px; margin-left:480px;"> 
 	          <svg class="heart3" xmlns="http://www.w3.org/2000/svg"  width="30"
 	                height="30" fill="currentColor" class="bi bi-suit-heart"
 	                viewBox="0 0 16 16">
@@ -144,8 +150,8 @@
         <br>
       </form>  
     </div>
-<div class="container">
-  <nav class="navbar navbar-expand-sm bg-light">
+<div class="container" >
+  <nav class="navbar navbar-expand-sm " style="background-color:#fdefec" >
     <div class="container-fluid">
       <a class="navbar-brand" href="#">상품정보</a>
     </div>

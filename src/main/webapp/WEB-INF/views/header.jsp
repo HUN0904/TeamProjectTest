@@ -29,7 +29,7 @@
 	<a class="navbar-brand" href="index">
 		<img src="images/default.jpg" style="white:30px; height:30px;">
 	</a>
-	<div class="collapse navbar-collapse" id="navbarText" style="padding:">
+	<div class="collapse navbar-collapse" id="navbarText" >
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link" href="index">홈</a>

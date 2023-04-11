@@ -40,10 +40,10 @@
 </head>
 <body>
 <div class="container">
-	<div class="card p-4 m-5">
+	<div class="card p-4 m-5" style="background-color:#fdefec">
     <form id="reviewForm" name="reviewForm" method="post" enctype="multipart/form-data">
 <h2>리뷰작성</h2>${productReviewVO.review_no }
-		<table id="rep_input" style="table-layout: fixed">                    
+		<table id="rep_input" style="table-layout: fixed; background-color:#fdefec ">                    
 	        <div id="myform">
 				<fieldset id="score">
 				    <legend>별점</legend>
@@ -81,7 +81,7 @@
      </div>
 </div>
 <div class="container">
-	<div class="card p-4 m-5">
+	<div class="card p-4 m-5" style="background-color:#fdefec">
          <div>
             <h3>구매후기${avg.avg} ${avg} <span id="cCnt"> </span></h3>
         </div>
