@@ -10,17 +10,19 @@ import com.team.biz.dto.QnaVO;
 
 @Repository
 public class QnaDAO {
-
+	
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void insertQna(QnaVO vo) {
-		mybatis.insert("QnaMapper.insertQna",vo);
+	public List<QnaVO> qnaList(){
+		return mybatis.selectList("QnaMapper.qnaList");
 	}
 	
-	public List<QnaVO> listQna(QnaVO vo) {
-		
-	return mybatis.selectList("QnaMapper.listQna",vo);
+	public List<QnaVO> getProductQna(int product_no){
+		return mybatis.selectList("QnaMapper.getProductQna",product_no);
 	}
 	
+	public int insertQna(QnaVO vo) {
+		return mybatis.insert("QnaMapper.insertQna", vo);
+	}
 }

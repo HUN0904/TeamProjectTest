@@ -204,7 +204,7 @@ public class AdminController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
 		pageMaker.setTotalCount(orderService.countOrderListByDate(date)); 
-
+		model.addAttribute("pickDate",date);
 		model.addAttribute("orderList",orderList);
 		model.addAttribute("orderListSize", orderList.size());
 		model.addAttribute("pageMaker", pageMaker);
