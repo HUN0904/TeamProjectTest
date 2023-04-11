@@ -6,7 +6,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript" font-size="15" >
 
 $(function(){
     $("#datepicker").datepicker({
@@ -38,9 +38,9 @@ function search_date(){
 }
 </script>
 <article>
-<h1>예약 현황</h1>	
+<h1 align="center">예약 현황</h1>	
 <form name="dateSearch" id="dateSearch" method="post">
-<table>
+<table align="center">
 	<tr>
 	<td><input readonly type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
 	<td><input type="button" value="검색" onclick="search_date()" style="width:80px; text-align: center;"></td>
@@ -50,10 +50,10 @@ function search_date(){
 
 <form name="frm" id="order_form" method="post">
 
-<table class="table" id="dateOrderList" style="text-align:center">
+<table class="table" id="dateOrderList" style="text-align:center;">
 	
-    <tr>
-    	<th rowspan="11" ><div id="datepicker"></div></th>
+    <tr >
+    	<th rowspan="11" >&nbsp;&nbsp;<div id="datepicker" style="padding-bottom:20px; padding-right:50px; position: relative; right: -250px;"></div></th>
         <th>주문번호</th>
         <th>상품명</th>
         <th>주문자</th>
