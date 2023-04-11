@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
+<script type="text/javascript" src="member/postcode.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <article>
     <h2>회원 정보수정</h2>
      <form id="modify_member_form" action="modify_member" method="post" name="formm">
@@ -28,7 +30,7 @@
       </fieldset>
 	  
 	  <fieldset>
-	  <label>주소</label>
+  <label>주소</label>
 		<input type="text" id="sample6_postcode"  name=addr1  placeholder="우편번호">
 		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 		<input type="text" id="sample6_address" placeholder="주소"  size=80 name=addr2><br>

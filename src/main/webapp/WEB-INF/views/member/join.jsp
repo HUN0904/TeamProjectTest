@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>  
 <%@ include file="../header.jsp" %>   
 <script type="text/javascript" src="member/member.js"></script>
-<script type="text/javascript" src="js/postcode.js"></script>
+<script type="text/javascript" src="member/postcode.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <article>
   <section class="container"> 
