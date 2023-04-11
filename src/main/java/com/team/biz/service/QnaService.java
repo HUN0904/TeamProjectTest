@@ -4,11 +4,16 @@ import java.util.List;
 
 import com.team.biz.dto.QnaVO;
 
+import utils.Criteria;
+
 public interface QnaService {
-
-	List<QnaVO> qnaList();
-
-	int insertQna(QnaVO vo);
+	int countQna();
 	
-	List<QnaVO> getProductQna(int product_no);
+	int countProductQna(int product_no);
+
+	List<QnaVO> qnaList(Criteria criteria, String title);
+
+	List<QnaVO> getProductQna(Criteria criteria, int product_no);
+	
+	int insertQna(QnaVO vo);
 }
