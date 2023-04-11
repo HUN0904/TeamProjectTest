@@ -41,9 +41,10 @@ function search_date(){
 <h1>예약 현황</h1>	
 <form name="dateSearch" id="dateSearch" method="post">
 <table>
-	<tr>
+	<tr> 
 	<td><input readonly type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
 	<td><input type="button" value="검색" onclick="search_date()" style="width:80px; text-align: center;"></td>
+	<td>${pickDate}
 	</tr>
 </table>
 </form>

@@ -156,7 +156,7 @@
       <a class="navbar-brand" href="#">상품정보</a>
     </div>
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">리뷰(${cnt })</a>
+      <a class="navbar-brand" href="#">리뷰</a>
     </div>
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Q&A</a>
@@ -165,9 +165,9 @@
 </div>
   <!-- 상품평 처리 -->
 <%@ include file="review.jsp" %>
-  <!-- QNA 처리 -->
 <%@ include file="../qna/qna.jsp" %>
   </article>
+  
 <%@ include file="../footer.jsp" %>  
 
 
