@@ -47,7 +47,7 @@
 	</select>
 	
 	<update id="modifyMember">
-	UPDATE member SET password =#{password} nickname=#{nickname} address=#{address}, nickname=#{nickname}, phone=#{phone} WHERE id = #{id}
+	UPDATE member SET pwd =#{pwd}, address=#{address}, nickname=#{nickname}, phone=#{phone} WHERE id= #{id}
 	</update>
 	
 	<!-- 회원 등급 업데이트 -->

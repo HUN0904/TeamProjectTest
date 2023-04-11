@@ -121,7 +121,7 @@ function join_save() {
 		alert("휴대폰번호 형식이 맞지 않습니다");
 		document.getElementById("phone1").focus();
 		return false;
-		// 이메일
+		
 	} else {
 		document.getElementById("join").action = "join";
 		document.getElementById("join").submit();
@@ -131,8 +131,6 @@ function join_save() {
 function modify_save() {
 	// 비밀번호 정규식
 	var checkpwd = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-	// 이메일 정규식
-	var checkemail = /^[^\s@]+@[^\s@]+\.(com|net|co\.kr)$/;
 	// 핸드폰 정규식
 	var checkphone = /^\d{3}\d{3,4}\d{4}$/;
 	// 입력체크
@@ -150,10 +148,13 @@ function modify_save() {
 		alert("비밀번호가 일치하지 않습니다.");
 		document.getElementById("pwd").focus;
 		return false;
-	} else if (document.getElementById("email").value == "") {
-		alert("이메일을 입력하세요.");
-		document.getElementById("email").focus;
+	} else if (document.getElementById("nickname").value == "") {
+		alert("닉네임을 입력하세요.");
+		document.getElementById("nickname").focus;
 		return false;
+	}else if (document.getElementById("renickname").value == "") {
+			alert("닉네임 중복 체크를 해주세요.");
+			document.getElementById("nickname").focus;
 		// 패스워드
 	} else if (checkpwd.test(document.getElementById("pwd").value) == false) {
 		alert("패스워드는 영어, 기호, 숫자 포함 최소 8자 이상이어야 합니다.");
@@ -166,14 +167,6 @@ function modify_save() {
 		alert("휴대폰번호 형식이 맞지 않습니다");
 		document.getElementById("phone1").focus();
 		return false;
-		// 이메일
-	} else if (checkemail.test(document.getElementById("email").value) == false) {
-		alert("이메일 주소가 옳지않습니다.");
-		document.getElementById("email").focus();
-		return false;
-	} else if (document.getElementById("renickname").value == "") {
-			alert("닉네임 중복 체크를 해주세요.");
-			return false;
 	} else {
 		document.getElementById("modify_member_form").action = "modify_member";
 		document.getElementById("modify_member_form").submit();
