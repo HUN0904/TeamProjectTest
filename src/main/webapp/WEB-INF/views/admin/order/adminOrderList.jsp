@@ -33,7 +33,7 @@
 <form name="frm" id="order_form" method="post">
 <table>
   <tr>
-  <td width="642" align="right">
+  <td width="642" align="left">
       주문자 
      <input type="text" name="key" id="key">
      <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">

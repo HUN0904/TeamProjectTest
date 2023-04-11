@@ -9,21 +9,19 @@
 			<li class="nav-item">
 				<a class="nav-link" href="reservation_status">예약 현황</a>
 			</li>
+			
 			<li class="nav-item">
 				<a class="nav-link" href="admin_product_list">상품관리</a>
 			</li>
+			
 			<li class="nav-item">
 				<a class="nav-link" href="admin_order_list">주문관리</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">리뷰관리</a>
-			</li>
+			
 			<li class="nav-item">
 				<a class="nav-link" href="admin_notices_list">공지사항</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">회원관리</a>
-			</li>
+			
 			<li class="nav-item">
 				<a class="nav-link" href="#">QNA관리</a>
 			</li>

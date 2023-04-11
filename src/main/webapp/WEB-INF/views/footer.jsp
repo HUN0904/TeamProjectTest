@@ -2,6 +2,7 @@
   pageEncoding="UTF-8"%>
   <div class="clear"></div>
 
+
  <footer style="text-align:center">  
     <hr>
     <div id="copy">

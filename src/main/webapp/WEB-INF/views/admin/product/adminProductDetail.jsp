@@ -23,11 +23,11 @@
      
 </table>
 
-<table id="list" align="center">
+<table id="list" align="center" style="font-size:30px;">
   <tr>
     <th>상품분류</th>
      <td  colspan="5">
-        ${kindList}
+        &nbsp;${kindList}
      </td>    
     </tr>
      

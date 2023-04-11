@@ -3,11 +3,11 @@
 <%@ include file="../adminheader.jsp"%>
 <script type="text/javascript" src="admin/product/product.js"></script>
 <article>
-<h1>상품리스트</h1>	
+<h1 align="center">상품리스트</h1>	
 <form name="frm" id="prod_form" method="post">
 <table>
   <tr>
-  <td width="642" >
+  <td width="642" align=left >
       상품명 
      <input type="text" name="key" id="key">
      <input class="btn" type="button" name="btn_search" value="검색" onClick="go_search()">
