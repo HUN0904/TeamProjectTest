@@ -161,8 +161,9 @@ function dateRange(){
 	<table>
 			<p>조회 기간
 		        <input type="text" id="sdate" readonly><input type="hidden" name="start_date" id="start_date" > ~
-		        <input type="text" id="edate" readonly><input type="hidden" name="end_date" id="end_date">
+		        <input type="text" id="edate" readonly><input type="hidden" name="end_date" id="end_date">${pickDate}
 		        <input type="button" id="searchButton" value="검색" >
+		        
 		    </p>
 		<tr>
 			<td><div id="piechart_div" ></div></td>

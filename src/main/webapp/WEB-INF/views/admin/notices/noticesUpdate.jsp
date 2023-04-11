@@ -15,15 +15,16 @@ function deleteNotices(notices_no){
 </script>
  
 	<article>
-	    <h2> 공지사항 </h2>
-		<form id="formm" name="formm" method="post" action="notices_update">
-			<input type="hidden" name="notices_no" value="${noticesVO.notices_no}">
+	    <h2 align="center"> 공지사항 </h2>
+		<form id="formm" name="formm" method="post" action="notices_update" text-align="center">
+			<input type="hidden" name="notices_no"  value="${noticesVO.notices_no}">
 			<fieldset>	
 				<legend>공지사항 수정</legend>		
-			    <label>Title</label>
-			    <input type="text" name="title"  size="63" value="${noticesVO.title}"><br>
-				<label>Content</label>
-			    <textarea rows="8" cols="65" name="content">${noticesVO.content}</textarea><br>
+			    <label>제 목</label>
+			   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="title"  size="63" style="padding-right:29px;" value="${noticesVO.title}">
+                   <br>
+                   <label for="message">내 용</label>
+			   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea rows="8" cols="65" name="content" >${noticesVO.content}</textarea><br>
 			</fieldset>   
 		<div class="clear"></div>
 		 <div id="buttons" style="float:right">
@@ -31,6 +32,7 @@ function deleteNotices(notices_no){
 			<input type="button"  value="삭제하기"  class="submit" onclick="deleteNotices('${noticesVO.notices_no}')">
 			<input type="reset"   value="취소"    class="cancel">
 		  </div>
+		  <br>
 		</form>
 	</article>
 <%@ include file="../../footer.jsp" %>

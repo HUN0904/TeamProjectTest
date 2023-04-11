@@ -40,11 +40,11 @@ function search_date(){
 <article>
 <h1>예약 현황</h1>	
 <form name="dateSearch" id="dateSearch" method="post">
+<div align="center" style="font-size:40px;">${pickDate}</div>
 <table>
-	<tr> 
-	<td><input readonly type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
-	<td><input type="button" value="검색" onclick="search_date()" style="width:80px; text-align: center;"></td>
-	<td>${pickDate}
+	<tr>
+		<td><input readonly type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
+		<td><input type="button" value="검색" onclick="search_date()" style="width:80px; text-align: center;"></td>
 	</tr>
 </table>
 </form>

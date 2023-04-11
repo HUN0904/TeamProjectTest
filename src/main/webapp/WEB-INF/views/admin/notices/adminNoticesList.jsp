@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%> 
   <article>
-    <h1> 공지사항 </h1>
+    <h1 align="center"> 공지사항 </h1>
     <form name="formm" method="post">
     <table id="noticesList" class="table" style="text-align:center">
 	    <tr>
 	      <th>번호</th> 
-	      <th>제목</th> 
-	      <th>등록자</th> 
+	      <th style="width:400px;">제목</th> 
 	      <th>등록일</th> 
 	      <th>조회수</th>    
 	    </tr>
@@ -16,7 +15,6 @@
 		<tr>  
 		  <td> ${noticesVO.notices_no} </td>    
 		  <td> <a href="admin_notices_view?notices_no=${noticesVO.notices_no}"> ${noticesVO.title}</a> </td>     
-		  <td> ${noticesVO.id}</td> 
 		  <td> <fmt:formatDate value="${noticesVO.notices_date}" type="date"/></td>
 		  <td>${noticesVO.hits}</td>    
 		</tr>
