@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.biz.dto.FavoriteVO;
@@ -48,15 +50,12 @@ public class FavoriteController {
 		}
 	}
 	
-	@GetMapping("/delete_favorite")
+	@RequestMapping(value="/delete_favorite")
 	public String deleteFavorite(FavoriteVO vo, HttpSession session) {
-		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		System.out.println("deleteFavorite() : vo="+vo);
 
-		vo.setId(loginUser.getId());
 		favoriteService.deleteByFavorite(vo.getFavorite_no());
 		
-		return "mypage/favoriteList";
+		return "redirect:favorite_list";
 
 	}
 	

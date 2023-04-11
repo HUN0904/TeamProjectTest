@@ -60,8 +60,8 @@ $(document).ready(function() {
 		// 파이차트 그리기
 		var piechart_options = {
 			title: '제품별 판매 수량', 
-			width: 400,
-			height: 400
+			width: 450,
+			height: 450
 		};
 		
 		var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
@@ -96,7 +96,6 @@ $(document).ready(function() {
 	});
 		
 });
-
 
 
 $(document).ready(function () {

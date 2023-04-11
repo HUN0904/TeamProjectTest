@@ -33,5 +33,4 @@ public class OrderVO {
 	private int sum_quantity;
 	private String start_date;
 	private String end_date;
-	
 }

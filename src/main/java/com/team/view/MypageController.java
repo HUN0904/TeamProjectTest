@@ -182,18 +182,6 @@ public class MypageController {
 		}
 	}
 
-//	@GetMapping("/order_list")
-//	public String orderListById(HttpSession session, Model model,OrderVO vo) {
-//		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-//
-//		if (loginUser == null) {
-//			return "member/login";
-//		} else {
-//			List<OrderVO> orderList = orderService.getOrderListById(loginUser.getId());
-//			model.addAttribute("orderList",orderList);
-//			return "mypage/orderList";
-//		}
-//	}
 
 	@RequestMapping("/order_list")
 	public String listOrderWithPagingById(HttpSession session,

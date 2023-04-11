@@ -186,16 +186,6 @@ public class AdminController {
 		
 	}
 	/* ================================예약현황(reservationStatus)================================ */
-	// 예약 현황 조회
-//	@RequestMapping("/reservation_status")
-//	public String orderListByDate(
-//	        @RequestParam(value="date", defaultValue = "") String date, Model model) {
-//	    System.out.println("date 값 ==["+date+"]");
-//	    List<OrderVO> orderList = orderService.getOrderListByDate(date);
-//
-//	    model.addAttribute("orderList",orderList);
-//	    return "admin/order/reservationStatus";
-//	}
 	
 	@RequestMapping("/reservation_status")
 	public String listOrderWithPagingByDate(

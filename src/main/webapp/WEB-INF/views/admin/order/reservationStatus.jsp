@@ -53,7 +53,7 @@ function search_date(){
 <table class="table" id="dateOrderList" style="text-align:center;">
 	
     <tr >
-    	<th rowspan="11" >&nbsp;&nbsp;<div id="datepicker" style="padding-bottom:20px; padding-right:300px; position: relative; right: -250px;"></div></th>
+    	<th rowspan="11" >&nbsp;&nbsp;<div id="datepicker" style="padding-bottom:20px; padding-right:50px; position: relative; right: -250px;"></div></th>
         <th>주문번호</th>
         <th>상품명</th>
         <th>주문자</th>
