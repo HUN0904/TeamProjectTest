@@ -1,12 +1,13 @@
 
 // Q&A 목록 불러오기
-function getQnaList() {
-	
+function getQnaList(product_no) {
+	console.log("product_no="+product_no);
+	$("#product_no").val(product_no);
 	$.ajax({
 		type: 'GET',
 		url: 'qnas/list',
 		dataType: 'json',
-		data:$("#qnaForm").serialize(),
+		data:$("#qnaListForm").serialize(),
 		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 		success: function(data) {
 			var totalCount = data.total;
@@ -39,6 +40,7 @@ function showHTML1(qnaList, totalCount) {
 				html += "<td>답변완료</td>";
 			}
 			//if 비밀글이여도 로그인 id같으면 보이게
+			
 			if(item.secret_yn=="y"){
 				html += "<td>"+item.title+"</td>";
 			}else if(item.secret_yn=="n"){
@@ -73,13 +75,15 @@ function qna_save(product_no) {
 	} else if(document.getElementById("content").value==""){
 		alert("내용을 입력해주세요");
 	}else {
-		alert("Q&A저장 완료.");
+
 		var form = document.getElementById("qna_write");
 		form.product_no.value = product_no;
 		console.log(product_no);
 		form.action = "qna_write";
 		form.submit();
-		window.close();
+		alert("Q&A저장 완료.");
+    opener.location.reload();
+    window.close();
 	}
 }
 

@@ -42,6 +42,38 @@
 <body>
 <div class="container">
 	<div class="card p-4 m-5">
+         <div>
+            <h2>구매후기<c:if test="${cnt>0 }">(${cnt })</h2>
+        </div>
+        <div>
+        
+			<h3>사용자 총 평점</h3>
+			<c:forEach var="i" begin="1" end="5">
+			  <c:choose>
+			    <c:when test="${i-1 <= avg}">
+			      <i class="bi bi-star-fill" style="color:#FACC00; display:inline-block;"></i>
+			    </c:when>
+			    <c:otherwise>
+			      <i class="bi bi-star" style="color:#FACC00; display:inline-block;"></i>
+			    </c:otherwise>
+			  </c:choose>
+			</c:forEach> ${avg } / 5
+        <hr>
+        </div>
+        </c:if>
+	    <form id="reviewListForm" name="reviewListForm" method="post">
+	        <div id="reviewList">
+	        </div>
+	    </form>
+		<!-- 페이지 처리 영역 -->
+	    <div>
+			<ul id="pagination">
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="card p-4 m-5">
     <form id="reviewForm" name="reviewForm" method="post" enctype="multipart/form-data">
 <h2>리뷰작성</h2>
 	    <div id="myform">
@@ -64,38 +96,6 @@
 		<input type="hidden" id="product_no" name="product_no" value="${productVO.product_no }" />        
     </form>
      </div>
-</div>
-<div class="container">
-	<div class="card p-4 m-5">
-         <div>
-            <h2>구매후기(${cnt })</h2>
-        </div>
-        <div>
-        <c:if test="${cnt>0 }">
-			<h3>사용자 총 평점</h3>
-			<c:forEach var="i" begin="1" end="5">
-			  <c:choose>
-			    <c:when test="${i-1 <= avg}">
-			      <i class="bi bi-star-fill" style="color:#FACC00; display:inline-block;"></i>
-			    </c:when>
-			    <c:otherwise>
-			      <i class="bi bi-star" style="color:#FACC00; display:inline-block;"></i>
-			    </c:otherwise>
-			  </c:choose>
-			</c:forEach> ${avg } / 5
-        <hr>
-        </c:if>
-        </div>
-	    <form id="reviewListForm" name="reviewListForm" method="post">
-	        <div id="reviewList">
-	        </div>
-	    </form>
-		<!-- 페이지 처리 영역 -->
-	    <div>
-			<ul id="pagination">
-			</ul>
-		</div>
-	</div>
 </div>
 <script type="text/javascript">
 
@@ -169,7 +169,7 @@
 				html += "<strong>" + item.id + "</strong>&nbsp;&nbsp;&nbsp;";
 				html += "<span id=\"write_date\">" + displayTime(item.review_regdate) + "</span><br>";
 				html += item.content+"<br></div>";
-				html += item.review_no+"<br></div>";
+				html += "<button type=\"button\" class=\"btn btn-success\" onclick=\"modifyReview()\">수정</button>";
 				html += "<button type=\"button\" class=\"delete_review\" data-review-no=\"" + item.review_no + "\">삭제</button>";
 				html += "<hr></div>";
 			});
@@ -283,25 +283,29 @@
 	});
 	
 	function delete_review(review_no) {
-	    $.ajax({
-	        type: 'GET',
-	        url: 'reviews/remove',
-	        data: {'review_no': review_no},
-	        success: function(data){
-	            if(data == "success"){
-	                alert("삭제되었습니다.");
-	                // 삭제 후 댓글 목록을 갱신하는 함수 호출
-	                getReviewList();
-	            }  else if (data == 'not_logedin') {
-	                alert("상품평 삭제는 로그인이 필요합니다.");
-	            }
-	        },
-	        error: function(request, status, error){
-	            alert("error:" + error);
-	        }
-	    });
-		
+		if(window.confirm("댓글을 삭제 하시겠습니까?")){		
+		    $.ajax({
+		        type: 'GET',
+		        url: 'reviews/remove',
+		        data: {'review_no': review_no},
+		        success: function(data){
+		        	
+		            if(data == "success"){
+		                alert("삭제되었습니다.");
+		                // 삭제 후 댓글 목록을 갱신하는 함수 호출
+		                getReviewList();
+		            }  else if (data == 'not_logedin') {
+		                alert("상품평 삭제는 로그인이 필요합니다.");
+		            }
+		        },
+		        error: function(request, status, error){
+		            alert("error:" + error);
+		        }
+		    });
+			
+		}
 	}
+
 </script>
 </body>
 </html>

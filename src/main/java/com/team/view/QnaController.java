@@ -54,20 +54,19 @@ public class QnaController {
 			return "member/login";
 		} else {
 			
-			System.out.println(product_no);
 			vo.setId(loginUser.getId());
 			vo.setProduct_no(product_no);
 			qnaService.insertQna(vo);
-			return "redirect:product_detail";
+			return "redirect:product_detail?product_no="+product_no;
 		}
 	}
 	//qna $.ajax
 	@ResponseBody
 	@GetMapping(value="qnas/list", produces="application/json; charset=UTF-8")
-	public Map<String, Object> qnaList(QnaVO vo) {
+	public Map<String, Object> qnaList(@RequestParam(value="product_no") int product_no) {
 		Map<String, Object> qnaInfo = new HashMap<>();
 		// 상품 댓글 목록 조회
-		List<QnaVO> qnaList = qnaService.qnaList();
+		List<QnaVO> qnaList = qnaService.getProductQna(product_no);
 		// 페이지 정보 작성
 		qnaInfo.put("total", qnaList.size());
 		qnaInfo.put("qnaList", qnaList);

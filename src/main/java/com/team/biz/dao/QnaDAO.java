@@ -18,6 +18,10 @@ public class QnaDAO {
 		return mybatis.selectList("QnaMapper.qnaList");
 	}
 	
+	public List<QnaVO> getProductQna(int product_no){
+		return mybatis.selectList("QnaMapper.getProductQna",product_no);
+	}
+	
 	public void insertQna(QnaVO vo) {
 		mybatis.insert("QnaMapper.insertQna", vo);
 	}

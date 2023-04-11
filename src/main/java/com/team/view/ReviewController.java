@@ -9,12 +9,10 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -88,13 +86,9 @@ public class ReviewController {
 	public String deleteReview(ReviewVO vo, HttpSession session, 
 			@RequestParam(value="review_no") int review_no) {
 	    MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-	    System.out.println(review_no);
-	    vo.setReview_no(review_no);
-	    System.out.println(vo);
 	    if (loginUser == null) {
 	        return "not_logedin";
 	    } else {
-	    	System.out.println(review_no);
 	    	reviewService.deleteReview(vo.getReview_no());
 	        reviewService.deleteReview(review_no);
 	        return "success";

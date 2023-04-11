@@ -15,7 +15,7 @@
          <div>
             <h3>Q&A </h3>
         </div>
-    <form name="formm" method="post">${productVO.product_no }
+    <form name="formm" method="post">
     <c:if test="${!empty sessionScope.loginUser}">
 	      	<input type="button"  value="qna 작성하기"  onclick="qnaWrite('${productVO.product_no }')">
 	      	<input type="hidden" id="product_no" name="product_no" value="${productVO.product_no }" />    
@@ -24,6 +24,7 @@
     </form>		
     <form id="qnaListForm" name="qnaListForm" method="post">
         <div id="qnaList">
+        <input type="hidden" id="product_no" name="product_no" value="${productVO.product_no }" />
         </div>
     </form>
 	</div>
@@ -32,7 +33,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	// 상품상세정보 로딩 시에 Q&A 목록을 조회하여 출력
-	getQnaList();
+	getQnaList(${productVO.product_no });
 });
 </script>
 

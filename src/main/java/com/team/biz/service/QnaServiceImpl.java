@@ -24,4 +24,9 @@ public class QnaServiceImpl implements QnaService {
 		qnaDao.insertQna(vo);
 	}
 
+	@Override
+	public List<QnaVO> getProductQna(int product_no) {
+		return qnaDao.getProductQna(product_no);
+	}
+
 }

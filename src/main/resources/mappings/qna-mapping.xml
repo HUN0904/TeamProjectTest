@@ -7,9 +7,9 @@
 		SELECT * FROM qna ORDER BY qna_regdate DESC
 	</select>
 	
-	<!-- Q&A 상세보기 -->
-	<select id="getqna" resultType="qna">
-		SELECT * FROM qna WHERE qna_no=#{qna_no} 
+	<!-- 상품별 Q&A 보기 -->
+	<select id="getProductQna" parameterType="hashMap" resultType="qna">
+		SELECT * FROM qna WHERE product_no=#{product_no} ORDER BY qna_regdate DESC
 	</select>
 	
 	<!-- Q&A작성하기 -->
