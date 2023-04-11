@@ -39,8 +39,8 @@
 				<a class="nav-link" href="qna_list">Q&A</a>
 			</li>	
 			<c:if test="${sessionScope.loginUser.admin eq 'admin'}">		
-			<li class="nav-item">
-				<a class="nav-link" href="admin_product_list">관리자 페이지</a>
+			<li class="nav-item" >
+				<a class="nav-link" href="admin_product_list" >관리자 페이지</a>
 			</li>
 			</c:if>	
 		</ul>
@@ -54,26 +54,19 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="join">회원가입</a>
-				</li>
+				</li>&nbsp;
 			</c:when>
 	        <c:otherwise>
 		      <li style="color:orange">
 		        ${sessionScope.loginUser.name}(${sessionScope.loginUser.nickname})
 		      </li>
 		      &nbsp;
-	       	  <li><a href="logout">LOGOUT</a></li>
+	       	  <li><a href="logout">LOGOUT</a></li> &nbsp;
 	       	  <br>
 	        </c:otherwise> 
 	      </c:choose>
 	  </ul>
-	<ul class="navbar-nav">
-		<!-- 내 프로필 -->
-		<li class="nav-item">
-			<a class="nav-link" href="modify_member_form">
-				<h5 class="bi bi-person-circle my-0"></h5>
-			</a>
-		</li>
-	</ul>
+	
 	
 	
 	<div class="dropdown" >
@@ -84,13 +77,7 @@
 		   <c:when test="${empty sessionScope.loginUser}">
                <a href="login_form"></a>
 		   </c:when>
-		 <c:when test="${sessionScope.loginUser.admin eq 'admin'}">
-		      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
-				    <a class="dropdown-item" href="cart_list">장바구니
-				      <i class="bi bi-cart"></i>
-				    </a>
-		      </div>  
-		   </c:when>  
+	 
 		      
 		  <c:otherwise>
 		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
@@ -106,6 +93,11 @@
 		     <a class="dropdown-item" href="order_list">주문목록
 		        <i class="bi bi-card-list"></i> 
 		    </a>
+		    
+		    <a class="dropdown-item" href="modify_member_form">내 정보
+		       <i class="bi bi-person-circle my-0"></i>
+		    </a>
+		    
 		  </div>
 		  </c:otherwise>
 	   </c:choose>
