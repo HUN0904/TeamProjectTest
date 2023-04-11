@@ -20,4 +20,5 @@ public class MemberVO {
 	private String admin;
 	private Date regdate;
 	private int grade;
+	private int sum_price;
 }

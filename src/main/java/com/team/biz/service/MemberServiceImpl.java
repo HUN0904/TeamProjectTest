@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.team.biz.dao.MemberDAO;
 import com.team.biz.dto.MemberVO;
-import com.team.biz.dto.ProductVO;
-
-import utils.Criteria;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
@@ -36,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.insertMember(memberVO);
 		
 	}
-
+ 
 	@Override
 	public String selectIdByNameEmail(MemberVO vo) {
 		return memberDao.selectIdByNameEmail(vo);
@@ -69,25 +66,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> listMember(String name) {
-		return memberDao.listMember(name);
+	public void gradeUpdate(MemberVO vo) {
+		
+		memberDao.gradeUpdate(vo);
 	}
 
 	@Override
-	public List<ProductVO> listMemberWithPaging(Criteria criteria, String name) {
-	
-		return memberDao.listMemberWithPaging(criteria, name);
+	public List<String> sumPriceById(int sum_price){
+		
+		return memberDao.sumPriceById(sum_price);
 	}
-
-	@Override
-	public int countmemberlist(String name) {
-	
-		return memberDao.countmemberlist(name);
-	}
-
-
-
-
 	
 	
 }

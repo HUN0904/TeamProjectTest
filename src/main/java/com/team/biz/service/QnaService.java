@@ -6,7 +6,9 @@ import com.team.biz.dto.QnaVO;
 
 public interface QnaService {
 
-	void insertQna(QnaVO vo);
+	List<QnaVO> qnaList();
 
-	List<QnaVO> listQna(QnaVO vo);
+	int insertQna(QnaVO vo);
+	
+	List<QnaVO> getProductQna(int product_no);
 }

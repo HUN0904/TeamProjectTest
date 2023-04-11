@@ -28,10 +28,6 @@ public class ReviewDAO {
 		return mybatis.selectOne("ReviewMapper.countReviewList", product_no);
 	}
 	
-	public List<ReviewVO> avgScoreList(){
-		return mybatis.selectList("ReviewMapper.avgScoreList");
-	}
-	
 	public List<ReviewVO> reviewListWithPaging(Criteria criteria, int product_no) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("criteria", criteria);

@@ -1,6 +1,5 @@
 package com.team.biz.service;
 
-import java.util.Date;
 import java.util.List;
 
 import com.team.biz.dto.CartVO;
@@ -17,5 +16,5 @@ public interface CartService {
 
 	CartVO getCart(int cart_no);
 	
-	List<Date> disAbleDates();
+	List<String> disAbleDates();
 }

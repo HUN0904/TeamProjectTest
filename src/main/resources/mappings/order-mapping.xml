@@ -15,23 +15,73 @@
 		VALUES(order_detail_seq.NEXTVAL, #{cart_no},#{order_no}, #{product_no})	
 	</insert>
   
+	<!-- 주문 전체 갯수 조회 -->
+	<select id="countOrderList" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM order_view
+		 WHERE name LIKE '%'||#{name}||'%'
+	</select>  
+	
+	<!-- 주문 전체 갯수 조회 -->
+	<select id="countOrderListByDate" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM order_view
+		 WHERE TO_CHAR(pickup_date,'yyyy/MM/dd') LIKE '%'||#{pickup_date}||'%'
+		   AND odresult = '1'
+	</select>  
+ 
+ 	<!-- 아이디별 주문 갯수 조회 -->
+	<select id="countOrderListById" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM order_view
+		 WHERE id = #{id}
+	</select>  
+	 
+	<!-- 전체 주문 페이징 목록 조회 -->
+	<select id="listOrderWithPaging" resultType="order">
+		<![CDATA[
+		SELECT rn, order_dno, total_price , product_name, name, indate, odresult
+		  FROM (SELECT row_number() OVER (ORDER BY order_dno DESC) rn, order_dno, total_price , product_name, name, indate, odresult
+			      FROM order_view
+			     WHERE name LIKE '%'||#{name}||'%')
+	     WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		   AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>
+	  
+	 <!-- 아이디별 주문 페이징 목록 조회 -->
+	<select id="listOrderWithPagingById" resultType="order">
+		<![CDATA[
+		SELECT rn, order_dno, quantity, product_name, total_price , indate, odresult
+	      FROM (SELECT row_number() OVER (ORDER BY order_dno DESC) rn, order_dno, quantity, product_name, total_price , indate, odresult
+			      FROM order_view
+			     WHERE id = #{id})
+		WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		  AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select> 
+	
+	<select id="listOrderWithPagingByDate" resultType="order">
+		<![CDATA[
+		SELECT rn, order_dno, quantity, product_name, name, pickup_date 
+		  FROM (SELECT row_number() OVER (ORDER BY pickup_date) rn, order_dno, quantity, product_name, name, pickup_date
+			      FROM order_view
+			     WHERE TO_CHAR(pickup_date,'yyyy/MM/dd') LIKE '%'||#{pickup_date}||'%'
+			       AND odresult = '1')
+		WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+		  AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
+	</select>    
+	  
  	<select id="orderListById" resultType="order">
 		SELECT * FROM order_view
 		 WHERE id=#{id} ORDER BY indate,odresult DESC
 	</select>
-  
+  	
 	<select id="orderList" resultType="order">
 		SELECT * FROM order_view
 		 WHERE product_name LIKE '%'||#{product_name}||'%'
 		 ORDER BY order_dno,odresult DESC
 	</select>
   
- 	<select id="orderListByDate" resultType="order">
-		SELECT * FROM order_view
-		 WHERE TO_CHAR(pickup_date,'yyyy/MM/dd') LIKE '%'||#{pickup_date}||'%'
-		   AND odresult = '1'
-		 ORDER BY pickup_date
-	</select>  	
+	
   
    	<select id="getOrderDetail" resultType="order">
 		SELECT * FROM order_view
@@ -51,6 +101,17 @@
 		 WHERE order_dno = #{order_dno}
 	</update>
 	
+	<select id="listProductSales" resultType="order">
+	<![CDATA[
+		SELECT product_name ,SUM(total_price) AS sum_price, SUM(quantity) AS sum_quantity
+  		  FROM ORDER_VIEW
+ 		 WHERE  TO_CHAR(indate,'yyyy-MM-dd') >= #{start_date}
+ 		   AND  TO_CHAR(indate,'yyyy-MM-dd') <= #{end_date}
+ 		   AND  odresult ='1'
+ 		 GROUP BY product_name
+ 		 ]]>
+	</select>
+
 
 	
 </mapper>

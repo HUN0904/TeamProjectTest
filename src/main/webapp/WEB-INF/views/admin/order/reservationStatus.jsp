@@ -32,30 +32,30 @@ $.datepicker.setDefaults({
     yearSuffix: '년'
 });
 function search_date(){
-	   var form = document.getElementById("dateSearch");
-	   form.action = "reservation_status";
-	   form.submit();
-	}
-	
+	var form = document.getElementById("dateSearch");
+	form.action = "reservation_status";
+	form.submit();
+}
 </script>
-<!-- 테스트 -->
 <article>
 <h1>예약 현황</h1>	
 <form name="dateSearch" id="dateSearch" method="post">
 <table>
-   <tr>
-   <td><input readonly type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
-   <td><input type="button" value="검색" onclick="search_date()" style="width:80px; text-align: center;"></td>
-   </tr>
+	<tr> 
+	<td><input readonly type="text" name="date" id="date" value="" style="width:195px; text-align: center;"></td>
+	<td><input type="button" value="검색" onclick="search_date()" style="width:80px; text-align: center;"></td>
+	<td>${pickDate}
+	</tr>
 </table>
 </form>
+
 <form name="frm" id="order_form" method="post">
 
-<table class="table" id="dateOrderList" border="1"   style="table-layout: fixed">
+<table class="table" id="dateOrderList" style="text-align:center;">
 	
     <tr>
-    	<td rowspan="5" colspan="2"><div id="datepicker"></div><td>
-           주문번호
+    	<th rowspan="11" ><div id="datepicker" style="position: relative; left: -10px;"></div></th>
+        <th>주문번호</th>
         <th>상품명</th>
         <th>주문자</th>
         <th>픽업날짜</th>
@@ -65,7 +65,7 @@ function search_date(){
     <c:when test="${orderListSize<=0}">
     <tr>
       <td width="100%" colspan="7" align="center" height="23">
-        등록된 상품이 없습니다.
+        예약이 내역이 없습니다.
       </td>      
     </tr>
 
@@ -73,10 +73,8 @@ function search_date(){
 	<c:otherwise>
 	<c:forEach items="${orderList}" var="order" varStatus="status">
     <tr>
-      <%-- <td height="23" align="center" >${productVO.pseq}</td> --%>
-      <td height="23" align="center">${order.order_dno}</td>
-      <td style="text-align: left; padding-left: 50px; padding-right: 0px;">   
-<%-- <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')"> --%>
+       <td>${order.order_dno}</td>
+      <td>   
   		<a href="admin_order_detail?order_dno=${order.order_dno}">    
     	 ${order.product_name}
    		</a>
@@ -85,11 +83,31 @@ function search_date(){
       <td><fmt:formatDate value="${order.pickup_date}" pattern="yy/MM/dd/HH:mm"/></td>
     </tr>
     </c:forEach>
-    <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
 	</c:otherwise>	
 </c:choose>  
+<tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
 </table>
+       <%-- 페이징 --%>
+<div class="d-flex justify-content-center">
+	<ul class="pagination">
+	
+		<c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous">
+				<a href="reservation_status${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
+			</li>
+		</c:if>				
+		<!-- [1][2][3]... 표시 부분 -->
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
+			<a href="reservation_status${pageMaker.makeQuery(index)}">[${index}]</a>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next">
+				<a href="reservation_status${pageMaker.makeQuery(pageMaker.endPage+1)}">[다음]</a>
+			</li>
+		</c:if>				
+	</ul>
+</div>
 </form>
-<%@ include file="../page_area.jsp" %>
 </article>
 <%@ include file="../../footer.jsp" %>

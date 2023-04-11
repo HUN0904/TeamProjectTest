@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%> 
   <article>
-    <h2> 공지사항 </h2>
+    <h1> 공지사항 </h1>
     <form name="formm" method="post">
-    <table id="noticesList" class="table" border="1"   style="table-layout: fixed">
+    <table id="noticesList" class="table" style="text-align:center">
 	    <tr>
 	      <th>번호</th> 
 	      <th>제목</th> 
@@ -29,6 +29,26 @@
 	      </div>
  	  </c:if>
     </form>
+<div class="d-flex justify-content-center">
+	<ul class="pagination">
+	
+		<c:if test="${pageMaker.prev}">
+			<li class="paginate_button previous">
+				<a href="admin_notices_list${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
+			</li>
+		</c:if>				
+		<!-- [1][2][3]... 표시 부분 -->
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
+			<a href="admin_notices_list${pageMaker.makeQuery(index)}">[${index}]</a>
+		</c:forEach>
+		
+		<c:if test="${pageMaker.next}">
+			<li class="paginate_button next">
+				<a href="admin_notices_list${pageMaker.makeQuery(pageMaker.endPage+1)}">[다음]</a>
+			</li>
+		</c:if>				
+	</ul>
+</div> 
   </article>
 <%@ include file="../../footer.jsp" %>
 
