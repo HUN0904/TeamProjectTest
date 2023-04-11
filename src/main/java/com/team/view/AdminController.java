@@ -20,10 +20,12 @@ import com.team.biz.dto.MemberVO;
 import com.team.biz.dto.NoticesVO;
 import com.team.biz.dto.OrderVO;
 import com.team.biz.dto.ProductVO;
+import com.team.biz.dto.QnaVO;
 import com.team.biz.service.MemberService;
 import com.team.biz.service.NoticesService;
 import com.team.biz.service.OrderService;
 import com.team.biz.service.ProductService;
+import com.team.biz.service.QnaService;
 
 import utils.Criteria;
 import utils.PageMaker;
@@ -43,6 +45,8 @@ public class AdminController {
 
 	@Autowired
 	private NoticesService noticesService;
+	@Autowired
+	private QnaService qnaService;
 
 
 	/* ================================상품(product)================================ */
@@ -404,8 +408,64 @@ public class AdminController {
 		}
 	}
 
-}
+	/* ========================================Q&A(Q&A)======================================== */
+	// 전체 관리자 Q&A 리스트 
+	@RequestMapping("/admin_qna_list")
+	public String adminQnaList(
+			@RequestParam(value="key", defaultValue="") String title,
+			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
+			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
+			Model model) {
+		
+		Criteria criteria = new Criteria();
+		criteria.setPageNum(Integer.parseInt(pageNum));
+		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
+		
+		// (1) 전체 상품목록 조회
+		List<QnaVO> qnaList = qnaService.qnaList(criteria, title);
+		
+		// (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
+		pageMaker.setTotalCount(noticesService.countnoticesList(title)); // 전체 게시글의 수 저장
+		
+		// (2) model 객체에 상품 목록 저장
+		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("qnaListSize", qnaList.size());
+		model.addAttribute("pageMaker", pageMaker);
+		
+		// (3) 화면 호출: productList.jsp
+		return "admin/qna/adminQnaList";
+	}
+	// Q&A 답변 및 수정페이지 이동
+	@RequestMapping(value="qna_update_form")
+	public String updateqnaform(QnaVO vo,HttpSession session, Model model) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+
+			model.addAttribute("qnaVO",qnaService.getQna(vo.getQna_no()));
+			return "admin/qna/qnaUpdate";
+		}
+	}
+
+	// Q&A 수정저장
+	@RequestMapping(value="qna_update")
+	public String updateqnaAction(QnaVO vo,HttpSession session) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			vo.setId(loginUser.getId());
+			qnaService.updateQna(vo);
+
+			return "redirect:admin_qna_list";
+		}
+	}
+}
 
 
 

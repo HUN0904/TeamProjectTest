@@ -29,13 +29,21 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDao.qnaList(criteria, title);
 	}
 	@Override
-	public List<QnaVO> getProductQna(Criteria criteria, int product_no) {
-		return qnaDao.getProductQna(criteria, product_no);
+	public List<QnaVO> getProductQnaList(Criteria criteria, int product_no) {
+		return qnaDao.getProductQnaList(criteria, product_no);
 	}
 
 	@Override
 	public int insertQna(QnaVO vo) {
 		return qnaDao.insertQna(vo);
+	}
+	@Override
+	public QnaVO getQna(int qna_no) {
+		return qnaDao.getQna(qna_no);
+	}
+	@Override
+	public void updateQna(QnaVO vo) {
+		qnaDao.updateQna(vo);
 	}
 
 

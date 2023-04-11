@@ -23,7 +23,7 @@
 			</li>
 			
 			<li class="nav-item">
-				<a class="nav-link" href="#">QNA관리</a>
+				<a class="nav-link" href="admin_qna_list">QNA관리</a>
 			</li>
 		</ul>
 	</div>

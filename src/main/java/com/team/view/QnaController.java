@@ -28,6 +28,8 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 
+	
+	//Q&A 페이지
 	@GetMapping(value="/qna_list")
 	public String qnaList(@RequestParam(value="key", defaultValue="") String title,
 							@RequestParam(value="pageNum", defaultValue="1") String pageNum,
@@ -49,6 +51,19 @@ public class QnaController {
 		model.addAttribute("pageMaker", pageMaker);
 		return "qna/qnaList";
 	}
+	
+	//Q&A 상세
+	@GetMapping("/qna_view")
+	public String getQna(QnaVO vo, Model model) {
+		
+		QnaVO qna = qnaService.getQna(vo.getQna_no());
+
+		model.addAttribute("qnaVO",qna);
+
+		return "qna/qnaView";
+	}
+	
+	//Q&A 상
 	@GetMapping(value="/qna_write_form")
 	public String qnaWriteForm(QnaVO vo, HttpSession session) {
 		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
@@ -59,6 +74,7 @@ public class QnaController {
 		}
 	}
 
+	//
 	@ResponseBody
 	@PostMapping("qnas/save")
 	public String qnaWriteAction(QnaVO vo, HttpSession session) {
@@ -82,7 +98,7 @@ public class QnaController {
 		Map<String, Object> qnaInfo = new HashMap<>();
 		
 		// 상품 Q&A 목록 조회
-		List<QnaVO> qnaList=qnaService.getProductQna(criteria, vo.getProduct_no());
+		List<QnaVO> qnaList=qnaService.getProductQnaList(criteria, vo.getProduct_no());
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);   

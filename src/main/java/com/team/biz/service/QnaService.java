@@ -10,10 +10,14 @@ public interface QnaService {
 	int countQna();
 	
 	int countProductQna(int product_no);
-
+	
+	QnaVO getQna(int qna_no);
+	
 	List<QnaVO> qnaList(Criteria criteria, String title);
 
-	List<QnaVO> getProductQna(Criteria criteria, int product_no);
+	List<QnaVO> getProductQnaList(Criteria criteria, int product_no);
 	
 	int insertQna(QnaVO vo);
+	
+	void updateQna(QnaVO vo);
 }

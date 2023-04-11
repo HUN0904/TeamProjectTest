@@ -6,7 +6,7 @@
   <div class="card p-4 m-5">
       <h2> 공지사항 </h2>
     <form name="formm" method="post">
-    <table class="table" id="notice" style="text-align:center">
+    <table class="table" id="notice" >
 	    <tr>
 	    	<th>
 	      		<h3> ${noticesVO.title}</h3><br>

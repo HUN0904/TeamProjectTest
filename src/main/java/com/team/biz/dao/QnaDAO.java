@@ -29,15 +29,21 @@ public class QnaDAO {
 		map.put("title", title);
 		return mybatis.selectList("QnaMapper.qnaList", map);
 	}
-	
-	public List<QnaVO> getProductQna(Criteria criteria, int product_no){
+	//상품별 Q&A
+	public List<QnaVO> getProductQnaList(Criteria criteria, int product_no){
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("criteria", criteria);
 		map.put("product_no", product_no);
-		return mybatis.selectList("QnaMapper.getProductQna", map);
+		return mybatis.selectList("QnaMapper.getProductQnaList", map);
 	}
-	
+	// Q&A상세
+	public QnaVO getQna(int qna_no){
+		return mybatis.selectOne("QnaMapper.getQna", qna_no);
+	}
 	public int insertQna(QnaVO vo) {
 		return mybatis.insert("QnaMapper.insertQna", vo);
+	}
+	public void updateQna(QnaVO vo) {
+		mybatis.update("QnaMapper.updateQna", vo);
 	}
 }
