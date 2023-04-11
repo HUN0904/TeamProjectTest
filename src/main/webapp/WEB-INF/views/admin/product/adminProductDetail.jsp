@@ -9,7 +9,7 @@
   <tr>
     <th>상품분류</th>
     <td  colspan="5">
-  ${category_no}
+  		${kindList}
      </td>    
     </tr>    
     <tr>

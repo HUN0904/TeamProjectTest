@@ -125,8 +125,9 @@ public class AdminController {
 			return "member/login";
 		} else {		
 			String[] kindList = {"", "초코" , "바닐라" , "오레오" , "카스테라"};
-			int index = vo.getCategory_no();			
+						
 			ProductVO product = productService.getProduct(vo);
+			int index = product.getCategory_no();
 			model.addAttribute("productVO",product);
 			model.addAttribute("kindList", kindList[index]);
 			return "admin/product/adminProductDetail";
