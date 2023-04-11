@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/common.css">  
+
 <meta charset="UTF-8">
 <title>아이디 중복 체크</title>
 <link href="CSS/subpage.css" rel="stylesheet">

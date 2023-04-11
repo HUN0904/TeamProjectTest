@@ -3,9 +3,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-	  <link href="css/shopping.css" rel="stylesheet"> 
-	  <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
-	  <script type="text/javascript" src="member/member.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/common.css">  
+<script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="member/member.js"></script>
   </head>
   <body>
   <div id="wrap">
