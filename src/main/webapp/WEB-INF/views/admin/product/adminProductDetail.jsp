@@ -11,42 +11,26 @@
 
 <table id="list" class="table" style="text-align:center">
   <tr>
-    <th>상품분류</th>
-     <th>상품명</th>
-     <th>판매가</th>
-     <th>상세설명</th>
-     <th>상품이미지</th>
+    <th style="text-align:right">상품분류</th>
+     <th style="text-align:center">상품명</th>
+     <th style="text-align:left">판매가</th>
+     <th style="text-align:left">상세설명</th>
+     <th style="text-align:left">상품이미지</th>
   </tr> 
 
      <tr>
-          <td colspan="2" align="left" style="padding-left:100px;">			    
+          <td colspan="2" align="left" style="padding-left:200px;">			    
      		<img src="product_images/${productVO.product_image}" width="300px" height="auto">    
-          </td> 
+          </td>
+          
+          <td>
+              
+          </td>
      </tr>
      
   
  </table> 
- 
- <section>
- <table>
-    <tr>
-         <th style="text-align:right"> 상품 분류</th>
-        <td> ${category_no} </td>
-    </tr>
-    
-    <tr>
-        <td colspan="5">${productVO.product_name}</td>
-    </tr>
-    
-    <tr>
-          <td width="60">${productVO.price}</td>
-    </tr>
-    
-    <tr>
-         <td colspan="5">${productVO.content}</td>
-    </tr>
-    
-</section> 
+
 
 <div class="input-group mb-3" align="right">
 	<div class="input-group-prepend">		
