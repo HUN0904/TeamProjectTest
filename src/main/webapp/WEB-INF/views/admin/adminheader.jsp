@@ -2,7 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<nav class="border-bottom navbar navbar-expand-md bg-white navbar-light sticky-top" >
+<nav class="border-bottom navbar navbar-expand-md navbar-light sticky-top" style="background-color:#fdefec">
 	<div class="collapse navbar-collapse" id="navbarText" >
 	
 		<ul class="navbar-nav" >
