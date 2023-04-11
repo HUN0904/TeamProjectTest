@@ -99,7 +99,7 @@ function showHTML1(qnaList, totalCount) {
 		html +="</tr></table>";
 	} else { // 조회된 상품평이 없을 경우
 		html += "<div>";
-		html += "<h5>등록된 상품평이 없습니다.</h5>";
+		html += "<h5>등록된 Q&A가 없습니다.</h5>";
 		html += "</div>";
 	}
 	

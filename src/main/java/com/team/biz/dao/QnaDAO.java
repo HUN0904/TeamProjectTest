@@ -46,4 +46,7 @@ public class QnaDAO {
 	public void updateQna(QnaVO vo) {
 		mybatis.update("QnaMapper.updateQna", vo);
 	}
+	public void deleteQna(int qna_no) {
+		mybatis.delete("QnaMapper.deleteQna", qna_no);
+	}
 }

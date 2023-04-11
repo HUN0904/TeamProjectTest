@@ -3,6 +3,8 @@
 <%@ include file="../adminheader.jsp"%>
 
 	<article>
+	  <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
 	    <h2> 공지사항 </h2>
 		<form name="formm" method="post" action="notices_write">
 			<fieldset>	
@@ -18,8 +20,8 @@
 			<input type="reset"   value="취소"     class="cancel">
 		  </div>
 		</form>
-	</article>
-	
 	</div>
 </section>
+	</article>
+	
 <%@ include file="../../footer.jsp" %>

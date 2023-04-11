@@ -37,6 +37,8 @@ function search_date(){
 	form.submit();
 }
 </script>
+  <section class="container"> 
+  <div class="card p-4 m-5">
 <article>
 <h1>예약 현황</h1>	
 <form name="dateSearch" id="dateSearch" method="post">
@@ -90,7 +92,6 @@ function search_date(){
        <%-- 페이징 --%>
 <div class="d-flex justify-content-center">
 	<ul class="pagination">
-	
 		<c:if test="${pageMaker.prev}">
 			<li class="paginate_button previous">
 				<a href="reservation_status${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
@@ -110,4 +111,6 @@ function search_date(){
 </div>
 </form>
 </article>
+</div>
+</section>
 <%@ include file="../../footer.jsp" %>

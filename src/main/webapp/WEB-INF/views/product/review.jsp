@@ -87,7 +87,7 @@
 			</fieldset>
 		</div>
 		<div class="input-group">
-			<input type="file" style="background-color:#fdefec" class="form-control" id="image" name="image" >
+			<input type="file" style="background-color:#fdefec" class="form-control " id="image" name="image" >
 		</div>
 		<div>
 			<textarea  rows="2" cols="60" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
@@ -107,6 +107,7 @@
 		// 상품상세정보 로딩 시에 Q&A 목록을 조회하여 출력
 		getQnaList();
 	});
+	
 	// 상품평 목록 불러오기
 	function getReviewList() {
 		
@@ -120,7 +121,7 @@
 				var pageMaker = data.pageInfo;
 				var totalCount = data.total;
 				var reviewList = data.reviewList;
-				
+				console.log("count1=", totalCount);
 				showHTML(pageMaker, reviewList, totalCount);
 			},
 			error: function() {
@@ -172,8 +173,9 @@
 				html += "<strong>" + item.id + "</strong>&nbsp;&nbsp;&nbsp;";
 				html += "<span id=\"write_date\">" + displayTime(item.review_regdate) + "</span><br>";
 				html += item.content+"<br></div>";
-				html += "<button type=\"button\" class=\"btn btn-success\" onclick=\"modifyReview()\">수정</button>";
-				html += "<button type=\"button\" class=\"delete_review\" data-review-no=\"" + item.review_no + "\">삭제</button>";
+				if (item.id == '${sessionScope.loginUser.id}') {
+					html += "<button type=\"button\" class=\"delete_review\" data-review-no=\"" + item.review_no + "\">삭제</button>";
+				}
 				html += "<hr></div>";
 			});
 			
@@ -272,6 +274,8 @@
 	                alert("상품평 등록은 로그인이 필요합니다.");
 	            } else if (data == 'not_score') {
 	                alert("별점을 선택해주세요.");
+	            }else if (data == 'not_content') {
+	                alert("리뷰 내용을 입력해주세요.");
 	            }
 	        },
 	        error: function(request, status, error) {

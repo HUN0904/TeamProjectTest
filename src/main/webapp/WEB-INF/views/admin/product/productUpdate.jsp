@@ -13,6 +13,8 @@ function deleteProduct(product_no){
 }
 </script>
 <article>
+  <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
 <h1>상품수정</h1>  
 <form name="frm" id="update_form" method="post" enctype="multipart/form-data">
 <input type="hidden" name="product_no" value="${productVO.product_no}">
@@ -81,6 +83,8 @@ function deleteProduct(product_no){
 <input class="btn" type="button" value="삭제하기" onClick="deleteProduct('${productVO.product_no}')">       
 <input class="btn" type="button" value="취소" onClick="go_mov()">
 </form> 
+</div>
+</section>
 </article>
 <%@ include file="../../footer.jsp"%>
 </body>

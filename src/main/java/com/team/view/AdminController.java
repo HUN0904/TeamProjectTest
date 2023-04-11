@@ -459,8 +459,24 @@ public class AdminController {
 		if (loginUser == null) {
 			return "member/login";
 		} else {
+			if(vo.getRcontent()!=""||vo.getRcontent()!=null) {
+				vo.setReply(1);
+			}
 			vo.setId(loginUser.getId());
 			qnaService.updateQna(vo);
+
+			return "redirect:admin_qna_list";
+		}
+	}
+	// Q&A 삭제
+	@RequestMapping(value="qna_delete")
+	public String deleteQna(QnaVO vo,HttpSession session) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			vo.setId(loginUser.getId());
+			qnaService.deleteQna(vo.getQna_no());
 
 			return "redirect:admin_qna_list";
 		}

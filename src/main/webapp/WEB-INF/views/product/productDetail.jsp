@@ -2,7 +2,6 @@
   pageEncoding="UTF-8"%>  
 <%@ include file="../header.jsp" %> 
 <article>
-    <div id="itemdetail" >
    <script>
    $(document).ready(function () {
 	// 로그인 한 상태에서 하트를 클릭했을 때 (로그인한 상태인 하트의 <a></a> class명: heart-click)
@@ -10,11 +9,9 @@
 	    // 게시물 번호(no)를 idx로 전달받아 저장합니다.
 	    let no = $(this).attr('idx');
 	    console.log("heart-click");
-
 	    // 빈하트를 눌렀을때
 	    if($(this).children('svg').attr('class') == "bi bi-suit-heart"){
 	        console.log("빈하트 클릭" + no);
-
 	        $.ajax({
 	            url : 'favorite_insert',
 	            type : 'get',
@@ -25,11 +22,9 @@
 	                let heart = favorite.heart;
 	                console.log("favorite_no",favorite.favorite_no );
 	            	$("#favorite_no").val(favorite.favorite_no);
-	            	
 	                // 페이지, 모달창에 하트수 갱신
 	                $('#m_heart'+no).text(heart);
 	                $('#heart'+no).text(heart);
-
 	                console.log("하트추가 성공");
 	            },
 	            error : function() {
@@ -37,12 +32,9 @@
 	            }
 	        });
 	        console.log("꽉찬하트로 바껴라!");
-
 	        // 꽉찬하트로 바꾸기
 	        $(this).html("<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
 	        $('.heart_icon'+no).html("<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-suit-heart-fill' viewBox='0 0 16 16'><path d='M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z'/></svg>");
-
-       
 	    }else if($(this).children('svg').attr('class') == "bi bi-suit-heart-fill"){
  	    	// 꽉찬 하트를 눌렀을 때
 	        console.log("꽉찬하트 클릭" + no);
@@ -75,29 +67,27 @@
 	
 });
 </script>
-
  <form  method="post" action="cart_insert" name="formm" id="theform">
- 	<input type="hidden" id="favorite_no" name="favorite_no"  value="${favorite.favorite_no} "> 
-   <fieldset>
-       <span >
+<fieldset>
 
-         <img src="product_images/${productVO.product_image}" style="float:left; padding-left:50px; width:600px; height:auto;" />
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-6">	
+    <input type="hidden" id="favorite_no" name="favorite_no"  value="${favorite.favorite_no} "> 
+	         <img src="product_images/${productVO.product_image}" style="float:left;  padding-left:50px; width:600px; height:auto;" />
+    </div>
+    <div class="col-sm-6">
+    <br><br><br>
+         <h1>${productVO.product_name}<h1></h1> <br><br><br> 
+          가 격 : &nbsp; <fmt:formatNumber type="currency" value="${productVO.price}"/>
+          <br> <br> 샘플 사진의 레터링 및 커스텀은 예시이며 <strong> <span style="color:red;">미포함 </span></strong> 입니다.<br>
+          원하는 레터링 및 커스텀 옵션을 빠짐없이 작성해 주세요.<br>
+       
 
-       </span>              
-         <h1 align="center" style="padding-top:20px; margin-left:400px;">&nbsp;&nbsp;&nbsp;&nbsp; ${productVO.product_name} </h1>  <br><br><br> 
-                   <label  style="font-size:30px; margin-left:400px"> 가 격 : 
-     					&nbsp; <fmt:formatNumber type="currency" value="${productVO.price}"/>
-                   </label>
-               
-               <label style="strong-color:red; font-size:15px; margin-left:225px">
-                 <br> <br> 샘플 사진의 레터링 및 커스텀은 예시이며 <strong> <span style="color:red;">미포함 </span></strong> 입니다.<br>
-                   원하는 레터링 및 커스텀 옵션을 빠짐없이 작성해 주세요.
-               </label>
-                  
+ 
     
      <input  type="hidden" name="product_no" value="${productVO.product_no}"><br>
    
-        <br><br><br>   <br><br><br>   <br><br><br>
    <div id="buttons" style="padding-left:50px">
 <!-- 좋아요 버튼 -->				
 	<c:choose >
@@ -107,7 +97,7 @@
 	            <c:when test="${empty favorite.favorite_no}">
 	                <%-- 빈 하트일때 --%>
 	                <a idx="${productVO.product_no}" href="javascript:"
-	                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;margin-bottom:50px; margin-left:440px;">
+	                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;margin-bottom:50px;">
 	                    <svg
 	                        xmlns="http://www.w3.org/2000/svg" width="30" height="30"
 	                        fill="currentColor" class="bi bi-suit-heart"
@@ -119,7 +109,7 @@
 	            <c:otherwise>
 	                <%-- 꽉찬 하트일때 --%>
 	                <a idx="${productVO.product_no}" href="javascript:"
-	                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;margin-bottom:50px; margin-left:440px;" >
+	                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;margin-bottom:50px;" >
 	                    &nbsp;<svg
 	                        xmlns="http://www.w3.org/2000/svg" width="30" height="30"
 	                        fill="currentColor" class="bi bi-suit-heart-fill"
@@ -132,7 +122,7 @@
 	    </c:when>
 	    <%-- 로그인 상태가 아닐때  - 하트클릭 안되게 --%>
 	    <c:otherwise>
-	        <a href="javascript:" class="heart-notlogin" style="color:red;margin-bottom:50px; margin-left:440px;"> 
+	        <a href="javascript:" class="heart-notlogin" style="color:red;margin-bottom:50px;"> 
 	          <svg class="heart3" xmlns="http://www.w3.org/2000/svg"  width="30"
 	                height="30" fill="currentColor" class="bi bi-suit-heart"
 	                viewBox="0 0 16 16">
@@ -141,15 +131,17 @@
 	        </a>
 	    </c:otherwise>
 	</c:choose>
-	
 <%-- End of 좋아요  --%>
-   
-          <input type="button" value="주문서 작성하기"   class="submit"  style="font-size:15;width:150px; height:70;"  onclick="location.href='cart_write_form?product_no='+${productVO.product_no}">
-          </div>
-        </fieldset>
-        <br>
-      </form>  
+   찜<br>
+    <input type="button" value="주문서 작성하기"   class="submit"  style="font-size:15;width:200px; height:80;"  onclick="location.href='cart_write_form?product_no='+${productVO.product_no}">
     </div>
+    </div>
+    </div>
+  </div>    
+   
+  </fieldset>
+  <br>
+</form>  
 <div class="container" >
   <nav class="navbar navbar-expand-sm " style="background-color:#fdefec" >
     <div class="container-fluid">
@@ -162,6 +154,37 @@
       <a class="navbar-brand" href="#">Q&A</a>
     </div>
   </nav>
+</div>
+<div class="container text-center" >
+
+#레터링케이크 <br>
+
+#커스텀케이크 <br>
+
+#기념일케이크 <br>
+
+#이벤트케이크 <br>
+
+#주문제작케이크 <br>
+
+#명동케이크 <br>
+
+#을지로케이크 <br>
+
+#파티케이크 <br>
+
+#도시락케이크 <br>
+
+#미니케이크 <br>
+
+#당일레터링케이크 <br>
+
+#홈파티 <br>
+
+#남자친구생일케이크 <br>
+
+#여자친구생일케이크 <br>
+
 </div>
   <!-- 상품평 처리 -->
 <%@ include file="review.jsp" %>

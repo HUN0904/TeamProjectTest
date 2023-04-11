@@ -3,38 +3,7 @@
 <%@ include file="../header.jsp" %> 
 <!-- Required meta tags -->
 <style>
-#board-search .search-window {
-  padding: 15px 0;
-  background-color: #f9f7f9;
-}
-#board-search .search-window .search-wrap {
-  position: relative;
-/*   padding-right: 124px; */
-  margin: 0 auto;
-  width: 80%;
-  max-width: 564px;
-}
-#board-search .search-window .search-wrap input {
-  height: 40px;
-  width: 100%;
-  font-size: 14px;
-  padding: 7px 14px;
-  border: 1px solid #ccc;
-}
-#board-search .search-window .search-wrap input:focus {
-  border-color: #333;
-  outline: 0;
-  border-width: 1px;
-}
-#board-search .search-window .search-wrap .btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 108px;
-  padding: 0;
-  font-size: 16px;
-}
+
 .page-title {
   margin-bottom: 60px;
 }
@@ -109,23 +78,6 @@
             <h3>Q&A</h3>
         </div>
     </div>
-
-    <div id="board-search">
-        <div class="container">
-            <div class="search-window">
-                <form name="formm" method="post">
-                    <div class="search-wrap">
-                    	<input type="text" name="key" id="key">
-                        <input class="btn" type="button" name="btn_search" value="검색" placeholder="검색어를 입력해주세요." onClick="go_search()">
-                        <button type="submit" class="btn btn-dark">검색</button>
-                    </div>
-			      	<input type="button"  value=" 작성하기"  class="submit" onclick="location.href='qna_write_form'"> 
-                </form>
-            </div>
-        </div>
-    </div>
-    
-      
     <form name="formm" method="post"> 
     <table id="qnaList" class="table" style="text-align:center">
 	    <tr>
