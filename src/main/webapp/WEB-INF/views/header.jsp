@@ -24,12 +24,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 </head>
-<body>
-<nav class="border-bottom navbar navbar-expand-md bg-#FDE3CC navbar-light position:fixed">
-	<a class="navbar-brand" href="index">
-		<img src="images/default.jpg" style="white:30px; height:30px;">
-	</a>
-	<div class="collapse navbar-collapse" id="navbarText" style="padding:">
+<body style="background-color:#fdefec">
+<nav class="border-bottom navbar navbar-expand-md bg-#FDE3CC navbar-light position:fixed" style="background-color:#fdefec">
+	<div class="collapse navbar-collapse" id="navbarText" >
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link" href="index">홈</a>

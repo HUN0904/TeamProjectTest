@@ -74,24 +74,24 @@
 });
 </script>
 
-<div class="position-relative overflow-hidden p-3 p-md-3 m-md-3 text-center bg-body-tertiary">
-    <div class="col-md-7 p-lg-5 mx-auto my-5">
-    <img alt="" src="product_images/1.jpg" width ="auto" height="500" >
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+    <div class="image-box">
+    <img alt="" src="product_images/lily.jpg" style="width:800px; height:550px;">
       <h1 class="display-4 fw-normal"><font style="vertical-align: inherit;">
-      <font style="vertical-align: inherit;">케이크 주문제작 </font></font></h1>
+      <font style="vertical-align: inherit;">Custom CakeShop! </font></font></h1>
       <p class="lead fw-normal">
       <font style="vertical-align: inherit;">
 	      <font style="vertical-align: inherit;"> 
-	      주문제작 케이크 만들어 드려요.
+	      케이크 주문제작 사이트입니다!
 	      </font>
 	      <font style="vertical-align: inherit;">
-	      정성으로 만들어드림   
-	      </font>  
+	      
+	      </font>
       </font></p>
       <a class="btn btn-outline-secondary" href="product_images/1.jpg">
       <font style="vertical-align: inherit;">
 	      <font style="vertical-align: inherit;">
-	      곧 출시(깃허브 테스트중 이번엔 hun에서 올리고 test에서 받아와봄)
+	      출시예정!
 	      </font>
       </font></a>
     </div>
@@ -99,22 +99,21 @@
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
 
-    <div class="container">
+   <div class="container">
       <div class="row">
 	<c:forEach var="vo" items="${ProductList}" varStatus="st">
-      		<div class="card col-3 ml-5 mb-3 " >
-      		  
-
-		          <img src="product_images/${vo.product_image}"  alt="" class="card-img-top" width="auto" height="250"/>
+      		<div class="card col-3 mb-3" style="background-color:#fbe4e3">
+		          <img src="product_images/${vo.product_image}"  alt="" class="card-img-top" style="width:250px; height:250px;"/>
 			          <a href="product_detail?product_no=${vo.product_no}">
 			          
-		            <div class="card-body">
-		              <h5 class="card-title">제목임${vo.product_name }</h5>
-		              <p class="card-text">내용임${vo.content }</p>
+		            <div class="card-body" style="background-color:#fbe4e3">
+		              <h5 class="card-title">${vo.product_name }</h5>
+		              <p class="card-text">${vo.content }</p>
 		              <p class="card-text">
 		              	<fmt:formatNumber value="${vo.price}" type="number"/>원
 		              </p>
 		              <p class="card-text">리뷰<i class="bi bi-star-fill" style="color:#FACC00;"></i>${vo.avg_score}점 </p>
+		           
 		           
 		                <div class="card-icon">
       		    <form  method="post" action="cart_insert" name="formm" id="theform">
@@ -129,7 +128,7 @@
 				            <c:when test="${empty favorite.favorite_no}">
 				                <%-- 빈 하트일때 --%>
 				                <a idx="${vo.product_no}" href="javascript:"
-				                    class="heart-click heart_icon${favorite.favorite_no}">
+				                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;">
 				                    <svg
 				                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 				                        fill="currentColor" class="bi bi-suit-heart"
@@ -141,7 +140,7 @@
 				            <c:otherwise>
 				                <%-- 꽉찬 하트일때 --%>
 				                <a idx="${vo.product_no}" href="javascript:"
-				                    class="heart-click heart_icon${favorite.favorite_no}"><svg
+				                    class="heart-click heart_icon${favorite.favorite_no}" style="color:red;"><svg
 				                        xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 				                        fill="currentColor" class="bi bi-suit-heart-fill"
 				                        viewBox="0 0 16 16">
@@ -153,7 +152,7 @@
 				    </c:when>
 				    <%-- 로그인 상태가 아닐때  - 하트클릭 안되게 --%>
 				    <c:otherwise>
-				        <a href="javascript:" class="heart-notlogin"> 
+				        <a href="javascript:" class="heart-notlogin" style="color:red;"> 
 				          <svg class="heart3" xmlns="http://www.w3.org/2000/svg" width="16"
 				                height="16" fill="currentColor" class="bi bi-suit-heart"
 				                viewBox="0 0 16 16">
@@ -166,6 +165,7 @@
 	          찜하기</fieldset>
 	         </form>
 	       </div> 
+	  
        <!-- END 좋아요 -->
 		           </div>
 		          </a> 
