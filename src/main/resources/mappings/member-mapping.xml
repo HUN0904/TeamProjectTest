@@ -9,13 +9,6 @@
 	<select id="confirmID" resultType="String">
 		select pwd from member where id=#{id}
 	</select>
-		<select id="joinconfirmNickname" resultType="String">
-		select id from member where nickname=#{nickname}
-	</select>
-	
-	<select id="modifyconfirmNickname" resultType="String">
-		select id from member where nickname=#{nickname} and id != #{id}
-	</select>
 	
 	<select id="adminCheck" resultType="String">
 		SELECT admin FROM member WHERE id=#{id}
@@ -36,13 +29,30 @@
 		SELECT pwd FROM member WHERE id=#{id} AND name=#{name} AND email=#{email}
 	</select>
 	
-	<!-- 메일 보내기 -->
+<!-- 비밀번호 변경 -->
+	<update id="changePwd">
+		UPDATE member SET pwd=#{pwd} WHERE id=#{id}
+	</update>
+	
+<!-- 메일 보내기 -->
 	<select id="getPwdByNameEmail" resultType="String">
 		SELECT pwd FROM member WHERE name = #{name}
 	</select>
 	
-	<!-- 내 정보 수정 -->
-	<update id="modifyMember">
-		UPDATE member SET pwd=#{pwd},nickname=#{nickname},address=#{address},email=#{email},phone=#{phone} WHERE id=#{id}
+	<!-- 회원 등급 업데이트 -->
+	<update id="gradeUpdate">
+		 UPDATE member SET grade = #{grade} WHERE id = #{id}
 	</update>
+	
+	<!-- 등급 업데이트 대상 아이디 검색 -->
+	<select id="sumPriceById" resultType="String">
+		<![CDATA[
+		 SELECT m.id FROM member m, cart c, order_detail od
+	   	  WHERE m.id = c.id 
+	        AND c.cart_no = od.cart_no
+	        AND od.result = '1'
+	        GROUP BY m.id
+	        HAVING SUM(c.total_price) >= #{sum_price}
+	        ]]>
+	</select>
 </mapper>

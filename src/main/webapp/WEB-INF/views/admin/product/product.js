@@ -1,12 +1,3 @@
-/*
- *  상품등록 화면 표시 요청
- */
-function go_wrt() {
-	var form = document.getElementById("prod_form");
-	
-	form.action = "admin_product_write_form";
-	form.submit();
-}
 
 function go_search() {
 	var form = document.getElementById("prod_form");
@@ -51,15 +42,6 @@ function product_save() {
 	}
 }
 
-
-
-function go_list() {
-	var form = document.getElementById("detail_form");
-	
-	form.action = "admin_product_list";
-	form.submit();
-}
-
 function go_mod(product_no) {
 	var form = document.getElementById("detail_form");
 	form.action = "admin_product_update_form?product_no="+product_no;
@@ -92,7 +74,12 @@ function go_mod_save(product_no) {
 }
 
 
-
+function go_list() {
+	var form = document.getElementById("detail_form");
+	
+	form.action = "admin_product_list";
+	form.submit();
+}
 
 
 

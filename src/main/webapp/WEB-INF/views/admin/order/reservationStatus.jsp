@@ -50,10 +50,10 @@ function search_date(){
 
 <form name="frm" id="order_form" method="post">
 
-<table class="table" id="dateOrderList" style="text-align:center">
+<table class="table" id="dateOrderList" style="text-align:center;">
 	
     <tr>
-    	<th rowspan="11" ><div id="datepicker"></div></th>
+    	<th rowspan="11" ><div id="datepicker" style="position: relative; left: -10px;"></div></th>
         <th>주문번호</th>
         <th>상품명</th>
         <th>주문자</th>

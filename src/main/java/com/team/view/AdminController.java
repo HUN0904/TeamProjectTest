@@ -122,8 +122,9 @@ public class AdminController {
 			return "member/login";
 		} else {		
 			String[] kindList = {"", "초코" , "바닐라" , "오레오" , "카스테라"};
-			int index = vo.getCategory_no();			
+						
 			ProductVO product = productService.getProduct(vo);
+			int index = product.getCategory_no();
 			model.addAttribute("productVO",product);
 			model.addAttribute("kindList", kindList[index]);
 			return "admin/product/adminProductDetail";
@@ -183,16 +184,6 @@ public class AdminController {
 		
 	}
 	/* ================================예약현황(reservationStatus)================================ */
-	// 예약 현황 조회
-//	@RequestMapping("/reservation_status")
-//	public String orderListByDate(
-//	        @RequestParam(value="date", defaultValue = "") String date, Model model) {
-//	    System.out.println("date 값 ==["+date+"]");
-//	    List<OrderVO> orderList = orderService.getOrderListByDate(date);
-//
-//	    model.addAttribute("orderList",orderList);
-//	    return "admin/order/reservationStatus";
-//	}
 	
 	@RequestMapping("/reservation_status")
 	public String listOrderWithPagingByDate(

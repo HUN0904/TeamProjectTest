@@ -8,7 +8,7 @@ import utils.Criteria;
 
 public interface OrderService {
 
-	int selectMaxOrder_no();
+int selectMaxOrder_no();
 	
 	int orderInsert(OrderVO vo);
 
