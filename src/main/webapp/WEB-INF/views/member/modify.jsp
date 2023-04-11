@@ -20,7 +20,7 @@
         	*닉네임 변경을 원하신다면 닉네임 중복체크를 꼭 해주세요<br>
 
         <label>E-Mail</label>
-        <input type="text" name="email" id="email" value="${sessionScope.loginUser.email }"><br>
+        <input type="text" name="email" id="email" value="${sessionScope.loginUser.email }" readonly><br>
         <label>Phone Number</label> 
         <input  type="text" name="phone1" id = "phone1" size="3">-
         <input  type="text" name="phone2" id = "phone2" size="4">-
