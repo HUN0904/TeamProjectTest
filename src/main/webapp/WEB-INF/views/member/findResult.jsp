@@ -6,7 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<link href="CSS/subpage.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/common.css">  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+
 <style type="text/css">
 body{   
   background-color:;

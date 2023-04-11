@@ -16,6 +16,27 @@ function idcheck() {
 			"toolbar=no, menubar=no, scrollbars=no, width=450, height=350");
 
 }
+
+function emailcheck() {
+
+	// 이메일 정규식
+	var checkemail = /^[^\s@]+@[^\s@]+\.(com|net|co\.kr)$/;
+	if (document.getElementById("email").value == "") {
+		alert("이메일을 입력 해 주세요.");
+		document.getElementById("email").focus();
+		return false;
+		// 아이디
+	} else if (checkemail.test(document.getElementById("email").value) == false) {
+		alert("아이디는 영어 소문자와 숫자만 사용 가능하며 6자 이상이어야 합니다.");
+		document.getElementById("email").focus();
+		return false;
+	}
+	var url = "email_check_form?email=" + document.getElementById("email").value;
+	window.open(url, "_balnk_",
+			"toolbar=no, menubar=no, scrollbars=no, width=450, height=350");
+
+}
+
 function joinnicknamecheck() {
 	if (document.getElementById("nickname").value == "") {
 		alert("닉네임을 입력 해 주세요.");
@@ -45,8 +66,6 @@ function modifynicknamecheck() {
 function join_save() {
 	// 비밀번호 정규식
 	var checkpwd = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-	// 이메일 정규식
-	var checkemail = /^[^\s@]+@[^\s@]+\.(com|net|co\.kr)$/;
 	// 핸드폰 정규식
 	var checkphone = /^\d{3}\d{3,4}\d{4}$/;
 	// 입력체크
@@ -86,6 +105,9 @@ function join_save() {
 	} else if (document.getElementById("email").value == "") {
 		alert("이메일을 입력하세요.");
 		document.getElementById("email").focus;
+	} else if(document.getElementById("reemail").value == "") {
+		alert("이메일 중복 체크를 해주세요.");
+		document.getElementById("email").focus;
 		return false;
 		// 패스워드
 	} else if (checkpwd.test(document.getElementById("pwd").value) == false) {
@@ -100,10 +122,6 @@ function join_save() {
 		document.getElementById("phone1").focus();
 		return false;
 		// 이메일
-	} else if (checkemail.test(document.getElementById("email").value) == false) {
-		alert("이메일 주소가 옳지않습니다.");
-		document.getElementById("email").focus();
-		return false;
 	} else {
 		document.getElementById("join").action = "join";
 		document.getElementById("join").submit();
@@ -187,17 +205,17 @@ function findMemberId() {
 
 function sendpwd() {
 
-	if (document.getElementById("id2").value == "") {
+	if (document.getElementById("receiverId").value == "") {
 		alert("아이디를 입력해 주세요");
-		document.getElementById("id2").focus();
+		document.getElementById("receiverId").focus();
 		return false;
-	} else if (document.getElementById("name2").value == "") {
+	} else if (document.getElementById("receiverName").value == "") {
 		alert("이름을 입력해 주세요");
-		document.getElementById("name2").focus();
+		document.getElementById("receiverName").focus();
 		return false;
-	} else if (document.getElementById("email2").value == "") {
+	} else if (document.getElementById("receiver").value == "") {
 		alert("이메일을 입력해 주세요");
-		document.getElementById("email2").focus();
+		document.getElementById("receiver").focus();
 		return false;
 	} else {
 		var form = document.getElementById("findPwd");

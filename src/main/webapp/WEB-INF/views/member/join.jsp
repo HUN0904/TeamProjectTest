@@ -31,6 +31,8 @@
         <br>
         <label>E-Mail</label>
         <input type="text" class="form-control" name="email" id="email" placeholder="email">
+        <input type="hidden"    name="reemail" id="reemail" value="${reemail}">
+        <input type="button"    value="중복 체크"  class="dup" onclick="emailcheck()"><br>
         <br>
         <label>Phone Number</label><br>
 		<div class="d-inline-flex">

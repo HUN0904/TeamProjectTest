@@ -2,8 +2,8 @@
   pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
 <script type="text/javascript" src="admin/product/product.js"></script>
-<article>
-<h1 align="center">상품리스트</h1>	
+<article style="background-color:#fdefec">
+<h1 align="center" >상품리스트</h1>	
 <form name="frm" id="prod_form" method="post">
 <table>
   <tr>
@@ -16,14 +16,13 @@
   </td>
   </tr>
 </table>
-<table class="table" id="productList" style="text-align:center">
+<table class="table" id="productList" style="text-align:center; background-color:#fdefec">
     <tr>
         <th>번호</th>
         <th>상품명</th>
         <th>원가</th>
         <th>판매가</th>
         <th>등록일</th>
-        <th>관리자페이지에서 더볼것들 여기서부터 추가</th>
     </tr>
     <c:choose>
     <c:when test="${productListSize<=0}">
@@ -36,10 +35,8 @@
 	<c:otherwise>
 	<c:forEach items="${productList}" var="productVO" varStatus="status">
     <tr>
-      <%-- <td height="23" align="center" >${productVO.pseq}</td> --%>
       <td height="23" align="center">${status.count}</td>
-      <td  style="text-align: left; padding-left: 50px; padding-right: 0px;">   
-<%--          <a href="#" onclick="go_detail('${pageMaker.criteria.pageNum}','${pageMaker.criteria.rowsPerPage}','${productVO.pseq}')"> --%>
+      <td  style="text-align: center; padding-left: 50px; padding-right: 0px;">   
   		<a href="admin_product_detail?product_no=${productVO.product_no}">    
     	 ${productVO.product_name}     
    		</a>
@@ -47,12 +44,9 @@
    	  <td><fmt:formatNumber value="${productVO.price}"/>여기도변경</td>
       <td><fmt:formatNumber value="${productVO.price}"/></td>
       <td><fmt:formatDate value="${productVO.product_regdate}"/></td>
-      <td>
-		여기다 볼것들 더추가 	
-   	  </td> 
     </tr>
     </c:forEach>
-    <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
+    <tr ><td colspan="6" style="text-align: center;"> ${paging} </td></tr>
 	</c:otherwise>	
 </c:choose>  
 </table>

@@ -158,15 +158,15 @@ function dateRange(){
 	<div align="center">
 	<h1>제품 판매 실적</h1>
 	<form id="sales_form" method="post">
-	<table>
+	<table >
 			<p>조회 기간
-		        <input type="text" id="sdate" readonly><input type="hidden" name="start_date" id="start_date" > ~
-		        <input type="text" id="edate" readonly><input type="hidden" name="end_date" id="end_date">${pickDate}
+		        <input type="text" id="sdate" readonly ><input type="hidden" name="start_date" id="start_date" > ~
+		        <input type="text" id="edate" readonly><input type="hidden" name="end_date" id="end_date" >${pickDate}
 		        <input type="button" id="searchButton" value="검색" >
 		        
 		    </p>
-		<tr>
-			<td><div id="piechart_div" ></div></td>
+		<tr >
+			<td><div id="piechart_div"  ></div></td>
 			<td><div id="barchart_div" ></div></td>
 			<td><div id="price_div" ></div></td>
 		</tr>

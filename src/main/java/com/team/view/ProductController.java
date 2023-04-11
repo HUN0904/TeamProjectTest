@@ -26,31 +26,30 @@ public class ProductController {
 	@Autowired
 	private FavoriteService favoriteService;
 	@Autowired
-    private ReviewService reviewService;
-  
+	private ReviewService reviewService;
 	@RequestMapping(value="/product_detail", method=RequestMethod.GET)
-    public String productDetailAction(ProductVO vo, Model model,HttpSession session){
-       MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-       
-         ProductVO product=productService.getProduct(vo);
-         model.addAttribute("productVO", product);
-         int reviewCnt=reviewService.getCountReviewList(vo.getProduct_no());
-         //상품별 별점
-         if(reviewCnt > 0) {
-            double avg=reviewService.getAvgReviewScore(vo.getProduct_no());
-            model.addAttribute("avg", avg);
-            model.addAttribute("cnt",reviewCnt);
-         }
-         if(loginUser!=null) {
-            FavoriteVO fvo =  new FavoriteVO();
-            fvo.setId(loginUser.getId());
-            fvo.setProduct_no(vo.getProduct_no());
-            //찜 하트
-            FavoriteVO favorite= favoriteService.getHeartByProduct(fvo);
-            model.addAttribute("favorite", favorite);
-         }
-         return "product/productDetail";
-   }
+	public String productDetailAction(ProductVO vo, Model model,HttpSession session){
+	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+	    
+	      ProductVO product=productService.getProduct(vo);
+	      model.addAttribute("productVO", product);
+	      int reviewCnt=reviewService.getCountReviewList(vo.getProduct_no());
+	      //상품별 별점
+	      if(reviewCnt > 0) {
+	         double avg=reviewService.getAvgReviewScore(vo.getProduct_no());
+	         model.addAttribute("avg", avg);
+	         model.addAttribute("cnt",reviewCnt);
+	      }
+	      if(loginUser!=null) {
+	         FavoriteVO fvo =  new FavoriteVO();
+	         fvo.setId(loginUser.getId());
+	         fvo.setProduct_no(vo.getProduct_no());
+	         //찜 하트
+	         FavoriteVO favorite= favoriteService.getHeartByProduct(fvo);
+	         model.addAttribute("favorite", favorite);
+	      }
+	      return "product/productDetail";
+	}
 	
 	// 리스트 이동
 	@GetMapping("/product_list")
