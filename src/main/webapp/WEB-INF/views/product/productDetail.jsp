@@ -165,7 +165,9 @@
 </div>
   <!-- 상품평 처리 -->
 <%@ include file="review.jsp" %>
+<%@ include file="../qna/qna.jsp" %>
   </article>
+  
 <%@ include file="../footer.jsp" %>  
 
 

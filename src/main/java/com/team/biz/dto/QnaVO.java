@@ -19,5 +19,6 @@ public class QnaVO {
 	private String content;
 	private int reply;
 	private Date reply_date;
-
+	private String rcontent;
+	
 }

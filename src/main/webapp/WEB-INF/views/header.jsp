@@ -38,7 +38,7 @@
 				<a class="nav-link" href="notices_list">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="">추가할메뉴</a>
+				<a class="nav-link" href="qna_list">Q&A</a>
 			</li>	
 			<c:if test="${sessionScope.loginUser.admin eq 'admin'}">		
 			<li class="nav-item">
