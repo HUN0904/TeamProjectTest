@@ -34,5 +34,3 @@
 	</div>
 </nav>
 <div class="clear"></div>
-  <section class="container"> 
-  <div class="card p-4 m-5">

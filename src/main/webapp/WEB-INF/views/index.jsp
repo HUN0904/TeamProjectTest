@@ -99,12 +99,11 @@
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
   </div>
 
+ 
     <div class="container">
-      <div class="row">
-	<c:forEach var="vo" items="${ProductList}" varStatus="st">
-      		<div class="card col-3 ml-5 mb-3 " >
-      		  
-
+      <div class="row" >
+    	<c:forEach var="vo" items="${ProductList}" varStatus="st">
+      		<div class="card col-3 ml-3 mb-3" >
 		          <img src="product_images/${vo.product_image}"  alt="" class="card-img-top" width="auto" height="250"/>
 			          <a href="product_detail?product_no=${vo.product_no}">
 			          
