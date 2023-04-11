@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%> 
   <article>
-    <h1> 공지사항 </h1>
+    <h1 align="center"> 공지사항 </h1>
     <form name="formm" method="post">
     <table id="noticesList" class="table" style="text-align:center">
 	    <tr>

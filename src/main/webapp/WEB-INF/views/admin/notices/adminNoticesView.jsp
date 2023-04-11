@@ -2,19 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>  
   <article>
-      <h2> 공지사항 </h2>
+      <h2 align="center"> 공지사항 </h2>
     <form name="formm" method="post">
     <table class="table" id="notice" border="1"   style="table-layout: fixed">
 	    <tr>
 	    	<th>
-	      		<h3> ${noticesVO.title}</h3><br>
-	      		&nbsp;${noticesVO.id}&nbsp;
+	      		<h3> ${noticesVO.title}</h3>
+	        </th>
+	   </tr>
+	   
+	   <tr>
+	        <th style="text-align:right; padding-right:100px ">
+	            &nbsp;${noticesVO.id}&nbsp;
 		        <fmt:formatDate value="${noticesVO.notices_date}" type="date"/>
 	    		&nbsp;조회&nbsp;${noticesVO.hits}
 	        </th>
-	    </tr>
+	   
+	   </tr>
 	    <tr>
-	      <td>${noticesVO.content}</td>
+	      <td> <textarea rows="20" cols="80">${noticesVO.content}</textarea></td>
 	    </tr>
     </table>
     <div class="clear"></div>

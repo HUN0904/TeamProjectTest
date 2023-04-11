@@ -10,9 +10,9 @@
 <html>
 <body>
 <div class="container">
-	<div class="card p-4 m-5">
+	<div class="card p-4 m-5" style="background-color:#fdefec">
          <div>
-            <h3>Q&A </h3>
+            <h3 style="background-color:#fdefec">Q&A </h3>
         </div>	
     <form id="qnaListForm" name="qnaListForm" method="post">
         <div id="qnaList">
@@ -22,11 +22,11 @@
 	</div>
 </div>
 <div class="container">
-	<div class="card p-4 m-5">
+	<div class="card p-4 m-5" style="background-color:#fdefec">
 	<form id="qnaForm" name="qnaForm" method="post" >
 	<h2>Q&A 작성하기</h2>
-		<input type="text" id="title" name="title" size="55" placeholder="문의 하실 제목을 입력하세요"><br><br>
-		<textarea  rows="12" cols="100" id="qna_content" name="qna_content" placeholder="문의 하실 내용을 입력하세요"></textarea>
+		<input type="text" id="title" name="title" size="55"   placeholder="문의 하실 제목을 입력하세요"><br><br>
+		<textarea  style="background-color:#fdefec" rows="12" cols="100" id="qna_content" name="qna_content" placeholder="문의 하실 내용을 입력하세요"></textarea>
 	    <div >
 	    <input type="radio" name="secret_yn" value="n"> 비공개 &nbsp; &nbsp; &nbsp;
 	    <input type="radio" name="secret_yn" value="y" checked> 공개

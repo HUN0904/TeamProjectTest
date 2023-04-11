@@ -41,9 +41,9 @@
 </head>
 <body>
 <div class="container">
-	<div class="card p-4 m-5">
+	<div class="card p-4 m-5" style="background-color:#fdefec">
          <div>
-            <h2>구매후기<c:if test="${cnt>0 }">(${cnt })</h2>
+            <h2>구매후기<c:if test="${cnt>0}">(${cnt })</h2>
         </div>
         <div>
         
@@ -73,7 +73,7 @@
 	</div>
 </div>
 <div class="container">
-	<div class="card p-4 m-5">
+	<div class="card p-4 m-5" style="background-color:#fdefec">
     <form id="reviewForm" name="reviewForm" method="post" enctype="multipart/form-data">
 <h2>리뷰작성</h2>
 	    <div id="myform">
@@ -87,7 +87,7 @@
 			</fieldset>
 		</div>
 		<div class="input-group">
-			<input type="file" class="form-control" id="image" name="image" >
+			<input type="file" style="background-color:#fdefec" class="form-control" id="image" name="image" >
 		</div>
 		<div>
 			<textarea  rows="2" cols="60" id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
