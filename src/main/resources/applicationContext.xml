@@ -57,7 +57,7 @@
 	
 	<!-- 이메일 발송 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	    <property name="host" value="smtp.naver.com" /> <!--  gmail을 사용-->
+	    <property name="host" value="smtp.naver.com" /> <!--  naver를 사용-->
 	    <property name="port" value="587" />
 	    <property name="username" value="ehdtn3291@naver.com" />
 	    <property name="password" value="ghfaos87" />
