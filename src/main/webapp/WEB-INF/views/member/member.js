@@ -27,7 +27,7 @@ function emailcheck() {
 		return false;
 		// 아이디
 	} else if (checkemail.test(document.getElementById("email").value) == false) {
-		alert("아이디는 영어 소문자와 숫자만 사용 가능하며 6자 이상이어야 합니다.");
+		alert("올바르지 않은 메일 형식입니다.");
 		document.getElementById("email").focus();
 		return false;
 	}
