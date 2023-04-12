@@ -48,6 +48,37 @@ public class AdminController {
 	@Autowired
 	private QnaService qnaService;
 
+	/*====================MEMBER======================*/
+	   @RequestMapping("/admin_member_list")
+	   public String adminMemberList(
+	         MemberVO vo,
+	         @RequestParam(value="pageNum", defaultValue="1") String pageNum,
+	         @RequestParam(value="rowsPerPage", defaultValue="5") String rowsPerPage,
+	         @RequestParam(value="key", defaultValue="") String name, 
+	         Model model) {
+
+	      Criteria criteria = new Criteria();
+	      criteria.setPageNum(Integer.parseInt(pageNum));
+	      criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
+
+	      System.out.println("adminMemberList() : criteria="+criteria);
+
+	      // (1) 전체 상품목록 조회
+	      List<MemberVO> memberlist = memberService.listMemberWithPaging(criteria, name);
+
+	      // (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
+	      PageMaker pageMaker = new PageMaker();
+	      pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
+	      pageMaker.setTotalCount(memberService.countmemberlist(name));
+
+
+	      // (2) model 객체에 목록 저장
+	      model.addAttribute("memberlist", memberlist);
+	      model.addAttribute("memberlistSize", memberlist.size());
+	      model.addAttribute("pageMaker", pageMaker);
+	      return "admin/member/memberlist";
+	   }
+	
 
 	/* ================================상품(product)================================ */
 	
