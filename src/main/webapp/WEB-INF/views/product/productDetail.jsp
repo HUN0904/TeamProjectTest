@@ -83,7 +83,7 @@
           <br> <br> 샘플 사진의 레터링 및 커스텀은 예시이며 <strong> <span style="color:red;">미포함 </span></strong> 입니다.<br>
           원하는 레터링 및 커스텀 옵션을 빠짐없이 작성해 주세요.<br>
        
-     <div class="container text-center" >
+     <div class="container text-center position:fixed" >
 				#레터링케이크 <br>
 				#커스텀케이크 <br>
 				#기념일케이크 <br>

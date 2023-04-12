@@ -44,7 +44,7 @@
       <div class="clear"></div>
       <div id="buttons">
         <input type="button"    value="수정"   class="submit" onclick="modify_save()"> 
-        <input type="reset" value="취소" />
+        <input type="reset" onclick="location='index'" value="취소" />
       </div>
       <br>
     </form>
