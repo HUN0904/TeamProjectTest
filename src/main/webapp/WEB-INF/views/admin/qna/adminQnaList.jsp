@@ -15,7 +15,7 @@
 	<c:forEach items="${qnaList}"  var="qnaVO">
 		<tr>  
 		  <td> ${qnaVO.qna_no} </td>    
-		  <td> <a href="admin/qna_update_form?qna_no=${qnaVO.qna_no}"> ${qnaVO.title}</a> </td>     
+		  <td> <a href="qna_view?qna_no=${qnaVO.qna_no}"> ${qnaVO.title}</a> </td>     
 		  <td> ${qnaVO.id}</td> 
 		  <td> <fmt:formatDate value="${qnaVO.qna_regdate}" type="date"/></td>
 		</tr>
