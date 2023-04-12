@@ -29,6 +29,8 @@
 	}
 </script>
 <article>
+  <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
 <h1 align="center">주문 리스트</h1>	
 <form name="frm" id="order_form" method="post">
 <table>
@@ -108,6 +110,8 @@
 		</c:if>				
 	</ul>
 </div>
+</div>
+</section>
 </article>
 <%@ include file="../../footer.jsp" %>
 

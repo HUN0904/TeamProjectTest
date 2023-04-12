@@ -45,6 +45,10 @@ public class QnaServiceImpl implements QnaService {
 	public void updateQna(QnaVO vo) {
 		qnaDao.updateQna(vo);
 	}
+	@Override
+	public void deleteQna(int qna_no) {
+		qnaDao.deleteQna(qna_no);
+	}
 
 
 }

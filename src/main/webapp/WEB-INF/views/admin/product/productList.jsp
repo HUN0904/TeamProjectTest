@@ -3,6 +3,8 @@
 <%@ include file="../adminheader.jsp"%>
 <script type="text/javascript" src="admin/product/product.js"></script>
 <article style="background-color:#fdefec">
+  <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
 <h1 align="center" >상품리스트</h1>	
 <form name="frm" id="prod_form" method="post">
 <table>
@@ -16,7 +18,7 @@
   </td>
   </tr>
 </table>
-<table class="table" id="productList" style="text-align:center; background-color:#fdefec">
+<table class="table" id="productList" >
     <tr>
         <th>번호</th>
         <th>상품명</th>
@@ -53,6 +55,8 @@
 </form> 
 
 <%@ include file="../page_area.jsp" %>
+</div>
+</section>
 </article>
 
 <%@ include file="../../footer.jsp" %>

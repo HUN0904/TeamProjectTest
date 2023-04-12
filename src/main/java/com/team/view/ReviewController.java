@@ -31,8 +31,9 @@ public class ReviewController {
 	
 	
 	@GetMapping(value="/list", produces="application/json; charset=UTF-8")
-	public Map<String, Object> reviewList(ReviewVO vo, Criteria criteria) {
+	public Map<String, Object> reviewList(HttpSession session, ReviewVO vo, Criteria criteria) {
 		Map<String, Object> reviewInfo = new HashMap<>();
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
 		// 상품 댓글 목록 조회
 		List<ReviewVO> reviewList 
 				= reviewService.getReviewListWithPaging(criteria, vo.getProduct_no());
@@ -71,6 +72,9 @@ public class ReviewController {
 	            reviewVO.setScore(score);
 	        }else {
 	        	return "not_score";
+	        }
+	        if (reviewVO.getContent() == null || reviewVO.getContent().equals("")) {
+	            return "not_content";
 	        }
 	        reviewVO.setReview_image(fileName); // 테이블에 파일명 저장 용도
 	        if (reviewService.saveReview(reviewVO) > 0) {

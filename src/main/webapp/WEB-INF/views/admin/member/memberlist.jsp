@@ -34,7 +34,7 @@ function member_total() {
   </td>
   </tr>
 </table>
-<table class="table" id="memberlist" style="table-layout: fixed">
+<table class="table" id="memberlist" style="text-align:center">
     <tr>
         <th>ID</th>
         <th>이름</th>

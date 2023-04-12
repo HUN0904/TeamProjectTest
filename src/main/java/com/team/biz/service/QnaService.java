@@ -20,4 +20,6 @@ public interface QnaService {
 	int insertQna(QnaVO vo);
 	
 	void updateQna(QnaVO vo);
+	
+	void deleteQna(int qna_no);
 }

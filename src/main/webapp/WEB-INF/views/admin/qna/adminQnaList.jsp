@@ -2,31 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%> 
   <article>
+    <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
     <h1 align="center"> Q&A관리 </h1>
     <form name="formm" method="post">
-    <table id="qnaList" class="table" style="text-align:center">
+    <table id="qnaList" class="table" >
 	    <tr>
 	      <th>번호</th> 
 	      <th>제목</th> 
 	      <th>등록자</th> 
 	      <th>등록일</th> 
-	      <th>조회수</th>    
+	      <th>답변상태</th> 
 	    </tr>
 	<c:forEach items="${qnaList}"  var="qnaVO">
-		<tr>  
+		<tr> 
 		  <td> ${qnaVO.qna_no} </td>    
-		  <td> <a href="qna_view?qna_no=${qnaVO.qna_no}"> ${qnaVO.title}</a> </td>     
+		  <td> <a href="qna_update_form?qna_no=${qnaVO.qna_no}"> ${qnaVO.title}</a> </td>     
 		  <td> ${qnaVO.id}</td> 
 		  <td> <fmt:formatDate value="${qnaVO.qna_regdate}" type="date"/></td>
+		  <td> 
+			  <c:if test="${qnaVO.reply==0 }">미답변</c:if>
+	 		  <c:if test="${qnaVO.reply==1 }">답변완료</c:if>
+ 		  </td>
 		</tr>
 	</c:forEach>    
     </table>
     
-      <c:if test="${sessionScope.loginUser.admin == 'admin'}">
-	   	  <div id="buttons" style="float:right">
-	      	<input type="button"  value="Q&A 작성하기"  class="submit" onclick="location.href='qna_update_form'">
-	      </div>
- 	  </c:if>
     </form>
 <div class="d-flex justify-content-center">
 	<ul class="pagination">
@@ -48,6 +49,8 @@
 		</c:if>				
 	</ul>
 </div> 
+</div>
+</section>
   </article>
 <%@ include file="../../footer.jsp" %>
 

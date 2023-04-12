@@ -7,11 +7,11 @@
     <h2> Q&A  상세 내용 </h2><hr>
 	<h3>문의한 제목  :  ${qnaVO.title}</h3>
 	      		&nbsp;${qnaVO.id}&nbsp;
-		        <fmt:formatDate value="${qnaVO.qna_regdate}" type="date"/>
+		        <fmt:formatDate value="${qnaVO.qna_regdate}" type="date"/><hr>
 		        
     <form name="formm" method="post">
      &nbsp;내용  :   ${qnaVO.content}<br><br><hr>
-     
+     &nbsp;답변 내용  :
  	<c:if test="${qnaVO.reply==0 }">아직 답변 내용이 없습니다.</c:if><br>
  	<c:if test="${qnaVO.reply==1 }">${qnaVO.rcontent}</c:if><br>
     <div class="clear"></div>

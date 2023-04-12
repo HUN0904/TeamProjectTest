@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>  
   <article>
-      <h2 align="center"> 공지사항 </h2>
+    <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
+      <h2> 공지사항 </h2>
     <form name="formm" method="post">
-    <table class="table" id="notice" border="1"   style="table-layout: fixed">
+    <table class="table" id="notice" style="text-align:center">
 	    <tr>
 	    	<th>
 	      		<h3> ${noticesVO.title}</h3>
@@ -31,5 +33,7 @@
 		</c:if>
       </div>
     </form>
+    </div>
+    </section>
   </article>
 <%@ include file="../../footer.jsp" %>
