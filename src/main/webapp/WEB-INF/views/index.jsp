@@ -88,7 +88,7 @@
 	      
 	      </font>
       </font></p>
-      <a class="btn btn-outline-secondary" href="product_images/1.jpg">
+      <a class="btn btn-outline-secondary" href="#">
       <font style="vertical-align: inherit;">
 	      <font style="vertical-align: inherit;">
 	      출시예정!
