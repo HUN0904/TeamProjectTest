@@ -459,9 +459,9 @@ public class AdminController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
 		pageMaker.setTotalCount(memberService.countmemberlist(name));
-		//pageMaker.setTotalCount(memberService.countmemberlist(name)); // 전체 게시글의 수 저장
 
-		// (2) model 객체에 상품 목록 저장
+
+		// (2) model 객체에 목록 저장
 		model.addAttribute("memberlist", memberlist);
 		model.addAttribute("memberlistSize", memberlist.size());
 		model.addAttribute("pageMaker", pageMaker);

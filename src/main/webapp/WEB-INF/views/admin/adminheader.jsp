@@ -28,6 +28,11 @@
 			<li class="nav-item">
 				<a class="nav-link" href="admin_sales_record_form">판매 실적</a>
 			</li>
+			
+			<li class="nav-item">
+            	<a class="nav-link" href="admin_member_list">회원관리</a>
+         	</li>
+         	
 		</ul>
 	</div>
 	
