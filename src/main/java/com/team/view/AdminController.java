@@ -2,6 +2,8 @@ package com.team.view;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,6 +48,7 @@ public class AdminController {
 
 	@Autowired
 	private NoticesService noticesService;
+	
 	@Autowired
 	private QnaService qnaService;
 
@@ -79,6 +83,34 @@ public class AdminController {
 	      return "admin/member/memberlist";
 	   }
 	
+	   /* ========================================판매 실적(sales)======================================== */
+
+		
+		@RequestMapping("/admin_sales_record_form")
+		public String adminProductSalesForm() {
+			
+			return "admin/order/salesRecords";
+		}
+		
+		@RequestMapping("/sales_record_chart")
+		@ResponseBody  // 화면이 아닌 데이터를 리턴하는 메소드로 지정
+		public List<OrderVO> salesRecordChart(OrderVO vo,
+				@RequestParam(value="start_date", defaultValue="2023-01-01") String start_date,
+				@RequestParam(value="end_date", defaultValue="2100-01-01") String end_date) {
+			if(end_date=="") {
+				LocalDate nowDate = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				end_date =nowDate.format(formatter);
+			}
+			System.out.println("start_date="+start_date);
+			System.out.println("end_date="+end_date);
+			vo.setEnd_date(end_date);
+			vo.setStart_date(start_date);
+			List<OrderVO> listSales = orderService.getListProductSales(vo);
+			
+			return listSales;
+		}
+	   
 
 	/* ================================상품(product)================================ */
 	

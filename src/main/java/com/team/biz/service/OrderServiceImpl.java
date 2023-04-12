@@ -121,4 +121,10 @@ public class OrderServiceImpl implements OrderService {
 		
 		orderDAO.updateOrderResult(order_dno);
 	}
+	
+	@Override
+	public List<OrderVO> getListProductSales(OrderVO vo){
+		
+		return orderDAO.listProductSales(vo);
+	}
 }
