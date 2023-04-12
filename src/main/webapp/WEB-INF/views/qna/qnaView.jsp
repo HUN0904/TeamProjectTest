@@ -3,8 +3,8 @@
 <%@ include file="../header.jsp" %> 
   <article>
     <section class="container"> 
-  <div class="card p-4 m-5">
-    <h2> Q&A  상세 내용 </h2><hr>
+  <div class="card p-4 m-5" style="background-color:#fdefec">
+    <h2 style="background-color:#fdefec"> Q&A  상세 내용 </h2><hr>
 	<h3>문의한 제목  :  ${qnaVO.title}</h3>
 	      		&nbsp;${qnaVO.id}&nbsp;
 		        <fmt:formatDate value="${qnaVO.qna_regdate}" type="date"/><hr>
