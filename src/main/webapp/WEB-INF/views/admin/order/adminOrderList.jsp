@@ -29,6 +29,8 @@
 	}
 </script>
 <article>
+  <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
 <h1 align="center">주문 리스트</h1>	
 <form name="frm" id="order_form" method="post">
 <table>
@@ -75,7 +77,7 @@
         	<td><input type="checkbox" name="order_dno" id="order_dno" value= "${order.order_dno}"></td>
         </c:when>
       	<c:otherwise>
-        	<td colspan="2"> 주문 처리 완료 </td>
+        	<td> 주문 처리 완료 </td>
       	</c:otherwise>
       </c:choose>
       <td></td>
@@ -108,6 +110,8 @@
 		</c:if>				
 	</ul>
 </div>
+</div>
+</section>
 </article>
 <%@ include file="../../footer.jsp" %>
 

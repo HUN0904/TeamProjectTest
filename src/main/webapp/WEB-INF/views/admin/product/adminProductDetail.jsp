@@ -2,8 +2,8 @@
   pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
 <script type="text/javascript" src="admin/product/product.js"></script>
-  <section class="container"> 
-  <div class="card p-4 m-5">
+  <section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
 <article>
 <h1 align="center">상품 상세 보기</h1> 
 <hr>

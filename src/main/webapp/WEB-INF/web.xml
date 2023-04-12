@@ -29,7 +29,7 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 브라우저에서 URL 요청 시, 서블릿으로부터 가로채서 인코딩 처리 -->
 	<filter>
 		<filter-name>characterEncoding</filter-name>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ include file="../adminheader.jsp"%>
-  <section class="container"> 
-  <div class="card p-4 m-5">
+  <section class="container" > 
+  <div class="card p-4 m-5"style="background-color:#fdefec">
   <script type="text/javascript">
 function member_search() {
 	var form = document.getElementById("member_form");
@@ -34,7 +34,7 @@ function member_total() {
   </td>
   </tr>
 </table>
-<table class="table" id="memberlist" style="table-layout: fixed">
+<table class="table" id="memberlist" style="text-align:center">
     <tr>
         <th>ID</th>
         <th>이름</th>
@@ -63,7 +63,7 @@ function member_total() {
       <td>${memberVO.address}</td>
       <td>${memberVO.email}</td> 
       <td>${memberVO.grade }</td>
-      <td>${memberVO.regdate }</td>
+      <td> <fmt:formatDate value="${memberVO.regdate }" pattern="yyyy/MM/dd"/></td>
     </tr>
     </c:forEach>
     <tr><td colspan="6" style="text-align: center;"> ${paging} </td></tr>

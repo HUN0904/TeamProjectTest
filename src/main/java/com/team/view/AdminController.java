@@ -23,10 +23,12 @@ import com.team.biz.dto.MemberVO;
 import com.team.biz.dto.NoticesVO;
 import com.team.biz.dto.OrderVO;
 import com.team.biz.dto.ProductVO;
+import com.team.biz.dto.QnaVO;
 import com.team.biz.service.MemberService;
 import com.team.biz.service.NoticesService;
 import com.team.biz.service.OrderService;
 import com.team.biz.service.ProductService;
+import com.team.biz.service.QnaService;
 
 import utils.Criteria;
 import utils.PageMaker;
@@ -46,7 +48,69 @@ public class AdminController {
 
 	@Autowired
 	private NoticesService noticesService;
+	
+	@Autowired
+	private QnaService qnaService;
 
+	/*====================MEMBER======================*/
+	   @RequestMapping("/admin_member_list")
+	   public String adminMemberList(
+	         MemberVO vo,
+	         @RequestParam(value="pageNum", defaultValue="1") String pageNum,
+	         @RequestParam(value="rowsPerPage", defaultValue="5") String rowsPerPage,
+	         @RequestParam(value="key", defaultValue="") String name, 
+	         Model model) {
+
+	      Criteria criteria = new Criteria();
+	      criteria.setPageNum(Integer.parseInt(pageNum));
+	      criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
+
+	      System.out.println("adminMemberList() : criteria="+criteria);
+
+	      // (1) 전체 상품목록 조회
+	      List<MemberVO> memberlist = memberService.listMemberWithPaging(criteria, name);
+
+	      // (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
+	      PageMaker pageMaker = new PageMaker();
+	      pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
+	      pageMaker.setTotalCount(memberService.countmemberlist(name));
+
+
+	      // (2) model 객체에 목록 저장
+	      model.addAttribute("memberlist", memberlist);
+	      model.addAttribute("memberlistSize", memberlist.size());
+	      model.addAttribute("pageMaker", pageMaker);
+	      return "admin/member/memberlist";
+	   }
+	
+	   /* ========================================판매 실적(sales)======================================== */
+
+		
+		@RequestMapping("/admin_sales_record_form")
+		public String adminProductSalesForm() {
+			
+			return "admin/order/salesRecords";
+		}
+		
+		@RequestMapping("/sales_record_chart")
+		@ResponseBody  // 화면이 아닌 데이터를 리턴하는 메소드로 지정
+		public List<OrderVO> salesRecordChart(OrderVO vo,
+				@RequestParam(value="start_date", defaultValue="2023-01-01") String start_date,
+				@RequestParam(value="end_date", defaultValue="2100-01-01") String end_date) {
+			if(end_date=="") {
+				LocalDate nowDate = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				end_date =nowDate.format(formatter);
+			}
+			System.out.println("start_date="+start_date);
+			System.out.println("end_date="+end_date);
+			vo.setEnd_date(end_date);
+			vo.setStart_date(start_date);
+			List<OrderVO> listSales = orderService.getListProductSales(vo);
+			
+			return listSales;
+		}
+	   
 
 	/* ================================상품(product)================================ */
 	
@@ -407,68 +471,89 @@ public class AdminController {
 		}
 	}
 
-
-
-
-/* ========================================판매 실적(sales)======================================== */
-
-	
-	@RequestMapping("/admin_sales_record_form")
-	public String adminProductSalesForm() {
-		
-		return "admin/order/salesRecords";
-	}
-	
-	@RequestMapping("/sales_record_chart")
-	@ResponseBody  // 화면이 아닌 데이터를 리턴하는 메소드로 지정
-	public List<OrderVO> salesRecordChart(OrderVO vo,
-			@RequestParam(value="start_date", defaultValue="2023-01-01") String start_date,
-			@RequestParam(value="end_date", defaultValue="2100-01-01") String end_date) {
-		if(end_date=="") {
-			LocalDate nowDate = LocalDate.now();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			end_date =nowDate.format(formatter);
-		}
-		System.out.println("start_date="+start_date);
-		System.out.println("end_date="+end_date);
-		vo.setEnd_date(end_date);
-		vo.setStart_date(start_date);
-		List<OrderVO> listSales = orderService.getListProductSales(vo);
-		
-		return listSales;
-	}
-/*====================MEMBER======================*/
-	@RequestMapping("/admin_member_list")
-	public String adminMemberList(
-			MemberVO vo,
+	/* ========================================Q&A(Q&A)======================================== */
+	// 전체 관리자 Q&A 리스트 
+	@RequestMapping("/admin_qna_list")
+	public String adminQnaList(
+			@RequestParam(value="key", defaultValue="") String title,
 			@RequestParam(value="pageNum", defaultValue="1") String pageNum,
-			@RequestParam(value="rowsPerPage", defaultValue="5") String rowsPerPage,
-			@RequestParam(value="key", defaultValue="") String name, 
+			@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
 			Model model) {
-
+		
 		Criteria criteria = new Criteria();
 		criteria.setPageNum(Integer.parseInt(pageNum));
 		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
-
-		System.out.println("adminMemberList() : criteria="+criteria);
-
+		
 		// (1) 전체 상품목록 조회
-		List<MemberVO> memberlist = memberService.listMemberWithPaging(criteria, name);
-
+		List<QnaVO> qnaList = qnaService.qnaList(criteria, title);
+		
 		// (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
-		pageMaker.setTotalCount(memberService.countmemberlist(name));
-
-
-		// (2) model 객체에 목록 저장
-		model.addAttribute("memberlist", memberlist);
-		model.addAttribute("memberlistSize", memberlist.size());
+		pageMaker.setTotalCount(noticesService.countnoticesList(title)); // 전체 게시글의 수 저장
+		
+		// (2) model 객체에 상품 목록 저장
+		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("qnaListSize", qnaList.size());
 		model.addAttribute("pageMaker", pageMaker);
-		return "admin/member/memberlist";
+		
+		// (3) 화면 호출: productList.jsp
+		return "admin/qna/adminQnaList";
+	}
+	// Q&A 답변 및 수정페이지 이동
+	@RequestMapping(value="/qna_update_form")
+	public String updateqnaform(QnaVO vo,HttpSession session, Model model) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+
+			model.addAttribute("qnaVO",qnaService.getQna(vo.getQna_no()));
+			return "admin/qna/qnaUpdate";
+		}
 	}
 
+	// Q&A 수정저장
+	@RequestMapping(value="qna_update")
+	public String updateqnaAction(QnaVO vo,HttpSession session) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			if(vo.getRcontent()!=""||vo.getRcontent()!=null) {
+				vo.setReply(1);
+			}
+			vo.setId(loginUser.getId());
+			qnaService.updateQna(vo);
+
+			return "redirect:admin_qna_list";
+		}
+	}
+	// Q&A 삭제
+	@RequestMapping(value="qna_delete")
+	public String deleteQna(QnaVO vo,HttpSession session) {
+		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return "member/login";
+		} else {
+			vo.setId(loginUser.getId());
+			qnaService.deleteQna(vo.getQna_no());
+
+			return "redirect:admin_qna_list";
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
 
 
 

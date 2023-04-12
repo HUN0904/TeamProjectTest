@@ -5,7 +5,7 @@
 <nav class="border-bottom navbar navbar-expand-md navbar-light position:fixed" style="background-color:#fdefec">
 	<div class="collapse navbar-collapse" id="navbarText" style="background-color:#fdefec" >
 	
-		<ul class="navbar-nav"style="background-color:#fdefec" >
+		<ul class="navbar-nav" style="background-color:#fdefec">
 			<li class="nav-item">
 				<a class="nav-link" href="reservation_status">예약 현황</a>
 			</li>
@@ -22,21 +22,19 @@
 				<a class="nav-link" href="admin_notices_list">공지사항</a>
 			</li>
 			
-			<li class="nav-item">
-				<a class="nav-link" href="#">QNA관리</a>
+			 <li>
+				<a class="nav-link" href="admin_member_list">회원관리</a>
 			</li>
+			
 			<li class="nav-item">
 				<a class="nav-link" href="admin_sales_record_form">판매 실적</a>
 			</li>
 			
 			<li class="nav-item">
-            	<a class="nav-link" href="admin_member_list">회원관리</a>
-         	</li>
-         	
+				<a class="nav-link" href="admin_qna_list">QNA관리</a>
+			</li>
 		</ul>
 	</div>
 	
 </nav>
 <div class="clear"></div>
-  <section class="container"> 
-  <div class="card p-4 m-5">

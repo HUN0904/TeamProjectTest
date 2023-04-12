@@ -6,8 +6,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script type="text/javascript">
-
+<script type="text/javascript" >
 $(function(){
     $("#datepicker").datepicker({
         onSelect:function(dateText, inst) {
@@ -17,8 +16,6 @@ $(function(){
         }
     });
 });
-
-
 $.datepicker.setDefaults({
     dateFormat: 'yy/MM/dd',
     prevText: '이전 달',
@@ -38,6 +35,8 @@ function search_date(){
 }
 </script>
 <article>
+  <section class="container"> 
+   <div class="card p-4 m-5" style="background-color:#fdefec">
 <h1>예약 현황</h1>	
 <form name="dateSearch" id="dateSearch" method="post">
 <div align="center" style="font-size:40px;">${pickDate}</div>
@@ -109,5 +108,8 @@ function search_date(){
 	</ul>
 </div>
 </form>
+  
+ </div>
+ </section>
 </article>
 <%@ include file="../../footer.jsp" %>
