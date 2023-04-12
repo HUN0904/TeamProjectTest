@@ -92,7 +92,14 @@
 		  	<c:if test="${qnaVO.reply==0 }">미답변</c:if>
 		  	<c:if test="${qnaVO.reply==1 }">답변완료</c:if>
 		  </td>  
-		  <td> <a href="qna_view?qna_no=${qnaVO.qna_no}"> ${qnaVO.title}</a> </td>     
+		  <td>
+		     <c:if test="${qnaVO.secret_yn=='y'}">
+		       <a href="qna_view?qna_no=${qnaVO.qna_no}">${qnaVO.title}</a>   
+		     </c:if>
+		     <c:if test="${qnaVO.secret_yn=='n'}">
+		        비밀글 입니다. <i class="bi bi-lock"></i>
+		     </c:if>
+		  </td>    
 		  <td> ${qnaVO.id}</td> 
 		  <td> <fmt:formatDate value="${qnaVO.qna_regdate}" type="date"/></td>
 		</tr>
