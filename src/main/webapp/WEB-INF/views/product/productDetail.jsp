@@ -77,13 +77,24 @@
 	         <img src="product_images/${productVO.product_image}" style="float:left;  padding-left:50px; width:600px; height:auto;" />
     </div>
     <div class="col-sm-6">
-    <br><br><br>
-         <h1>${productVO.product_name}<h1></h1> <br><br><br> 
-          가 격 : &nbsp; <fmt:formatNumber type="currency" value="${productVO.price}"/>
+    <br>
+         <h1>${productVO.product_name}</h1> <br> 
+         <h4> 가 격 : &nbsp; <fmt:formatNumber type="currency" value="${productVO.price}"/></h4>
           <br> <br> 샘플 사진의 레터링 및 커스텀은 예시이며 <strong> <span style="color:red;">미포함 </span></strong> 입니다.<br>
           원하는 레터링 및 커스텀 옵션을 빠짐없이 작성해 주세요.<br>
        
-
+     <div class="container text-center position:fixed" >
+				#레터링케이크 <br>
+				#커스텀케이크 <br>
+				#기념일케이크 <br>
+				#이벤트케이크 <br>
+				#주문제작케이크 <br>
+				#파티케이크 <br>
+				#도시락케이크 <br>
+				#미니케이크 <br>
+				#남자친구생일케이크 <br>
+				#여자친구생일케이크 <br>
+		</div>
  
     
      <input  type="hidden" name="product_no" value="${productVO.product_no}"><br>
@@ -155,37 +166,7 @@
     </div>
   </nav>
 </div>
-<div class="container text-center" >
 
-#레터링케이크 <br>
-
-#커스텀케이크 <br>
-
-#기념일케이크 <br>
-
-#이벤트케이크 <br>
-
-#주문제작케이크 <br>
-
-#명동케이크 <br>
-
-#을지로케이크 <br>
-
-#파티케이크 <br>
-
-#도시락케이크 <br>
-
-#미니케이크 <br>
-
-#당일레터링케이크 <br>
-
-#홈파티 <br>
-
-#남자친구생일케이크 <br>
-
-#여자친구생일케이크 <br>
-
-</div>
   <!-- 상품평 처리 -->
 <%@ include file="review.jsp" %>
 <%@ include file="../qna/qna.jsp" %>

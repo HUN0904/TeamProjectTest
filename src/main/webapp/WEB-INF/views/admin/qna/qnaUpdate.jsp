@@ -28,8 +28,8 @@ function validateForm() {
 		<form id="formm" name="formm" method="post" action="qna_update" style="text-align:center;" onsubmit="return validateForm()" >
 			<input type="hidden" name="qna_no"  value="${qnaVO.qna_no}">
 			<div>
-			   <label>제 목</label>&nbsp;&nbsp;&nbsp;&nbsp;
-			   <input type="text" readonly id="title" name="title"  size="60" style="padding-right:29px;" value="${qnaVO.title}">
+			   <label>제 목</label>&nbsp;&nbsp;&nbsp;
+			   <input type="text" readonly id="title" name="title"  size="60" style="margin-rignt:20px;" value="${qnaVO.title}">
             </div>
             <div>  
                <label>문의 내용</label>

@@ -30,7 +30,7 @@ function deleteNotices(notices_no){
 		 <div id="buttons" style="float:right">
 			<input type="submit"  value="수정완료"  class="submit"> 
 			<input type="button"  value="삭제하기"  class="submit" onclick="deleteNotices('${noticesVO.notices_no}')">
-			<input type="reset"   value="취소"    class="cancel">
+			<input type="reset"   value="다시작성"    class="cancel">
 		  </div>
 		  <br>
 		</form>

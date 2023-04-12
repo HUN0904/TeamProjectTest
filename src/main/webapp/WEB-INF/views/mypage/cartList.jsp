@@ -4,7 +4,7 @@
 <%@ include file="sub_menu.jsp" %> 
 <script type="text/javascript" src="mypage/mypage.js"></script>
   <section class="container"> 
-  <div class="card p-4 m-5">
+  <div class="card p-4 m-5" style="background-color:#fdefec">
   <article style="margin-bottom: 20px">
     <h2> ${sessionScope.loginUser.nickname} 님의 장바구니 </h2>
     <form name="formm" id="theform" method="post">

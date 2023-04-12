@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %> 
+  <section class="container"> 
+  <div class="card p-4 m-5" style="background-color:#fdefec">
   <article>
     <section class="container"> 
   <div class="card p-4 m-5">

@@ -9,15 +9,15 @@
 		<form name="formm" method="post" action="notices_write">
 			<fieldset>	
 				<legend>공지사항 작성</legend>		
-			    <label>Title</label>
+			    <label style="width:100px">Title</label>
 			    <input type="text" name="title"  size="63" ><br>
-				<label>Content</label>
+				<label style="width:100px">Content</label>
 			    <textarea rows="8" cols="65" name="content"></textarea><br>
 			</fieldset>   
 		<div class="clear"></div>
 		 <div id="buttons" style="float:right">
 			<input type="submit"  value="글쓰기"     class="submit"> 
-			<input type="reset"   value="취소"     class="cancel">
+			<input type="reset"   value="다시작성"     class="cancel">
 		  </div>
 		</form>
 	</div>

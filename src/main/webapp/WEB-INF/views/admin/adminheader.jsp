@@ -2,10 +2,10 @@
   pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
 
-<nav class="border-bottom navbar navbar-expand-md bg-white navbar-light sticky-top" >
-	<div class="collapse navbar-collapse" id="navbarText" >
+<nav class="border-bottom navbar navbar-expand-md navbar-light position:fixed" style="background-color:#fdefec">
+	<div class="collapse navbar-collapse" id="navbarText" style="background-color:#fdefec" >
 	
-		<ul class="navbar-nav" >
+		<ul class="navbar-nav" style="background-color:#fdefec">
 			<li class="nav-item">
 				<a class="nav-link" href="reservation_status">예약 현황</a>
 			</li>
@@ -20,6 +20,14 @@
 			
 			<li class="nav-item">
 				<a class="nav-link" href="admin_notices_list">공지사항</a>
+			</li>
+			
+			 <li>
+				<a class="nav-link" href="admin_member_list">회원관리</a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link" href="admin_sales_record_form">판매 실적</a>
 			</li>
 			
 			<li class="nav-item">

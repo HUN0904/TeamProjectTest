@@ -2,6 +2,8 @@ package com.team.view;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,9 +48,69 @@ public class AdminController {
 
 	@Autowired
 	private NoticesService noticesService;
+	
 	@Autowired
 	private QnaService qnaService;
 
+	/*====================MEMBER======================*/
+	   @RequestMapping("/admin_member_list")
+	   public String adminMemberList(
+	         MemberVO vo,
+	         @RequestParam(value="pageNum", defaultValue="1") String pageNum,
+	         @RequestParam(value="rowsPerPage", defaultValue="5") String rowsPerPage,
+	         @RequestParam(value="key", defaultValue="") String name, 
+	         Model model) {
+
+	      Criteria criteria = new Criteria();
+	      criteria.setPageNum(Integer.parseInt(pageNum));
+	      criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));
+
+	      System.out.println("adminMemberList() : criteria="+criteria);
+
+	      // (1) 전체 상품목록 조회
+	      List<MemberVO> memberlist = memberService.listMemberWithPaging(criteria, name);
+
+	      // (2) 화면에 표시할 페이지 버튼 정보 설정(PageMaker 클래스 이용)
+	      PageMaker pageMaker = new PageMaker();
+	      pageMaker.setCriteria(criteria);   // 현재 페이지 정보 저장
+	      pageMaker.setTotalCount(memberService.countmemberlist(name));
+
+
+	      // (2) model 객체에 목록 저장
+	      model.addAttribute("memberlist", memberlist);
+	      model.addAttribute("memberlistSize", memberlist.size());
+	      model.addAttribute("pageMaker", pageMaker);
+	      return "admin/member/memberlist";
+	   }
+	
+	   /* ========================================판매 실적(sales)======================================== */
+
+		
+		@RequestMapping("/admin_sales_record_form")
+		public String adminProductSalesForm() {
+			
+			return "admin/order/salesRecords";
+		}
+		
+		@RequestMapping("/sales_record_chart")
+		@ResponseBody  // 화면이 아닌 데이터를 리턴하는 메소드로 지정
+		public List<OrderVO> salesRecordChart(OrderVO vo,
+				@RequestParam(value="start_date", defaultValue="2023-01-01") String start_date,
+				@RequestParam(value="end_date", defaultValue="2100-01-01") String end_date) {
+			if(end_date=="") {
+				LocalDate nowDate = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				end_date =nowDate.format(formatter);
+			}
+			System.out.println("start_date="+start_date);
+			System.out.println("end_date="+end_date);
+			vo.setEnd_date(end_date);
+			vo.setStart_date(start_date);
+			List<OrderVO> listSales = orderService.getListProductSales(vo);
+			
+			return listSales;
+		}
+	   
 
 	/* ================================상품(product)================================ */
 	

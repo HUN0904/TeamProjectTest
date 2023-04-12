@@ -98,6 +98,10 @@ public class OrderDAO {
 		mybatis.update("OrderMapper.updateOrderResult",order_dno);
 	}
 	
+    public List<OrderVO> listProductSales(OrderVO vo){
+		
+	return mybatis.selectList("OrderMapper.listProductSales", vo);
+	}
 
 }
 
