@@ -89,7 +89,7 @@ function showHTML1(qnaList, totalCount) {
 			//if 비밀글이여도 로그인 id같으면 보이게
 			
 			if(item.secret_yn=="y"){
-				html += "<td>"+item.title+"</td>";
+				html += "<td><a href=\"qna_view?qna_no="+item.qna_no+"\">"+item.title+"</a></td>";
 			}else if(item.secret_yn=="n"){
 				html += "<td>비밀글 입니다. <i class=\"bi bi-lock\"></i></td>";
 			}
