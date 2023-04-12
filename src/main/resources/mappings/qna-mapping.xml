@@ -4,24 +4,50 @@
 
 	<!-- 전체 Q&A 리스트 -->
 	<select id="qnaList" resultType="qna">
-		SELECT * FROM qna ORDER BY qna_regdate DESC
+		<![CDATA[
+		SELECT rn, qna_no, id, secret_yn, qna_regdate, product_no, title, content, reply, reply_date 
+		FROM (SELECT row_number() OVER (ORDER BY qna_regdate DESC) rn, 
+           qna_no, id, secret_yn, qna_regdate, product_no, title, content, reply, reply_date 
+			  FROM qna
+			  WHERE title LIKE '%'||#{title}||'%')
+	  		  WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+			AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
 	</select>
 	
 	<!-- 상품별 Q&A 보기 -->
-	<select id="getProductQna" parameterType="hashMap" resultType="qna">
-		SELECT * FROM qna WHERE product_no=#{product_no} ORDER BY qna_regdate DESC
+	<select id="getProductQnaList" parameterType="hashMap" resultType="qna">
+		<![CDATA[
+			SELECT rn, qna_no, id, secret_yn, qna_regdate, product_no, title, content, reply, reply_date 
+			FROM (SELECT row_number() OVER (ORDER BY qna_regdate DESC) rn, 
+	           qna_no, id, secret_yn, qna_regdate, product_no, title, content, reply, reply_date 
+				  FROM qna
+				  WHERE  product_no=${product_no})
+	  		WHERE rn <= #{criteria.pageNum} * #{criteria.rowsPerPage}
+			AND rn > (#{criteria.pageNum}-1) * #{criteria.rowsPerPage}
+		]]>
 	</select>
-	
+	<!-- Q&A 상세 -->
+	<select id="getQna" resultType="qna">
+		select * from qna where qna_no=#{qna_no}
+	</select>
 	<!-- Q&A작성하기 -->
 	<insert id="insertQna" parameterType="qna">
 		insert into qna(qna_no, id, secret_yn, product_no, title, content)
 		values(qna_seq.nextval, #{id}, #{secret_yn}, #{product_no}, #{title}, #{content})
   	</insert>
-	
-	<!-- Q&A 수정하기 -->
+	<!-- Q&A 갯수 조회 -->
+	<select id="countQna" resultType="int">
+		select count(*) from qna 
+	</select>
+	<!-- 상품별 Q&A 갯수 조회 -->
+	<select id="countProductQna" resultType="int">
+		select count(*) from qna where product_no=#{product_no}
+	</select>
+	<!-- Q&A 답변및 수정하기 -->
 	<update id="updateQna">
-	UPDATE qna SET title= #{title}, content=#{content}
-	 WHERE qna_no =#{qna_no}
+	update qna SET reply=#{reply}, rcontent=#{rcontent}, reply_date=sysdate
+	 WHERE qna_no =#{qna_no}  
 	</update>
 	
 	<!-- Q&A 삭제하기 -->

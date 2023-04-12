@@ -35,6 +35,4 @@ int selectMaxOrder_no();
 	List<OrderVO> getAdminOrderList(String product_name);
 	
 	void updateOrderResult(int order_dno);
-	
-	List<OrderVO> getListProductSales(OrderVO vo);
 }

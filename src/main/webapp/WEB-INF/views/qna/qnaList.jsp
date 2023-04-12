@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %> 
+<!-- Required meta tags -->
 <style>
 #board-search .search-window {
   padding: 15px 0;
@@ -102,10 +103,10 @@
 
 </style>
 
-<section class="container">
+  <section class="container"> 
   <div class="page-title">
         <div class="container">
-            <h3>공지사항</h3>
+            <h3>Q&A</h3>
         </div>
     </div>
 
@@ -118,55 +119,66 @@
                         <input class="btn" type="button" name="btn_search" value="검색" placeholder="검색어를 입력해주세요." onClick="go_search()">
                         <button type="submit" class="btn btn-dark">검색</button>
                     </div>
+			      	<input type="button"  value=" 작성하기"  class="submit" onclick="location.href='qna_write_form'"> 
                 </form>
             </div>
         </div>
     </div>
-   
-  <!-- board list area -->
-        <div class="container">
-            <table class="table" style="text-align:center">
-                <thead>
-                <tr>
-                    <th >번호</th>
-                    <th >제목</th>
-                    <th >등록일</th>
-                    <th >조회수</th>
-                </tr>
-                </thead>
-                <tbody>
-                	<c:forEach items="${noticesList}"  var="noticesVO">
-	                	<tr>
-	                    	<td>${noticesVO.notices_no}</td>
-	                    	<th ><a href="notices_view?notices_no=${noticesVO.notices_no}"> ${noticesVO.title}</a></th>
-	                    	<td><fmt:formatDate value="${noticesVO.notices_date}" type="date"/></td>
-	                    	<td>${noticesVO.hits}</td>
-	                	</tr>
-                	</c:forEach>
-                </tbody>
-            </table>
-            
-        </div>
+    
+      
+    <form name="formm" method="post"> 
+    <table id="qnaList" class="table" style="text-align:center">
+	    <tr>
+    	  <th>답변상태</th> 
+	      <th>제목</th> 
+	      <th>작성자</th> 
+	      <th>등록일</th> 
+	    </tr>
+	<c:forEach items="${qnaList}"  var="qnaVO">
+		<tr>
+		  <td> 
+		  	<c:if test="${qnaVO.reply==0 }">미답변</c:if>
+		  	<c:if test="${qnaVO.reply==1 }">답변완료</c:if>
+		  </td>  
+		  <td> <a href="qna_view?qna_no=${qnaVO.qna_no}"> ${qnaVO.title}</a> </td>     
+		  <td> ${qnaVO.id}</td> 
+		  <td> <fmt:formatDate value="${qnaVO.qna_regdate}" type="date"/></td>
+		</tr>
+	</c:forEach>    
+    </table>
 <div class="d-flex justify-content-center">
 	<ul class="pagination">
 	
 		<c:if test="${pageMaker.prev}">
 			<li class="paginate_button previous">
-				<a href="notices_list${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
+				<a href="qna_list${pageMaker.makeQuery(pageMaker.startPage-1)}">[이전]</a>
 			</li>
 		</c:if>				
 		<!-- [1][2][3]... 표시 부분 -->
 		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="index">
-			<a href="notices_list${pageMaker.makeQuery(index)}">[${index}]</a>
+			<a href="qna_list${pageMaker.makeQuery(index)}">[${index}]</a>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next}">
 			<li class="paginate_button next">
-				<a href="notices_list${pageMaker.makeQuery(pageMaker.endPage+1)}">[다음]</a>
+				<a href="qna_list${pageMaker.makeQuery(pageMaker.endPage+1)}">[다음]</a>
 			</li>
 		</c:if>				
 	</ul>
-</div>
-</section>
+ 
+</div>    
+    </form>
+    </section>
 <%@ include file="../footer.jsp" %>
+
+
+
+
+
+
+
+
+
+
+
 
