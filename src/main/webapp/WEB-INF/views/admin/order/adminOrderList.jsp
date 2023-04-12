@@ -77,7 +77,7 @@
         	<td><input type="checkbox" name="order_dno" id="order_dno" value= "${order.order_dno}"></td>
         </c:when>
       	<c:otherwise>
-        	<td colspan="2"> 주문 처리 완료 </td>
+        	<td> 주문 처리 완료 </td>
       	</c:otherwise>
       </c:choose>
       <td></td>
