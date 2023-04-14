@@ -4,7 +4,7 @@
 <%@ include file="sub_menu.jsp" %>
 <script type="text/javascript" src="mypage/mypage.js"></script>
   <section class="container"> 
-  <div class="card p-4 m-5">
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
  <article>
       <h2> 주문 목록 </h2>
       <form name="formm" method="post" >

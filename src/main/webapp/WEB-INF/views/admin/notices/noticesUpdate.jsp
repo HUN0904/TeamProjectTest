@@ -14,7 +14,9 @@ function deleteNotices(notices_no){
 
 </script>
  
-	<article>
+	<article>	  
+	<section class="container" > 
+  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
 	    <h2 align="center"> 공지사항 </h2>
 		<form id="formm" name="formm" method="post" action="notices_update" text-align="center">
 			<input type="hidden" name="notices_no"  value="${noticesVO.notices_no}">

@@ -31,11 +31,11 @@ public class QnaController {
 	
 	//Q&A 페이지
 	@GetMapping(value="/qna_list")
-	public String qnaList(@RequestParam(value="key", defaultValue="") String title,
+	public String qnaList(
+			@RequestParam(value="key", defaultValue="") String title,
 							@RequestParam(value="pageNum", defaultValue="1") String pageNum,
 							@RequestParam(value="rowsPerPage", defaultValue="10") String rowsPerPage,
 							Model model) {
-		
 		Criteria criteria = new Criteria();
 		criteria.setPageNum(Integer.parseInt(pageNum));
 		criteria.setRowsPerPage(Integer.parseInt(rowsPerPage));

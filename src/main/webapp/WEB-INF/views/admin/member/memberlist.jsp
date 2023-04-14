@@ -38,7 +38,7 @@ function member_total() {
     <tr>
         <th>ID</th>
         <th>이름</th>
-        <th>닉네임</th>
+
         <th>연락처</th>
         <th>주소</th>
         <th>이메일</th>
@@ -58,7 +58,7 @@ function member_total() {
     <tr>
    	  <td>${memberVO.id}</td>
    	  <td> ${memberVO.name} </td>
-   	  <td>${memberVO.nickname}</td>
+
       <td>${memberVO.phone}</td>
       <td>${memberVO.address}</td>
       <td>${memberVO.email}</td> 

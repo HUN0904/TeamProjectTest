@@ -1,5 +1,7 @@
 package com.team.view;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.team.biz.dto.FavoriteVO;
 import com.team.biz.dto.MemberVO;
+import com.team.biz.service.FavoriteService;
 import com.team.biz.service.MemberService;
 
 
@@ -24,18 +28,28 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private FavoriteService favoriteService;
+	
 	@GetMapping("/login_form")
 	public String loginView() {
 		return "member/login";
 	}
 	
 	@PostMapping("/login")
-	public String loginAction(MemberVO vo, Model model) {
+	public String loginAction(FavoriteVO fvo, MemberVO vo, Model model) {
 		int result=memberService.loginID(vo);
 		if(result==1) {//로그인 성공
+			
+			fvo.setId(vo.getId());
+			List<FavoriteVO> favorite= favoriteService.getListByFavorite(fvo);
+			model.addAttribute("favorite",favorite);
 			model.addAttribute("loginUser", memberService.getMember(vo.getId()));
 			return "redirect:index";
 		}else if(result==2) {
+			fvo.setId(vo.getId());
+			List<FavoriteVO> favorite= favoriteService.getListByFavorite(fvo);
+			model.addAttribute("favorite",favorite);
 			model.addAttribute("loginUser", memberService.getMember(vo.getId()));
 			return "redirect:admin_product_list";
 		}else {

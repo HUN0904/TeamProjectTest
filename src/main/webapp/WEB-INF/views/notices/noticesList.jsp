@@ -111,8 +111,8 @@
 
     <div id="board-search">
         <div class="container">
-            <div class="search-window">
-                <form name="formm" method="post">
+            <div class="search-window" style="background-color:#fdefec">
+                <form name="formm" method="post" >
                     <div class="search-wrap">
                     	<input type="text" name="key" id="key">
                         <input class="btn" type="button" name="btn_search" value="검색" placeholder="검색어를 입력해주세요." onClick="go_search()">

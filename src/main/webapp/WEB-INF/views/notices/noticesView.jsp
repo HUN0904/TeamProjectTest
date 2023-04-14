@@ -5,7 +5,7 @@
   <div class="card p-4 m-5" style="background-color:#fdefec">
   <article>
     <section class="container"> 
-  <div class="card p-4 m-5">
+  <div class="card p-4 m-5" style="background-color:#fdefec">
       <h2> 공지사항 </h2>
     <form name="formm" method="post">
     <table class="table" id="notice" >
@@ -18,7 +18,7 @@
 	        </th>
 	    </tr>
 	    <tr>
-	      <td>${noticesVO.content}</td>
+	      <td><textarea rows="20" cols="80" readonly style="background-color:#fdefec">${noticesVO.content}</textarea></td>
 	    </tr>
     </table>
     <div class="clear"></div>

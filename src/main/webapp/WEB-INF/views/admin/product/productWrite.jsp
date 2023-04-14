@@ -5,7 +5,7 @@
 <script type="text/javascript" src="admin/product/product.js"></script>
 <article>
   <section class="container" > 
-  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
+  <div class="card p-4 m-5" style="text-align:left; background-color:#fdefec">
 <h1>상품등록</h1>  
 <form name="frm" id="write_form" method="post" enctype="multipart/form-data">
 <table id="list">

@@ -27,23 +27,23 @@
   <tr>
     <th>상품분류</th>
      <td  colspan="5">
-        &nbsp;${kindList}
+        &nbsp;&nbsp;${kindList}
      </td>    
     </tr>
      
     <tr>
         <th align="center">상품명</th>
-        <td colspan="5">${productVO.product_name}</td>
+        <td colspan="5">&nbsp;&nbsp;${productVO.product_name}</td>
     </tr>
     
     <tr>
         <th>판매가</th>
-        <td colspan="5"">${productVO.price}</td>
+        <td colspan="5"">&nbsp;&nbsp;${productVO.price}</td>
     </tr>
      
     <tr>
         <th>상세설명</th>
-        <td colspan="8">${productVO.content}</td>
+        <td colspan="8">&nbsp;&nbsp;${productVO.content}</td>
     </tr>
     
 </table>

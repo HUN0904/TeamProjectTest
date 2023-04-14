@@ -22,7 +22,7 @@
 	   
 	   </tr>
 	    <tr>
-	      <td> <textarea rows="20" cols="80">${noticesVO.content}</textarea></td>
+	      <td> <textarea rows="20" cols="80" readonly  style="background-color:#fdefec">${noticesVO.content}</textarea></td>
 	    </tr>
     </table>
     <div class="clear"></div>

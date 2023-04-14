@@ -44,8 +44,8 @@ public class FavoriteController {
 			return "member/login";
 		} else {
 			vo.setId(loginUser.getId());
-			List<FavoriteVO> listFavorite= favoriteService.getListByFavorite(vo);
-			model.addAttribute("listFavorite",listFavorite);
+			List<FavoriteVO> favorite= favoriteService.getListByFavorite(vo);
+			model.addAttribute("favorite",favorite);
 			return "mypage/favoriteList";
 		}
 	}

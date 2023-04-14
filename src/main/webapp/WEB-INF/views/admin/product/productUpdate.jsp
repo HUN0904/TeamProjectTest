@@ -14,7 +14,7 @@ function deleteProduct(product_no){
 </script>
 <article>
   <section class="container" > 
-  <div class="card p-4 m-5" style="text-align:center; background-color:#fdefec">
+  <div class="card p-4 m-5" style="text-align:left; background-color:#fdefec">
 <h1>상품수정</h1>  
 <form name="frm" id="update_form" method="post" enctype="multipart/form-data">
 <input type="hidden" name="product_no" value="${productVO.product_no}">
