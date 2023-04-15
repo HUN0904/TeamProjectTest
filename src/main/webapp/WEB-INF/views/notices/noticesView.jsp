@@ -5,7 +5,7 @@
   <div class="card p-4 m-5" style="background-color:#fdefec">
   <article>
     <section class="container"> 
-  <div class="card p-4 m-5">
+  <div class="card p-4 m-5" style="background-color:#fdefec">
       <h2> 공지사항 </h2>
     <form name="formm" method="post">
     <table class="table" id="notice" >
@@ -29,4 +29,7 @@
     </div>
     </section>
   </article>
+  
+  </div>
+  </section>
 <%@ include file="../footer.jsp" %>
