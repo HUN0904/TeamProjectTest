@@ -11,23 +11,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/common.css">  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/common.css" type="text/css">  
 <!-- js파일 다 몰아버림 -->
-<script type="text/javascript" src="member/member.js"></script>
-<script type="text/javascript" src="member/postcode.js"></script>
 <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-
-<!-- Dropdowns -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/member.js"></script>
 
 </head>
-<body style="background-color:#fdefec">
-<nav class="border-bottom navbar navbar-expand-md bg-#FDE3CC navbar-light position:fixed" style="background-color:#fdefec">
-	<div class="collapse navbar-collapse" id="navbarText" >
+<body>
+<nav class="border-bottom navbar navbar-expand-md bg-white navbar-light sticky-top">
+	<a class="navbar-brand" href="index">
+		<img src="images/default.jpg" style="white:30px; height:30px;">
+	</a>
+	<div class="collapse navbar-collapse" id="navbarText">
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link" href="index">홈</a>
@@ -36,17 +33,27 @@
 				<a class="nav-link" href="notices_list">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="qna_list">Q&A</a>
+				<a class="nav-link" href="index">케이크</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="">추가할메뉴</a>
 			</li>	
 			<c:if test="${sessionScope.loginUser.admin eq 'admin'}">		
-			<li class="nav-item" >
-				<a class="nav-link" href="admin_product_list" >관리자 페이지</a>
+			<li class="nav-item">
+				<a class="nav-link" href="admin_product_list">관리자 페이지</a>
 			</li>
 			</c:if>	
 		</ul>
 	</div>
-
-	<ul class="navbar-nav" style="padding-left:5px;">
+	<!-- 통합 검색창 -->
+	<form name="total-search" class="form-inline ml-auto" action="total_search" method="GET">
+		<label for="search_bar" class="bi bi-search" style="position: relative; z-index: 10; left: 23px;"> </label>
+		<div class="input-group flex-nowrap">
+			<input id="search_bar" class="form-control mr-sm-2 pl-4" type="search" name="target" placeholder="통합검색" aria-label="Search" value="" required="">
+			<button type="submit" class="d-none"></button>
+		</div>
+	</form>
+	<ul class="navbar-nav">
 		<c:choose>
 	       <c:when test="${empty sessionScope.loginUser}">
 				<li class="nav-item">
@@ -54,55 +61,40 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="join">회원가입</a>
-				</li>&nbsp;
+				</li>
 			</c:when>
 	        <c:otherwise>
 		      <li style="color:orange">
 		        ${sessionScope.loginUser.name}(${sessionScope.loginUser.nickname})
 		      </li>
-		      &nbsp;
-	       	  <li><a href="logout">LOGOUT</a></li> &nbsp;
-	       	  <br>
+	       	  <li><a href="logout">LOGOUT</a></li>
 	        </c:otherwise> 
 	      </c:choose>
 	  </ul>
+	<ul class="navbar-nav">
+		<!-- 채팅 알림 -->
+		<li class="nav-item">
+			<a class="nav-link" href="">
+				<h5 class="bi bi-chat-dots my-0"></h5>
+			</a>
+		</li>
+
+		<!-- 내 프로필 -->
+		<li class="nav-item">
+			<a class="nav-link" href="mypage">
+				<h5 class="bi bi-person-circle my-0"></h5>
+			</a>
+		</li>
+	</ul>
 	
-	
-	
-	<div class="dropdown" >
-		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    Click!
-		  </button>
-		<c:choose>
-		   <c:when test="${empty sessionScope.loginUser}">
-               <a href="login_form"></a>
-		   </c:when>
-	 
-		      
-		  <c:otherwise>
-		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding-right:5px">
-		    <a class="dropdown-item" href="cart_list">장바구니
-		      <i class="bi bi-cart"></i>
-		    </a>
-		     <a class="dropdown-item " href="favorite_list" >찜목록
-			      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
-	 				 <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-				  </svg>
-		     </a>
-		     
-		     <a class="dropdown-item" href="order_list">주문목록
-		        <i class="bi bi-card-list"></i> 
-		    </a>
-		    
-		    <a class="dropdown-item" href="modify_member_form">내 정보
-		       <i class="bi bi-person-circle my-0"></i>
-		    </a>
-		    
-		  </div>
-		  </c:otherwise>
-	   </c:choose>
-		  
+	<div class="dropdown">
+		<button type="button" class="btn btn-secondary dropdown-toggle" 
+			type="button" data-bs-toggle="dropdown" aria-expanded="false">메뉴 눌러보셈
+		</button>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" href="#">물건 등록</a>
+			<a class="dropdown-item" href="#">추가할종류들</a>
+		</div>
 	</div>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
 </nav>
