@@ -21,4 +21,5 @@ public class MemberVO {
 	private Date regdate;
 	private int grade;
 	private int sum_price;
+	private int favorite_no;
 }

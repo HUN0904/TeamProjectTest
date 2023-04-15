@@ -27,6 +27,7 @@ public class ProductController {
 	private FavoriteService favoriteService;
 	@Autowired
 	private ReviewService reviewService;
+	
 	@RequestMapping(value="/product_detail", method=RequestMethod.GET)
 	public String productDetailAction(ProductVO vo, Model model,HttpSession session){
 	    MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");

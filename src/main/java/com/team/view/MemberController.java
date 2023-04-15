@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.team.biz.dto.FavoriteVO;
+
 import com.team.biz.dto.MemberVO;
-import com.team.biz.service.FavoriteService;
 import com.team.biz.service.MemberService;
 
 
@@ -25,8 +24,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-	@Autowired
-	private FavoriteService favoriteService;
+
 	
 	@GetMapping("/login_form")
 	public String loginView() {
@@ -34,13 +32,12 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public String loginAction(MemberVO vo, Model model, FavoriteVO favorite) {
+	public String loginAction(MemberVO vo, Model model) {
 		int result=memberService.loginID(vo);
 		if(result==1) {//로그인 성공
 			model.addAttribute("loginUser", memberService.getMember(vo.getId()));
-	        model.addAttribute("loginUser",favoriteService.getHeartByProduct(favorite));
 			return "redirect:index";
-		}else if(result==2) {
+		}else if(result==2) {//관리자
 			model.addAttribute("loginUser", memberService.getMember(vo.getId()));
 			return "redirect:admin_product_list";
 		}else {
