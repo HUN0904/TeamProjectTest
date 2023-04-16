@@ -24,6 +24,8 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+
+	
 	@GetMapping("/login_form")
 	public String loginView() {
 		return "member/login";
