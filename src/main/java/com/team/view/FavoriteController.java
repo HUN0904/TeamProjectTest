@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team.biz.dto.FavoriteVO;
@@ -46,6 +45,7 @@ public class FavoriteController {
 			vo.setId(loginUser.getId());
 			List<FavoriteVO> favorite= favoriteService.getListByFavorite(vo);
 			model.addAttribute("favorite",favorite);
+			model.addAttribute("favoriteList",favorite.size());
 			return "mypage/favoriteList";
 		}
 	}

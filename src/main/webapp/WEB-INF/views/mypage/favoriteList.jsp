@@ -38,7 +38,7 @@
 		<form id="fav_list_form" method="get" align="center">
 			<div class="container">
 				<div class="row ">
-					<c:forEach var="favorite" items="${listFavorite}">
+					<c:forEach var="favorite" items="${favorite}">
                        <div class="col-3 mb-5" style="background-color:#fdefec">
 						<div class="card">
 

@@ -40,16 +40,11 @@ public class MemberController {
 	public String loginAction(FavoriteVO fvo, MemberVO vo, Model model) {
 		int result=memberService.loginID(vo);
 		if(result==1) {//로그인 성공
-			
-			fvo.setId(vo.getId());
-			List<FavoriteVO> favorite= favoriteService.getListByFavorite(fvo);
-			model.addAttribute("favorite",favorite);
+
 			model.addAttribute("loginUser", memberService.getMember(vo.getId()));
 			return "redirect:index";
 		}else if(result==2) {
-			fvo.setId(vo.getId());
-			List<FavoriteVO> favorite= favoriteService.getListByFavorite(fvo);
-			model.addAttribute("favorite",favorite);
+
 			model.addAttribute("loginUser", memberService.getMember(vo.getId()));
 			return "redirect:admin_product_list";
 		}else {
